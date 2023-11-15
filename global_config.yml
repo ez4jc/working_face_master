@@ -1,0 +1,7 @@
+﻿other:
+  # 日志模式
+  log_model: debug
+  # 远程服务端口
+  remote_port: 80
+  # 软件版本
+  version: 1.0
