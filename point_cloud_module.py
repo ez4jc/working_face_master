@@ -14,7 +14,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
     # 目前支持的文件类型
     SUPPORTFILETYPE = {
         "STL": vtk.vtkSTLReader,  # 存放相应类的引用
-        "ply": Custom_PLYReader,  # 两种ply文件
+        "ply": vtk.vtkPLYReader,  # 两种ply文件
         "pcd": Custom_vtkPCDReader,
         "vtk": vtk.vtkDataSetReader
     }
@@ -47,7 +47,20 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.plane_actorXZ = HorizontalPlaneActor("XZ")
 
         # 2.实例一个坐标轴演员
-        self.cube_axes = CubeAxesActor(self)
+        # self.cube_axes = CubeAxesActor(self)
+        self.cube_axes = vtk.vtkAxesActor()
+        # 创建一个坐标轴变换小部件
+        axes_transform_widget = vtk.vtkAxesTransformWidget()
+        axes_transform_widget.SetInteractor(self)
+        # self.cube_axes.SetCamera(self.camera_controller.camera)
+
+        # 创建一个坐标轴演员的助手
+        # axes_widget = vtk.vtkOrientationMarkerWidget()
+        # axes_widget.SetOrientationMarker(self.cube_axes)
+        # axes_widget.SetInteractor(self)
+        # axes_widget.SetViewport(0.0, 0.0, 0.2, 0.2)  # 设置坐标轴显示的位置
+        # axes_widget.SetEnabled(1)
+        # axes_widget.InteractiveOn()
 
         # 3.创建背景环境
         self.sphere_actor = SphereActor()
@@ -68,9 +81,9 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.highlight_point = False  # 是否突出点
 
         # 直接加载工作场景,并加载网格面xy
-        self.load_workspace()
+        # self.load_workspace()
         self.toggled_planeXY()
-
+        self.load_label()
 
     def load_workspace(self):
         files_name = ['zhao_xi/support/test_support_1.ply',
@@ -100,6 +113,27 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             actor = self.add_actor(self.create_single_actor(file_name))
             # 添加点云对象的可选框
             self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBoxs)
+
+    def load_label(self):
+        # 提示线
+        x = 2
+        y = 2
+        z_1 = -2
+        z_2 = 2
+        line_source = vtk.vtkLineSource()
+        line_source.SetPoint1(x, y, z_1)
+        line_source.SetPoint2(x, y, z_2)
+        line_mapper = vtk.vtkPolyDataMapper()
+        line_mapper.SetInputConnection(line_source.GetOutputPort())
+        line_actor = vtk.vtkActor()
+        line_actor.SetMapper(line_mapper)
+        self.renderer.AddActor(line_actor)
+        # 文本
+        textActor = vtk.vtkOpenGLBillboardTextActor3D()
+        textActor.SetInput("distance : ")
+        textActor.GetTextProperty().SetFontSize(24)
+        textActor.SetPosition(x, y, (z_1+z_2)/2.0)
+        self.renderer.AddActor(textActor)
 
     def show_point_cloud(self):
         if not self.window.showPointCloud:
@@ -143,7 +177,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
         # 创建点云的可视化对象
         point_mapper = vtk.vtkPolyDataMapper()
-        point_mapper.SetInputConnection(reader.GetOutputPort(0))
+        point_mapper.SetInputConnection(reader.GetOutputPort())
 
         return point_mapper
 
@@ -179,6 +213,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
     def toggled_axes(self):
         if not self.show_axes:
+            print("加了坐标轴")
             self.renderer.AddActor(self.cube_axes)  # 这里警告是因为cube_axes不是常规Actor
             self.show_axes = True
         else:
@@ -224,6 +259,11 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.renderer.GetRenderWindow().Render()
 
     def mouseMoveEvent(self, ev):
+        # ##########标签捕获鼠标移动部分##################################################################
+        # 使用Picker获取与鼠标位置相对应的Actor
+        # 更新标签位置和文本
+
+        # ##########标签捕获鼠标移动部分##################################################################
         if self.camera_controller.limitedX:
             self.camera_controller.rotate_x(ev)
             self.renderer.ResetCameraClippingRange()
@@ -241,6 +281,14 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             super().mouseMoveEvent(ev)
 
     def mousePressEvent(self, ev):
+        # ##########################################################
+        # 拾取模块
+        # self.picker = vtk.vtkPropPicker()
+        # self.SetPicker(self.picker)
+        # self.picker.Pick(ev.pos().x(), ev.pos().y(), 0, self.renderer)
+        # print(self.picker.GetPickPosition())
+        # print(self.picker.GetActor())
+        # ##########################################################
         if self.camera_controller.unlimited:
             super().mousePressEvent(ev)
         elif ev.button() == Qt.MouseButton.LeftButton:

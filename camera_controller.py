@@ -6,9 +6,9 @@ class CameraController:
     def __init__(self, camera):
         self.camera = camera
         # 摄像头初始位置
-        self.camera.SetPosition(-30, -30, 50)
-        self.camera.Roll(53)
-        self.my_elevation(35)
+        # self.camera.SetPosition(-30, -30, 50)
+        # self.camera.Roll(53)
+        # self.my_elevation(35)
 
         self.moving_forward = False
         self.moving_backward = False
@@ -178,6 +178,12 @@ class CameraController:
 
         # 设置更新后的焦点位置
         self.camera.SetFocalPoint(new_focal_point)
+        self.camera.OrthogonalizeViewUp()  # 应时刻根据新的焦点和当前位置计算新的ViewUp向量
+
+    def custom_set_view(self, position, view_vector):
+        self.camera.SetPosition(position[0], position[1], position[2])
+        focal_point = self.camera.GetFocalPoint()
+        self.camera.SetFocalPoint(position + view_vector)
         self.camera.OrthogonalizeViewUp()  # 应时刻根据新的焦点和当前位置计算新的ViewUp向量
 
     def calculate_roll_theta(self, ev, center_x, center_y):

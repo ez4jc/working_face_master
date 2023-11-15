@@ -34,9 +34,9 @@ class HorizontalPlaneActor(vtk.vtkActor):
 
 
 class CubeAxesActor(vtk.vtkCubeAxesActor2D):
-    def __init__(self, interator):
+    def __init__(self, interactor):
         super().__init__()
-        self.SetCamera(interator.renderer.GetActiveCamera())  # 关联渲染器的相机
+        self.SetCamera(interactor.renderer.GetActiveCamera())  # 关联渲染器的相机
         self.SetFlyModeToOuterEdges()  # 设置坐标轴显示在场景边缘
 
 
