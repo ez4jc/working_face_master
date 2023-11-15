@@ -1,17 +1,19 @@
 import vtkmodules.all as vtk
 import math
+import json
 
 
 class CameraController:
     def __init__(self, camera):
         self.camera = camera
+        self.camera_info_index = 2
         # 摄像头初始位置
         # self.camera.SetPosition(-30, -30, 50)
         # self.camera.Roll(53)
         # self.my_elevation(35)
 
-        self.moving_forward = False
-        self.moving_backward = False
+        self.moving_up = False
+        self.moving_down = False
         self.moving_left = False
         self.moving_right = False
         self.fly_moveSpeed = 0.1  # 漫游移动速度，对应滑条初始值10
@@ -26,13 +28,16 @@ class CameraController:
         self.last_x = 0
         self.last_y = 0
 
+    def set_camera_position(self, position):
+        self.camera.SetPosition(position[0], position[1], position[2])
+
     def keypress_processor(self, ev):
         if True:  # if self.fly_mode
             if ev.key() in [87, 83, 65, 68]:
                 if ev.key() == 87:  # 'w'
-                    self.moving_forward = True
+                    self.moving_up = True
                 elif ev.key() == 83:  # 's'
-                    self.moving_backward = True
+                    self.moving_down = True
                 elif ev.key() == 65:  # 'a'
                     self.moving_left = True
                 elif ev.key() == 68:  # 'd'
@@ -43,9 +48,9 @@ class CameraController:
         if True:  # if self.fly_mode
             if ev.key() in [87, 83, 65, 68]:
                 if ev.key() == 87:  # 'w'
-                    self.moving_forward = False
+                    self.moving_up = False
                 elif ev.key() == 83:  # 's'
-                    self.moving_backward = False
+                    self.moving_down = False
                 elif ev.key() == 65:  # 'a'
                     self.moving_left = False
                 elif ev.key() == 68:  # 'd'
@@ -67,14 +72,14 @@ class CameraController:
         view_up = list(self.camera.GetViewUp())
         view_direction = [focal_point[i] - position[i] for i in range(3)]
 
-        if self.moving_forward:
+        if self.moving_up:
             for i in range(3):
-                position[i] += self.fly_moveSpeed * view_direction[i]
-                focal_point[i] += self.fly_moveSpeed * view_direction[i]
-        if self.moving_backward:
+                position[i] += self.fly_moveSpeed * view_up[i]  # 如果有问题，回退到view_direction
+                focal_point[i] += self.fly_moveSpeed * view_up[i]
+        if self.moving_down:
             for i in range(3):
-                position[i] -= self.fly_moveSpeed * view_direction[i]
-                focal_point[i] -= self.fly_moveSpeed * view_direction[i]
+                position[i] -= self.fly_moveSpeed * view_up[i]
+                focal_point[i] -= self.fly_moveSpeed * view_up[i]
         if self.moving_left:
             right = [view_up[1] * view_direction[2] - view_up[2] * view_direction[1],
                      view_up[2] * view_direction[0] - view_up[0] * view_direction[2],
@@ -232,3 +237,32 @@ class CameraController:
         self.limitedX = False
         self.limitedY = False
         self.limitedRoll = False
+
+    def save_camera_info(self):
+        camera_info = {
+            'position': self.camera.GetPosition(),
+            'focal_point': self.camera.GetFocalPoint(),
+            'view_up': self.camera.GetViewUp(),
+            'distance': self.camera.GetDistance(),
+            'view_angle': self.camera.GetViewAngle(),
+            'near_clipping': self.camera.GetClippingRange()[0],
+            'far_clipping': self.camera.GetClippingRange()[1]
+        }
+        json_file_path = f'camera_info/camera_info{self.camera_info_index}.json'
+        self.camera_info_index += 1
+        # 保存相机信息到JSON文件
+        with open(json_file_path, 'w') as file:
+            json.dump(camera_info, file)
+
+    def load_camera_info(self, index):
+        # 从JSON文件加载相机信息
+        with open(f'camera_info/camera_info{index}.json', 'r') as file:
+            loaded_camera_info = json.load(file)
+
+        # 设置相机参数为加载的信息
+        self.camera.SetPosition(loaded_camera_info['position'])
+        self.camera.SetFocalPoint(loaded_camera_info['focal_point'])
+        self.camera.SetViewUp(loaded_camera_info['view_up'])
+        self.camera.SetDistance(loaded_camera_info['distance'])
+        self.camera.SetViewAngle(loaded_camera_info['view_angle'])
+        self.camera.SetClippingRange(loaded_camera_info['near_clipping'], loaded_camera_info['far_clipping'])

@@ -56,6 +56,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 工具栏模块
         self._create_actions()
 
+        # 固定视角的摄像头位置
+        self.camera_fixed_position = [(-7.3, 2.2, 0.9)]
+
     def button_init(self):
         self.widget_control.setEnabled(False)
         self.checkBox_planeXY.setChecked(True)
@@ -80,8 +83,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.radioButton_vertical_rotate.clicked.connect(self.vtkWidget.camera_controller.switch_limitedY)
         self.radioButton_roll.clicked.connect(self.vtkWidget.camera_controller.switch_limitedRoll)
         self.radioButton_unlimited.clicked.connect(self.vtkWidget.camera_controller.switch_unlimited)
+        # 视角设置按钮
+        self.radioButton_supporterHead.clicked.connect(lambda: self.vtkWidget.load_camera_info(0))
+        self.radioButton_supportertail.clicked.connect(lambda: self.vtkWidget.load_camera_info(1))
+        self.radioButton_3.clicked.connect(lambda: self.vtkWidget.load_camera_info(2))
+        self.radioButton_4.clicked.connect(lambda: self.vtkWidget.load_camera_info(3))
+        self.radioButton_5.clicked.connect(lambda: self.vtkWidget.load_camera_info(4))
+        self.radioButton_6.clicked.connect(lambda: self.vtkWidget.load_camera_info(5))
+        self.radioButton_7.clicked.connect(lambda: self.vtkWidget.load_camera_info(6))
+        self.radioButton_8.clicked.connect(lambda: self.vtkWidget.load_camera_info(7))
+        self.radioButton_9.clicked.connect(lambda: self.vtkWidget.load_camera_info(8))
+        self.radioButton_10.clicked.connect(lambda: self.vtkWidget.load_camera_info(9))
         # 菜单栏第一个菜单
         self.action_pcdScreen.triggered.connect(self.menu1_dianyunping_slot)
+
+        # 开发按钮
+        self.pushButton_getCameraPosition.clicked.connect(self.vtkWidget.camera_controller.save_camera_info)
 
     def viewer_show(self, item):
         if item == "Video":

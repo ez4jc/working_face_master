@@ -81,9 +81,9 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.highlight_point = False  # 是否突出点
 
         # 直接加载工作场景,并加载网格面xy
-        # self.load_workspace()
+        self.load_workspace()
         self.toggled_planeXY()
-        self.load_label()
+        self.generate_supporter_label()
 
     def load_workspace(self):
         files_name = ['zhao_xi/support/test_support_1.ply',
@@ -107,6 +107,8 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
                       'zhao_xi/support/test_support_19.ply',
                       'zhao_xi/support/test_support_20.ply',
                       'zhao_xi/tunnel/coal_wall/coal_wall.ply',
+                      'zhao_xi/tunnel/coal_wall/up_coal_wall.ply',
+                      'zhao_xi/tunnel/coal_wall/down_coal_wall.ply',
                       'zhao_xi/tunnel/yunshuxiang/yunshuxiang_vertices.ply',
                       'zhao_xi/tunnel/tongfengxiang/tongfengxiang_vertices.ply']
         for file_name in files_name:
@@ -114,7 +116,11 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             # 添加点云对象的可选框
             self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBoxs)
 
-    def load_label(self):
+    def set_camera_position(self, position):
+        self.camera_controller.set_camera_position(position)
+        self.renderer.GetRenderWindow().Render()
+
+    def generate_supporter_label(self):
         # 提示线
         x = 2
         y = 2
@@ -132,7 +138,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         textActor = vtk.vtkOpenGLBillboardTextActor3D()
         textActor.SetInput("distance : ")
         textActor.GetTextProperty().SetFontSize(24)
-        textActor.SetPosition(x, y, (z_1+z_2)/2.0)
+        textActor.SetPosition(x, y, (z_1 + z_2) / 2.0)
         self.renderer.AddActor(textActor)
 
     def show_point_cloud(self):
@@ -307,3 +313,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
     def change_flySpeed_intermediary(self):
         self.camera_controller.change_flySpeed(self.window.horizontalSlider_flySpeed.value())
+
+    def load_camera_info(self, index):
+        self.camera_controller.load_camera_info(index)
+        self.renderer.GetRenderWindow().Render()

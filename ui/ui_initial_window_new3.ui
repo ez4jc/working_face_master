@@ -49,7 +49,7 @@
                  <enum>QFrame::StyledPanel</enum>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>2</number>
                 </property>
                 <property name="tabSpacing">
                  <number>6</number>
@@ -59,15 +59,10 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>187</width>
-                   <height>175</height>
+                   <width>188</width>
+                   <height>145</height>
                   </rect>
                  </property>
-                 <attribute name="icon">
-                  <iconset>
-                   <normaloff>../static/images/1.png</normaloff>
-                   <normalon>../static/images/2.png</normalon>../static/images/1.png</iconset>
-                 </attribute>
                  <attribute name="label">
                   <string>点云对象</string>
                  </attribute>
@@ -296,6 +291,95 @@
                   </item>
                  </layout>
                 </widget>
+                <widget class="QWidget" name="page">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>216</width>
+                   <height>144</height>
+                  </rect>
+                 </property>
+                 <attribute name="label">
+                  <string>视角选择</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_15">
+                  <item>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="2" column="1">
+                     <widget class="QRadioButton" name="radioButton_6">
+                      <property name="text">
+                       <string>煤层右视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QRadioButton" name="radioButton_supporterHead">
+                      <property name="text">
+                       <string>支撑架头视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="0">
+                     <widget class="QRadioButton" name="radioButton_7">
+                      <property name="text">
+                       <string>煤层俯视</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QRadioButton" name="radioButton_supportertail">
+                      <property name="text">
+                       <string>支撑架尾视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QRadioButton" name="radioButton_4">
+                      <property name="text">
+                       <string>割煤机尾视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QRadioButton" name="radioButton_3">
+                      <property name="text">
+                       <string>割煤机头视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QRadioButton" name="radioButton_5">
+                      <property name="text">
+                       <string>煤层左视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QRadioButton" name="radioButton_8">
+                      <property name="text">
+                       <string>煤层底部</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="0">
+                     <widget class="QRadioButton" name="radioButton_9">
+                      <property name="text">
+                       <string>通风巷视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="1">
+                     <widget class="QRadioButton" name="radioButton_10">
+                      <property name="text">
+                       <string>运输巷视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
                </widget>
               </item>
              </layout>
@@ -312,6 +396,16 @@
              <layout class="QVBoxLayout" name="verticalLayout_8">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_7">
+                <item>
+                 <widget class="QPushButton" name="pushButton_getCameraPosition">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string>保存点云摄像头信息（开发使用）</string>
+                  </property>
+                 </widget>
+                </item>
                 <item>
                  <widget class="QLabel" name="label">
                   <property name="text">

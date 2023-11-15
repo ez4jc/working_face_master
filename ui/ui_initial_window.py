@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
         self.toolBox.setFrameShape(QFrame.StyledPanel)
         self.page_pointCloud = QWidget()
         self.page_pointCloud.setObjectName(u"page_pointCloud")
-        self.page_pointCloud.setGeometry(QRect(0, 0, 187, 175))
+        self.page_pointCloud.setGeometry(QRect(0, 0, 188, 145))
         self.verticalLayout_11 = QVBoxLayout(self.page_pointCloud)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_pointCloudCheckBox = QWidget(self.page_pointCloud)
@@ -100,10 +100,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_11.addWidget(self.widget_pointCloudCheckBox)
 
-        icon = QIcon()
-        icon.addFile(u"../static/images/1.png", QSize(), QIcon.Normal, QIcon.Off)
-        icon.addFile(u"../static/images/2.png", QSize(), QIcon.Normal, QIcon.On)
-        self.toolBox.addItem(self.page_pointCloud, icon, u"\u70b9\u4e91\u5bf9\u8c61")
+        self.toolBox.addItem(self.page_pointCloud, u"\u70b9\u4e91\u5bf9\u8c61")
         self.page_settings = QWidget()
         self.page_settings.setObjectName(u"page_settings")
         self.page_settings.setGeometry(QRect(0, 0, 177, 407))
@@ -249,6 +246,67 @@ class Ui_MainWindow(object):
         self.verticalLayout_14.addWidget(self.groupBox)
 
         self.toolBox.addItem(self.page_settings, u"\u5c5e\u6027\u8bbe\u7f6e")
+        self.page = QWidget()
+        self.page.setObjectName(u"page")
+        self.page.setGeometry(QRect(0, 0, 216, 144))
+        self.verticalLayout_15 = QVBoxLayout(self.page)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.radioButton_6 = QRadioButton(self.page)
+        self.radioButton_6.setObjectName(u"radioButton_6")
+
+        self.gridLayout.addWidget(self.radioButton_6, 2, 1, 1, 1)
+
+        self.radioButton_supporterHead = QRadioButton(self.page)
+        self.radioButton_supporterHead.setObjectName(u"radioButton_supporterHead")
+
+        self.gridLayout.addWidget(self.radioButton_supporterHead, 0, 0, 1, 1)
+
+        self.radioButton_7 = QRadioButton(self.page)
+        self.radioButton_7.setObjectName(u"radioButton_7")
+
+        self.gridLayout.addWidget(self.radioButton_7, 4, 0, 1, 1)
+
+        self.radioButton_supportertail = QRadioButton(self.page)
+        self.radioButton_supportertail.setObjectName(u"radioButton_supportertail")
+
+        self.gridLayout.addWidget(self.radioButton_supportertail, 0, 1, 1, 1)
+
+        self.radioButton_4 = QRadioButton(self.page)
+        self.radioButton_4.setObjectName(u"radioButton_4")
+
+        self.gridLayout.addWidget(self.radioButton_4, 1, 1, 1, 1)
+
+        self.radioButton_3 = QRadioButton(self.page)
+        self.radioButton_3.setObjectName(u"radioButton_3")
+
+        self.gridLayout.addWidget(self.radioButton_3, 1, 0, 1, 1)
+
+        self.radioButton_5 = QRadioButton(self.page)
+        self.radioButton_5.setObjectName(u"radioButton_5")
+
+        self.gridLayout.addWidget(self.radioButton_5, 2, 0, 1, 1)
+
+        self.radioButton_8 = QRadioButton(self.page)
+        self.radioButton_8.setObjectName(u"radioButton_8")
+
+        self.gridLayout.addWidget(self.radioButton_8, 4, 1, 1, 1)
+
+        self.radioButton_9 = QRadioButton(self.page)
+        self.radioButton_9.setObjectName(u"radioButton_9")
+
+        self.gridLayout.addWidget(self.radioButton_9, 5, 0, 1, 1)
+
+        self.radioButton_10 = QRadioButton(self.page)
+        self.radioButton_10.setObjectName(u"radioButton_10")
+
+        self.gridLayout.addWidget(self.radioButton_10, 5, 1, 1, 1)
+
+
+        self.verticalLayout_15.addLayout(self.gridLayout)
+
+        self.toolBox.addItem(self.page, u"\u89c6\u89d2\u9009\u62e9")
 
         self.verticalLayout_9.addWidget(self.toolBox)
 
@@ -263,6 +321,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_7 = QVBoxLayout()
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.pushButton_getCameraPosition = QPushButton(self.widget_alarm)
+        self.pushButton_getCameraPosition.setObjectName(u"pushButton_getCameraPosition")
+        self.pushButton_getCameraPosition.setEnabled(False)
+
+        self.verticalLayout_7.addWidget(self.pushButton_getCameraPosition)
+
         self.label = QLabel(self.widget_alarm)
         self.label.setObjectName(u"label")
         self.label.setAlignment(Qt.AlignCenter)
@@ -382,7 +446,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(2)
         self.toolBox.layout().setSpacing(6)
 
 
@@ -424,6 +488,18 @@ class Ui_MainWindow(object):
         self.radioButton_roll.setText(QCoreApplication.translate("MainWindow", u"\u6a2a\u6eda", None))
         self.radioButton_unlimited.setText(QCoreApplication.translate("MainWindow", u"\u65e0\u9650\u5236", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_settings), QCoreApplication.translate("MainWindow", u"\u5c5e\u6027\u8bbe\u7f6e", None))
+        self.radioButton_6.setText(QCoreApplication.translate("MainWindow", u"\u7164\u5c42\u53f3\u89c6\u89d2", None))
+        self.radioButton_supporterHead.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u5934\u89c6\u89d2", None))
+        self.radioButton_7.setText(QCoreApplication.translate("MainWindow", u"\u7164\u5c42\u4fef\u89c6", None))
+        self.radioButton_supportertail.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u5c3e\u89c6\u89d2", None))
+        self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"\u5272\u7164\u673a\u5c3e\u89c6\u89d2", None))
+        self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"\u5272\u7164\u673a\u5934\u89c6\u89d2", None))
+        self.radioButton_5.setText(QCoreApplication.translate("MainWindow", u"\u7164\u5c42\u5de6\u89c6\u89d2", None))
+        self.radioButton_8.setText(QCoreApplication.translate("MainWindow", u"\u7164\u5c42\u5e95\u90e8", None))
+        self.radioButton_9.setText(QCoreApplication.translate("MainWindow", u"\u901a\u98ce\u5df7\u89c6\u89d2", None))
+        self.radioButton_10.setText(QCoreApplication.translate("MainWindow", u"\u8fd0\u8f93\u5df7\u89c6\u89d2", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("MainWindow", u"\u89c6\u89d2\u9009\u62e9", None))
+        self.pushButton_getCameraPosition.setText(QCoreApplication.translate("MainWindow", u"\u4fdd\u5b58\u70b9\u4e91\u6444\u50cf\u5934\u4fe1\u606f\uff08\u5f00\u53d1\u4f7f\u7528\uff09", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u9884\u8b66\u5217\u8868", None))
         self.radioButton_dianyun.setText(QCoreApplication.translate("MainWindow", u"\u70b9\u4e91\u56fe\u50cf", None))
         self.radioButton_jiankong.setText(QCoreApplication.translate("MainWindow", u"\u76d1\u63a7\u56fe\u50cf", None))
