@@ -24,6 +24,7 @@ def main():
     # 初始化缓存
     ProjectMemory.initialize()
 
+    # 打开界面
     ui = MainWindow(app)
     ui.showMaximized()
 
