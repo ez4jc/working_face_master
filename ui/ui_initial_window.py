@@ -54,6 +54,10 @@ class Ui_MainWindow(object):
         self.about_us_action = QAction(MainWindow)
         self.about_us_action.setObjectName(u"about_us_action")
         self.about_us_action.setFont(font)
+        self.action_supportControler = QAction(MainWindow)
+        self.action_supportControler.setObjectName(u"action_supportControler")
+        self.action_supportControler.setCheckable(False)
+        self.action_supportControler.setFont(font)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -85,7 +89,7 @@ class Ui_MainWindow(object):
         self.toolBox.setFrameShape(QFrame.StyledPanel)
         self.page_pointCloud = QWidget()
         self.page_pointCloud.setObjectName(u"page_pointCloud")
-        self.page_pointCloud.setGeometry(QRect(0, 0, 98, 38))
+        self.page_pointCloud.setGeometry(QRect(0, 0, 188, 145))
         self.verticalLayout_11 = QVBoxLayout(self.page_pointCloud)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_pointCloudCheckBox = QWidget(self.page_pointCloud)
@@ -327,11 +331,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.pushButton_getCameraPosition)
 
-        self.pushButton_pushSupport = QPushButton(self.widget_alarm)
-        self.pushButton_pushSupport.setObjectName(u"pushButton_pushSupport")
-
-        self.verticalLayout_7.addWidget(self.pushButton_pushSupport)
-
         self.label = QLabel(self.widget_alarm)
         self.label.setObjectName(u"label")
         self.label.setAlignment(Qt.AlignCenter)
@@ -431,6 +430,8 @@ class Ui_MainWindow(object):
         self.menu.setFont(font)
         self.menu_2 = QMenu(self.menubar)
         self.menu_2.setObjectName(u"menu_2")
+        self.menu_3 = QMenu(self.menubar)
+        self.menu_3.setObjectName(u"menu_3")
         MainWindow.setMenuBar(self.menubar)
         self.top_tool_bar = QToolBar(MainWindow)
         self.top_tool_bar.setObjectName(u"top_tool_bar")
@@ -444,9 +445,11 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu_1.menuAction())
         self.menubar.addAction(self.menu.menuAction())
         self.menubar.addAction(self.menu_2.menuAction())
+        self.menubar.addAction(self.menu_3.menuAction())
         self.menu_1.addAction(self.action_pcdScreen)
         self.menu_1.addAction(self.action_2)
         self.menu_2.addAction(self.about_us_action)
+        self.menu_3.addAction(self.action_supportControler)
         self.top_tool_bar.addSeparator()
 
         self.retranslateUi(MainWindow)
@@ -466,6 +469,7 @@ class Ui_MainWindow(object):
         self.action_3.setText(QCoreApplication.translate("MainWindow", u"\u7528\u6237\u8bbe\u7f6e", None))
         self.action_4.setText(QCoreApplication.translate("MainWindow", u"\u89d2\u8272\u8bbe\u7f6e", None))
         self.about_us_action.setText(QCoreApplication.translate("MainWindow", u"\u5173\u4e8e", None))
+        self.action_supportControler.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u63a7\u5236", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_pointCloud), QCoreApplication.translate("MainWindow", u"\u70b9\u4e91\u5bf9\u8c61", None))
         self.checkBox_planeXZ.setText(QCoreApplication.translate("MainWindow", u"\u7f51\u683c\u7ebfXZ", None))
         self.checkBox_planeYZ.setText(QCoreApplication.translate("MainWindow", u"\u7f51\u683c\u7ebfYZ", None))
@@ -505,7 +509,6 @@ class Ui_MainWindow(object):
         self.radioButton_10.setText(QCoreApplication.translate("MainWindow", u"\u8fd0\u8f93\u5df7\u89c6\u89d2", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("MainWindow", u"\u89c6\u89d2\u9009\u62e9", None))
         self.pushButton_getCameraPosition.setText(QCoreApplication.translate("MainWindow", u"\u4fdd\u5b58\u70b9\u4e91\u6444\u50cf\u5934\u4fe1\u606f\uff08\u5f00\u53d1\u4f7f\u7528\uff09", None))
-        self.pushButton_pushSupport.setText(QCoreApplication.translate("MainWindow", u"\u63a8\u4e00\u53f7\u652f\u6491\u67b6", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u9884\u8b66\u5217\u8868", None))
         self.radioButton_dianyun.setText(QCoreApplication.translate("MainWindow", u"\u70b9\u4e91\u56fe\u50cf", None))
         self.radioButton_jiankong.setText(QCoreApplication.translate("MainWindow", u"\u76d1\u63a7\u56fe\u50cf", None))
@@ -513,6 +516,7 @@ class Ui_MainWindow(object):
         self.menu_1.setTitle(QCoreApplication.translate("MainWindow", u"\u5c4f\u5e55\u663e\u793a", None))
         self.menu.setTitle(QCoreApplication.translate("MainWindow", u"\u89c6\u56fe\u8bbe\u7f6e", None))
         self.menu_2.setTitle(QCoreApplication.translate("MainWindow", u"\u7cfb\u7edf\u8bbe\u7f6e", None))
+        self.menu_3.setTitle(QCoreApplication.translate("MainWindow", u"\u4eff\u771f\u9762\u677f", None))
         self.top_tool_bar.setWindowTitle(QCoreApplication.translate("MainWindow", u"toolBar", None))
     # retranslateUi
 

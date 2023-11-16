@@ -6,8 +6,9 @@ import json
 class CameraController:
     def __init__(self, camera):
         self.camera = camera
-        self.camera_info_index = 2
-        # 摄像头初始位置
+        self.camera_info_index = 100
+        # 摄像头加载初始位置, 保存在了camera100.jason文件中
+        self.load_camera_info(100)
         # self.camera.SetPosition(-30, -30, 50)
         # self.camera.Roll(53)
         # self.my_elevation(35)

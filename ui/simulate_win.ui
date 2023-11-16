@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>simulate_win</class>
+ <widget class="QWidget" name="simulate_win">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>仿真面板</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QComboBox" name="comboBox_supporter">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>1号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>5号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>6号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>7号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>8号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>9号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>10号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>11号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>12号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>13号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>14号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>15号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>16号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>17号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>18号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>19号支撑架</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>20号支撑架</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="pushButton_pushSupport">
+     <property name="text">
+      <string>推支撑架</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLineEdit" name="lineEdit_pushSupporter">
+     <property name="text">
+      <string>800</string>
+     </property>
+     <property name="maxLength">
+      <number>5</number>
+     </property>
+     <property name="frame">
+      <bool>false</bool>
+     </property>
+     <property name="placeholderText">
+      <string>移动距离（单位：毫米）</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

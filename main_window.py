@@ -19,8 +19,8 @@ import cv2
 import numpy as np
 
 from frame.frame_dialog import InformationDialog
-
 from ui.ui_initial_window import Ui_MainWindow
+from sub_win_support import SubWinSupport
 
 import common.project_memory as ProjectMemory
 
@@ -36,11 +36,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("XX软件（版本1.0）")
+        self.setWindowTitle("煤矿软件（版本0.1）")
         self.setWindowIcon(QIcon(self.set_frame_ico()))
 
         # 点云模块实例
         self.vtkWidget = CustomQVTKRenderWindowInteractor(self)
+
+        # 子窗口
+        self.simulate_win = SubWinSupport(self.vtkWidget)
 
         # 摄像头模块实例
         self.videoWidget = CustomCameraLabel(self)
@@ -55,6 +58,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # 工具栏模块
         self._create_actions()
+
+        # 菜单栏模块
+        self.action_supportControler.triggered.connect(lambda: self.simulate_win.show())
 
         # 固定视角的摄像头位置
         self.camera_fixed_position = [(-7.3, 2.2, 0.9)]
@@ -94,14 +100,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.radioButton_8.clicked.connect(lambda: self.vtkWidget.load_camera_info(7))
         self.radioButton_9.clicked.connect(lambda: self.vtkWidget.load_camera_info(8))
         self.radioButton_10.clicked.connect(lambda: self.vtkWidget.load_camera_info(9))
-        # 菜单栏第一个菜单
-        self.action_pcdScreen.triggered.connect(self.menu1_dianyunping_slot)
 
         # 开发按钮
         self.pushButton_getCameraPosition.clicked.connect(self.vtkWidget.camera_controller.save_camera_info)
-        # 推支撑架
-        self.pushButton_pushSupport.clicked.connect(
-            lambda: self.vtkWidget.move_actor(self.vtkWidget.point_cloud_actors[0]))
+
 
     def viewer_show(self, item):
         if item == "Video":
@@ -131,7 +133,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def show_blank(self):
         # 移除控件前需释放资源
         if self.showPointCloud:
-            # self.vtkWidget.Stop()
             self.vtkWidget.setParent(None)
             self.view_layout.removeWidget(self.vtkWidget)
             self.showPointCloud = False  # 释放点云计算资源
@@ -287,10 +288,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         logger.info("退出！")
         self.closeWindow()
 
-    @Slot()
-    def menu1_dianyunping_slot(self):
-        pcd = o3d.io.read_point_cloud("test.pcd")
-        o3d.visualization.draw([pcd])
 
     @staticmethod
     def about_us_operator():

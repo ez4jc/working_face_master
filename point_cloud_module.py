@@ -1,9 +1,11 @@
+import time
+
 import vtkmodules.all as vtk
 from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QCheckBox
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 import open3d as o3d
 import numpy as np
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer
 import math
 from Actors import *
 from camera_controller import CameraController
@@ -18,7 +20,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
     # 目前支持的文件类型
     SUPPORTFILETYPE = {
         "STL": vtk.vtkSTLReader,  # 存放相应类的引用
-        "ply": vtk.vtkPLYReader,  # 两种ply文件
+        "ply": vtk.vtkPLYReader,
         "pcd": Custom_vtkPCDReader,
         "vtk": vtk.vtkDataSetReader
     }
@@ -51,20 +53,10 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.plane_actorXZ = HorizontalPlaneActor("XZ")
 
         # 2.实例一个坐标轴演员
-        # self.cube_axes = CubeAxesActor(self)
         self.cube_axes = vtk.vtkAxesActor()
         # 创建一个坐标轴变换小部件
         axes_transform_widget = vtk.vtkAxesTransformWidget()
         axes_transform_widget.SetInteractor(self)
-        # self.cube_axes.SetCamera(self.camera_controller.camera)
-
-        # 创建一个坐标轴演员的助手
-        # axes_widget = vtk.vtkOrientationMarkerWidget()
-        # axes_widget.SetOrientationMarker(self.cube_axes)
-        # axes_widget.SetInteractor(self)
-        # axes_widget.SetViewport(0.0, 0.0, 0.2, 0.2)  # 设置坐标轴显示的位置
-        # axes_widget.SetEnabled(1)
-        # axes_widget.InteractiveOn()
 
         # 3.创建背景环境
         self.sphere_actor = SphereActor()
@@ -156,9 +148,14 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.renderer.AddActor(point_actor)
         return point_actor
 
-    def move_actor(self, actor):
-        Support.move_actor(actor)
-        self.renderer.GetRenderWindow().Render()
+    def move_actor(self, actor, dis):
+        self.window.simulate_win.pushButton_pushSupport.setEnabled(False)
+        ticks = 60
+        for i in range(ticks):
+            Support.move_actor(actor, dis / 60.0)
+            self.renderer.GetRenderWindow().Render()
+            time.sleep(0.02)
+        self.window.simulate_win.pushButton_pushSupport.setEnabled(True)
 
     @staticmethod
     def create_single_actor(file_name):
@@ -301,5 +298,3 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
     def load_camera_info(self, index):
         self.camera_controller.load_camera_info(index)
         self.renderer.GetRenderWindow().Render()
-
-

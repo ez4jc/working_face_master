@@ -10,8 +10,6 @@ import warnings
 from common.global_config import global_all_config
 import common.project_memory as ProjectMemory
 
-# from qt_material import apply_stylesheet
-
 from loguru import logger
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
