@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
         self.toolBox.setFrameShape(QFrame.StyledPanel)
         self.page_pointCloud = QWidget()
         self.page_pointCloud.setObjectName(u"page_pointCloud")
-        self.page_pointCloud.setGeometry(QRect(0, 0, 188, 145))
+        self.page_pointCloud.setGeometry(QRect(0, 0, 98, 38))
         self.verticalLayout_11 = QVBoxLayout(self.page_pointCloud)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_pointCloudCheckBox = QWidget(self.page_pointCloud)
@@ -327,6 +327,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.pushButton_getCameraPosition)
 
+        self.pushButton_pushSupport = QPushButton(self.widget_alarm)
+        self.pushButton_pushSupport.setObjectName(u"pushButton_pushSupport")
+
+        self.verticalLayout_7.addWidget(self.pushButton_pushSupport)
+
         self.label = QLabel(self.widget_alarm)
         self.label.setObjectName(u"label")
         self.label.setAlignment(Qt.AlignCenter)
@@ -500,6 +505,7 @@ class Ui_MainWindow(object):
         self.radioButton_10.setText(QCoreApplication.translate("MainWindow", u"\u8fd0\u8f93\u5df7\u89c6\u89d2", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("MainWindow", u"\u89c6\u89d2\u9009\u62e9", None))
         self.pushButton_getCameraPosition.setText(QCoreApplication.translate("MainWindow", u"\u4fdd\u5b58\u70b9\u4e91\u6444\u50cf\u5934\u4fe1\u606f\uff08\u5f00\u53d1\u4f7f\u7528\uff09", None))
+        self.pushButton_pushSupport.setText(QCoreApplication.translate("MainWindow", u"\u63a8\u4e00\u53f7\u652f\u6491\u67b6", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u9884\u8b66\u5217\u8868", None))
         self.radioButton_dianyun.setText(QCoreApplication.translate("MainWindow", u"\u70b9\u4e91\u56fe\u50cf", None))
         self.radioButton_jiankong.setText(QCoreApplication.translate("MainWindow", u"\u76d1\u63a7\u56fe\u50cf", None))

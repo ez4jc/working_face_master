@@ -59,8 +59,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>188</width>
-                   <height>145</height>
+                   <width>98</width>
+                   <height>38</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -403,6 +403,13 @@
                   </property>
                   <property name="text">
                    <string>保存点云摄像头信息（开发使用）</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_pushSupport">
+                  <property name="text">
+                   <string>推一号支撑架</string>
                   </property>
                  </widget>
                 </item>

@@ -8,6 +8,10 @@ import math
 from Actors import *
 from camera_controller import CameraController
 from readers import *
+import scene_initial_info
+
+# 项目模块
+from zhao_xi.mine_device import Support
 
 
 class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
@@ -86,32 +90,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.generate_supporter_label()
 
     def load_workspace(self):
-        files_name = ['zhao_xi/support/test_support_1.ply',
-                      'zhao_xi/support/test_support_2.ply',
-                      'zhao_xi/support/test_support_3.ply',
-                      'zhao_xi/support/test_support_4.ply',
-                      'zhao_xi/support/test_support_5.ply',
-                      'zhao_xi/support/test_support_6.ply',
-                      'zhao_xi/support/test_support_7.ply',
-                      'zhao_xi/support/test_support_8.ply',
-                      'zhao_xi/support/test_support_9.ply',
-                      'zhao_xi/support/test_support_10.ply',
-                      'zhao_xi/support/test_support_11.ply',
-                      'zhao_xi/support/test_support_12.ply',
-                      'zhao_xi/support/test_support_13.ply',
-                      'zhao_xi/support/test_support_14.ply',
-                      'zhao_xi/support/test_support_15.ply',
-                      'zhao_xi/support/test_support_16.ply',
-                      'zhao_xi/support/test_support_17.ply',
-                      'zhao_xi/support/test_support_18.ply',
-                      'zhao_xi/support/test_support_19.ply',
-                      'zhao_xi/support/test_support_20.ply',
-                      'zhao_xi/tunnel/coal_wall/coal_wall.ply',
-                      'zhao_xi/tunnel/coal_wall/up_coal_wall.ply',
-                      'zhao_xi/tunnel/coal_wall/down_coal_wall.ply',
-                      'zhao_xi/tunnel/yunshuxiang/yunshuxiang_vertices.ply',
-                      'zhao_xi/tunnel/tongfengxiang/tongfengxiang_vertices.ply']
-        for file_name in files_name:
+        for file_name in scene_initial_info.files_name:
             actor = self.add_actor(self.create_single_actor(file_name))
             # 添加点云对象的可选框
             self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBoxs)
@@ -151,6 +130,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
     def load_dianyun_module(self):
         files_name = self.get_dianyun_files_path()
+        print(files_name)
         for file_name in files_name:
             actor = self.add_actor(self.create_single_actor(file_name))
             # 添加点云对象的可选框
@@ -175,6 +155,10 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         # 添加点云的演员到渲染器
         self.renderer.AddActor(point_actor)
         return point_actor
+
+    def move_actor(self, actor):
+        Support.move_actor(actor)
+        self.renderer.GetRenderWindow().Render()
 
     @staticmethod
     def create_single_actor(file_name):
@@ -317,3 +301,5 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
     def load_camera_info(self, index):
         self.camera_controller.load_camera_info(index)
         self.renderer.GetRenderWindow().Render()
+
+

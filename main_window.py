@@ -99,6 +99,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # 开发按钮
         self.pushButton_getCameraPosition.clicked.connect(self.vtkWidget.camera_controller.save_camera_info)
+        # 推支撑架
+        self.pushButton_pushSupport.clicked.connect(
+            lambda: self.vtkWidget.move_actor(self.vtkWidget.point_cloud_actors[0]))
 
     def viewer_show(self, item):
         if item == "Video":
