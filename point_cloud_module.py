@@ -33,7 +33,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
         # 创建渲染器
         self.renderer = vtk.vtkRenderer()
-        self.renderer.SetBackground(0.1, 0.1, 0.1)
+        self.renderer.SetBackground(193/255, 210/255, 240/255)
         self.GetRenderWindow().AddRenderer(self.renderer)
         # 创建当前渲染器摄像头控制器
         self.camera_controller = CameraController(
