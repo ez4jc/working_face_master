@@ -17,15 +17,20 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
 
     def bind(self):
         self.comboBox_supporter.currentIndexChanged.connect(self.update_selected_supporter)
-        # 绑定初始支撑架
+        # 绑定初始支撑架，和控制按钮
         self.pushButton_pushSupport.clicked.connect(
             lambda: self.vtkWidget.move_actor(self.vtkWidget.point_cloud_actors[0],
                                               float(self.lineEdit_pushSupporter.text())))
+        self.checkBox_wraparound_frame.clicked.connect(
+            lambda: self.vtkWidget.add_wraparound_frame(self.vtkWidget.point_cloud_actors_filename[0]))
 
     def update_selected_supporter(self):
         self.pushButton_pushSupport.clicked.disconnect()
-        # 重新绑定支撑架
+        # 重新绑定支撑架和相应所有按钮
         self.pushButton_pushSupport.clicked.connect(
             lambda: self.vtkWidget.move_actor(
                 self.vtkWidget.point_cloud_actors[self.comboBox_supporter.currentIndex()],
                 float(self.lineEdit_pushSupporter.text())))
+        self.checkBox_wraparound_frame.clicked.connect(
+            lambda: self.vtkWidget.add_wraparound_frame(
+                self.vtkWidget.point_cloud_actors_filename[self.comboBox_supporter.currentIndex()]))

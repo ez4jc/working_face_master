@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QLineEdit,
-    QPushButton, QSizePolicy, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QGridLayout,
+    QLineEdit, QPushButton, QSizePolicy, QWidget)
 
 class Ui_simulate_win(object):
     def setupUi(self, simulate_win):
@@ -50,17 +50,24 @@ class Ui_simulate_win(object):
 
         self.gridLayout.addWidget(self.comboBox_supporter, 0, 0, 1, 1)
 
-        self.pushButton_pushSupport = QPushButton(simulate_win)
-        self.pushButton_pushSupport.setObjectName(u"pushButton_pushSupport")
-
-        self.gridLayout.addWidget(self.pushButton_pushSupport, 2, 0, 1, 1)
-
         self.lineEdit_pushSupporter = QLineEdit(simulate_win)
         self.lineEdit_pushSupporter.setObjectName(u"lineEdit_pushSupporter")
         self.lineEdit_pushSupporter.setMaxLength(5)
         self.lineEdit_pushSupporter.setFrame(False)
 
         self.gridLayout.addWidget(self.lineEdit_pushSupporter, 1, 0, 1, 1)
+
+        self.checkBox_wraparound_frame = QCheckBox(simulate_win)
+        self.checkBox_wraparound_frame.setObjectName(u"checkBox_wraparound_frame")
+        self.checkBox_wraparound_frame.setChecked(False)
+        self.checkBox_wraparound_frame.setTristate(False)
+
+        self.gridLayout.addWidget(self.checkBox_wraparound_frame, 0, 1, 1, 1)
+
+        self.pushButton_pushSupport = QPushButton(simulate_win)
+        self.pushButton_pushSupport.setObjectName(u"pushButton_pushSupport")
+
+        self.gridLayout.addWidget(self.pushButton_pushSupport, 1, 1, 1, 1)
 
 
         self.retranslateUi(simulate_win)
@@ -94,8 +101,9 @@ class Ui_simulate_win(object):
         self.comboBox_supporter.setItemText(18, QCoreApplication.translate("simulate_win", u"19\u53f7\u652f\u6491\u67b6", None))
         self.comboBox_supporter.setItemText(19, QCoreApplication.translate("simulate_win", u"20\u53f7\u652f\u6491\u67b6", None))
 
-        self.pushButton_pushSupport.setText(QCoreApplication.translate("simulate_win", u"\u63a8\u652f\u6491\u67b6", None))
         self.lineEdit_pushSupporter.setText(QCoreApplication.translate("simulate_win", u"800", None))
         self.lineEdit_pushSupporter.setPlaceholderText(QCoreApplication.translate("simulate_win", u"\u79fb\u52a8\u8ddd\u79bb\uff08\u5355\u4f4d\uff1a\u6beb\u7c73\uff09", None))
+        self.checkBox_wraparound_frame.setText(QCoreApplication.translate("simulate_win", u"\u5305\u56f4\u6846", None))
+        self.pushButton_pushSupport.setText(QCoreApplication.translate("simulate_win", u"\u63a8\u652f\u6491\u67b6", None))
     # retranslateUi
 

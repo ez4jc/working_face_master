@@ -104,7 +104,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 开发按钮
         self.pushButton_getCameraPosition.clicked.connect(self.vtkWidget.camera_controller.save_camera_info)
 
-
     def viewer_show(self, item):
         if item == "Video":
             # 清空
@@ -287,7 +286,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def on_exit_triggered(self, test_mode=False):
         logger.info("退出！")
         self.closeWindow()
-
 
     @staticmethod
     def about_us_operator():

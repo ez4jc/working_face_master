@@ -12,13 +12,16 @@ import common.project_memory as ProjectMemory
 
 from loguru import logger
 
+# 设置界面风格
+from qt_material import apply_stylesheet
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 # 程序开始
 def main():
     app = QApplication(sys.argv)
-
+    apply_stylesheet(app, 'light_blue.xml')
     # 初始化缓存
     ProjectMemory.initialize()
 

@@ -14,6 +14,7 @@ import scene_initial_info
 
 # 项目模块
 from zhao_xi.mine_device import Support
+from zhao_xi.tools import *
 
 
 class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
@@ -33,7 +34,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
         # 创建渲染器
         self.renderer = vtk.vtkRenderer()
-        self.renderer.SetBackground(193/255, 210/255, 240/255)
+        self.renderer.SetBackground(193 / 255, 210 / 255, 240 / 255)
         self.GetRenderWindow().AddRenderer(self.renderer)
         # 创建当前渲染器摄像头控制器
         self.camera_controller = CameraController(
@@ -67,7 +68,8 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.fixed_actors = [self.plane_actorXY, self.cube_axes]  # 暂时剔除 self.sphere_actor
         # 存储当前加载的点云演员
         self.point_cloud_actors = []
-        self.point_cloud_actors_checkBoxs = []
+        self.point_cloud_actors_checkBox = []
+        self.point_cloud_actors_filename = []
 
         # 正在显示某信息则设置为True,此标志用来帮助释放资源
         self.show_planeXY = False
@@ -77,40 +79,65 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.highlight_point = False  # 是否突出点
 
         # 直接加载工作场景,并加载网格面xy
-        self.load_workspace()
+        self.load_device_and_workplace()
         self.toggled_planeXY()
-        self.generate_supporter_label()
+        self.label_info('zhao_xi/support/test_support_1.ply')
+        # self.generate_supporter_label()
+        # self.add_wraparound_frame('zhao_xi/support/test_support_1.ply')
 
-    def load_workspace(self):
-        for file_name in scene_initial_info.files_name:
-            actor = self.add_actor(self.create_single_actor(file_name))
-            # 添加点云对象的可选框
-            self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBoxs)
+    def label_info(self, filename):
+        lines = drawing_the_box_line(
+            sort_obb_of_support(support_standard, get_obb_size(filename)))
+        for line in lines:
+            self.generate_supporter_label(line[0], line[1], line[2])
+
+    def add_wraparound_frame(self, filename):
+        polydata = drawing_the_bounding_box(
+            sort_obb_of_support(support_standard, get_obb_size(filename)))
+        poly_mapper = vtk.vtkPolyDataMapper()
+        poly_mapper.SetInputData(polydata)
+        wraparound_frame_property = vtk.vtkProperty()
+        wraparound_frame_property.SetColor(1, 0, 0)
+        actor = vtk.vtkActor()
+        actor.SetMapper(poly_mapper)
+        actor.SetProperty(wraparound_frame_property)
+        self.renderer.AddActor(actor)
+        self.GetRenderWindow().Render()
+
+    def load_device_and_workplace(self):
+        # 加载顺序不能修改，程序其它模块直接依赖此顺序
+        self.add_actor_and_checkbox(scene_initial_info.supporters_filename)
+        # self.add_actor_and_checkbox(scene_initial_info.FX_filename)
+        # self.add_actor_and_checkbox(scene_initial_info.workplace_filename)
 
     def set_camera_position(self, position):
         self.camera_controller.set_camera_position(position)
         self.renderer.GetRenderWindow().Render()
 
-    def generate_supporter_label(self):
+    def generate_supporter_label(self, point1, point2, text):
+        middel_point = (point2 + point1) / 2.0
+        x = middel_point[0]
+        y = middel_point[1]
+        z = middel_point[2]
         # 提示线
-        x = 2
-        y = 2
-        z_1 = -2
-        z_2 = 2
         line_source = vtk.vtkLineSource()
-        line_source.SetPoint1(x, y, z_1)
-        line_source.SetPoint2(x, y, z_2)
+        line_source.SetPoint1(point1)
+        line_source.SetPoint2(point2)
         line_mapper = vtk.vtkPolyDataMapper()
         line_mapper.SetInputConnection(line_source.GetOutputPort())
         line_actor = vtk.vtkActor()
         line_actor.SetMapper(line_mapper)
+        line_property = vtk.vtkProperty()
+        line_property.SetColor(1, 0, 0)
+        line_actor.SetProperty(line_property)
         self.renderer.AddActor(line_actor)
         # 文本
-        textActor = vtk.vtkOpenGLBillboardTextActor3D()
-        textActor.SetInput("distance : ")
-        textActor.GetTextProperty().SetFontSize(24)
-        textActor.SetPosition(x, y, (z_1 + z_2) / 2.0)
-        self.renderer.AddActor(textActor)
+        text_actor = vtk.vtkOpenGLBillboardTextActor3D()
+        text_actor.GetTextProperty().SetColor(0, 0, 1)
+        text_actor.SetInput(text)
+        text_actor.GetTextProperty().SetFontSize(12)
+        text_actor.SetPosition(x, y, z)
+        self.renderer.AddActor(text_actor)
 
     def show_point_cloud(self):
         if not self.window.showPointCloud:
@@ -122,11 +149,10 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
     def load_dianyun_module(self):
         files_name = self.get_dianyun_files_path()
-        print(files_name)
         for file_name in files_name:
             actor = self.add_actor(self.create_single_actor(file_name))
             # 添加点云对象的可选框
-            self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBoxs)
+            self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBox)
 
     def show_actor(self, actor):  # 目标方法：判断actor是否显示是遍历列表；如果设个标志位数组，性能可以优化。
         if actor in self.renderer.GetActors():
@@ -134,6 +160,14 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         else:
             self.renderer.AddActor(actor)
         self.renderer.GetRenderWindow().Render()
+
+    def add_actor_and_checkbox(self, files_name):
+        for file_name in files_name:
+            actor = self.add_actor(self.create_single_actor(file_name))
+            # 添加点云对象的可选框
+            self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBox)
+            # 记录名称
+            self.point_cloud_actors_filename.append(file_name)
 
     def add_actor(self, point_mapper):
         # 创建点云的可视化对象
