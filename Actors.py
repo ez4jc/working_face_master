@@ -159,22 +159,10 @@ class SupporterActor(vtk.vtkActor):
     def show_model(self):
         self.show_items([self], self.model_flag)
         self.model_flag = not self.model_flag
-        # if not self.model_flag:
-        #     self.interactor.renderer.AddActor(self)
-        # else:
-        #     self.interactor.renderer.RemoveActor(self)
-        # self.model_flag = not self.model_flag
-        # self.interactor.GetRenderWindow().Render()
 
     def show_wraparound_frame(self):
         self.show_items([self.wraparound_actor], self.wraparound_actor_flag)
         self.wraparound_actor_flag = not self.wraparound_actor_flag
-        # if not self.wraparound_actor_flag:
-        #     self.interactor.renderer.AddActor(self.wraparound_actor)
-        # else:
-        #     self.interactor.renderer.RemoveActor(self.wraparound_actor)
-        # self.wraparound_actor_flag = not self.wraparound_actor_flag
-        # self.interactor.GetRenderWindow().Render()
 
     def show_static_wraparound_frame(self):
         self.show_items([self.static_wraparound_actor], self.static_wraparound_actor_flag)
@@ -183,14 +171,6 @@ class SupporterActor(vtk.vtkActor):
     def show_label(self):
         self.show_items(self.label_actors, self.label_flag)
         self.label_flag = not self.label_flag
-        # if not self.label_flag:
-        #     for actor in self.label_actors:
-        #         self.interactor.renderer.AddActor(actor)
-        # else:
-        #     for actor in self.label_actors:
-        #         self.interactor.renderer.RemoveActor(actor)
-        # self.label_flag = not self.label_flag
-        # self.interactor.GetRenderWindow().Render()
 
     def show_items(self, items: list[vtk.vtkActor], flag):  # 直接调用代表interactor是此方法的观察者
         if not flag:

@@ -86,15 +86,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.support_init()
         self.load_device_and_workplace()
         self.toggled_planeXY()
-        # self.label_info('zhao_xi/support/test_support_1.ply')
-        # self.generate_supporter_label()
-        # self.add_wraparound_frame('zhao_xi/support/test_support_1.ply')
-
-    def label_info(self, filename):
-        lines = drawing_the_box_line(
-            sort_obb_of_support(support_standard, get_obb_size(filename)))
-        for line in lines:
-            self.generate_supporter_label(line[0], line[1], line[2])
 
     def load_device_and_workplace(self):
         self.add_actor_and_checkbox(scene_initial_info.FX_filename)
@@ -111,31 +102,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
     def set_camera_position(self, position):
         self.camera_controller.set_camera_position(position)
         self.renderer.GetRenderWindow().Render()
-
-    def generate_supporter_label(self, point1, point2, text):
-        middel_point = (point2 + point1) / 2.0
-        x = middel_point[0]
-        y = middel_point[1]
-        z = middel_point[2]
-        # 提示线
-        line_source = vtk.vtkLineSource()
-        line_source.SetPoint1(point1)
-        line_source.SetPoint2(point2)
-        line_mapper = vtk.vtkPolyDataMapper()
-        line_mapper.SetInputConnection(line_source.GetOutputPort())
-        line_actor = vtk.vtkActor()
-        line_actor.SetMapper(line_mapper)
-        line_property = vtk.vtkProperty()
-        line_property.SetColor(1, 0, 0)
-        line_actor.SetProperty(line_property)
-        self.renderer.AddActor(line_actor)
-        # 文本
-        text_actor = vtk.vtkOpenGLBillboardTextActor3D()
-        text_actor.GetTextProperty().SetColor(0, 0, 1)
-        text_actor.SetInput(text)
-        text_actor.GetTextProperty().SetFontSize(12)
-        text_actor.SetPosition(x, y, z)
-        self.renderer.AddActor(text_actor)
 
     def show_point_cloud(self):
         if not self.window.showPointCloud:
@@ -278,11 +244,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.renderer.GetRenderWindow().Render()
 
     def mouseMoveEvent(self, ev):
-        # ##########标签捕获鼠标移动部分##################################################################
-        # 使用Picker获取与鼠标位置相对应的Actor
-        # 更新标签位置和文本
-
-        # ##########标签捕获鼠标移动部分##################################################################
         if self.camera_controller.limitedX:
             self.camera_controller.rotate_x(ev)
             self.renderer.ResetCameraClippingRange()
@@ -300,14 +261,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             super().mouseMoveEvent(ev)
 
     def mousePressEvent(self, ev):
-        # ##########################################################
-        # 拾取模块
-        # self.picker = vtk.vtkPropPicker()
-        # self.SetPicker(self.picker)
-        # self.picker.Pick(ev.pos().x(), ev.pos().y(), 0, self.renderer)
-        # print(self.picker.GetPickPosition())
-        # print(self.picker.GetActor())
-        # ##########################################################
         if self.camera_controller.unlimited:
             super().mousePressEvent(ev)
         elif ev.button() == Qt.MouseButton.LeftButton:
