@@ -1,4 +1,6 @@
 import vtkmodules.all as vtk
+import zhao_xi.tools
+import zhao_xi.mine_device
 
 
 class HorizontalPlaneActor(vtk.vtkActor):
@@ -66,3 +68,135 @@ class SphereActor(vtk.vtkActor):
         # 演员设置几何形状、纹理
         self.SetMapper(sphere_mapper)
         self.SetTexture(env_texture)
+
+
+class SupporterActor(vtk.vtkActor):
+    def __init__(self, filename, interactor):
+        super().__init__()
+        self.interactor = interactor
+        self.filename = filename
+        self.init()
+        self.wraparound_actor = self.generate_wraparound_frame()
+        self.static_wraparound_actor = self.generate_static_wraparound_frame()
+        self.label_actors = []
+        self.generate_3D_label()  # 此方法会添加标签到self.label_actor
+
+        # 标志位
+        self.model_flag = True
+        self.wraparound_actor_flag = False
+        self.static_wraparound_actor_flag = False
+        self.label_flag = False
+
+    def init(self):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        self.SetProperty(self.interactor.base_property)
+
+    def move(self, dis):
+        zhao_xi.mine_device.Support.move_actor(self, dis)
+        zhao_xi.mine_device.Support.move_actor(self.wraparound_actor, dis)
+
+    def generate_wraparound_frame(self):
+        polydata = zhao_xi.tools.drawing_the_bounding_box(
+            zhao_xi.tools.sort_obb_of_support(zhao_xi.tools.support_standard,
+                                              zhao_xi.tools.get_obb_size(self.filename)))
+        poly_mapper = vtk.vtkPolyDataMapper()
+        poly_mapper.SetInputData(polydata)
+        wraparound_frame_property = vtk.vtkProperty()
+        wraparound_frame_property.SetColor(1, 0, 0)
+        # 包围框演员
+        actor = vtk.vtkActor()
+        actor.SetMapper(poly_mapper)
+        actor.SetProperty(wraparound_frame_property)
+        return actor
+
+    def generate_static_wraparound_frame(self):
+        polydata = zhao_xi.tools.drawing_the_directional_box_of_support([0, 0, 1],
+                                                                        zhao_xi.tools.sort_obb_of_support(
+                                                                            zhao_xi.tools.support_standard,
+                                                                            zhao_xi.tools.get_obb_size(self.filename)))
+        poly_mapper = vtk.vtkPolyDataMapper()
+        poly_mapper.SetInputData(polydata)
+        wraparound_frame_property = vtk.vtkProperty()
+        wraparound_frame_property.SetColor(0, 1, 0)
+        # 包围框演员
+        actor = vtk.vtkActor()
+        actor.SetMapper(poly_mapper)
+        actor.SetProperty(wraparound_frame_property)
+        return actor
+
+    def generate_3D_label(self):
+        lines = zhao_xi.tools.drawing_the_box_line(
+            zhao_xi.tools.sort_obb_of_support(zhao_xi.tools.support_standard,
+                                              zhao_xi.tools.get_obb_size(self.filename)))
+        for line in lines:
+            self.generate_line_label(line[0], line[1], line[2])
+
+    def generate_line_label(self, point1, point2, text):
+        middel_point = (point2 + point1) / 2.0
+        x = middel_point[0]
+        y = middel_point[1]
+        z = middel_point[2]
+        # 提示线
+        line_source = vtk.vtkLineSource()
+        line_source.SetPoint1(point1)
+        line_source.SetPoint2(point2)
+        line_mapper = vtk.vtkPolyDataMapper()
+        line_mapper.SetInputConnection(line_source.GetOutputPort())
+        line_actor = vtk.vtkActor()
+        line_actor.SetMapper(line_mapper)
+        line_property = vtk.vtkProperty()
+        line_property.SetColor(1, 0, 0)
+        line_actor.SetProperty(line_property)
+        self.label_actors.append(line_actor)
+        # 文本
+        text_actor = vtk.vtkOpenGLBillboardTextActor3D()
+        text_actor.GetTextProperty().SetColor(0, 0, 1)
+        text_actor.SetInput(text)
+        text_actor.GetTextProperty().SetFontSize(12)
+        text_actor.SetPosition(x, y, z)
+        self.label_actors.append(text_actor)
+
+    def show_model(self):
+        self.show_items([self], self.model_flag)
+        self.model_flag = not self.model_flag
+        # if not self.model_flag:
+        #     self.interactor.renderer.AddActor(self)
+        # else:
+        #     self.interactor.renderer.RemoveActor(self)
+        # self.model_flag = not self.model_flag
+        # self.interactor.GetRenderWindow().Render()
+
+    def show_wraparound_frame(self):
+        self.show_items([self.wraparound_actor], self.wraparound_actor_flag)
+        self.wraparound_actor_flag = not self.wraparound_actor_flag
+        # if not self.wraparound_actor_flag:
+        #     self.interactor.renderer.AddActor(self.wraparound_actor)
+        # else:
+        #     self.interactor.renderer.RemoveActor(self.wraparound_actor)
+        # self.wraparound_actor_flag = not self.wraparound_actor_flag
+        # self.interactor.GetRenderWindow().Render()
+
+    def show_static_wraparound_frame(self):
+        self.show_items([self.static_wraparound_actor], self.static_wraparound_actor_flag)
+        self.static_wraparound_actor_flag = not self.static_wraparound_actor_flag
+
+    def show_label(self):
+        self.show_items(self.label_actors, self.label_flag)
+        self.label_flag = not self.label_flag
+        # if not self.label_flag:
+        #     for actor in self.label_actors:
+        #         self.interactor.renderer.AddActor(actor)
+        # else:
+        #     for actor in self.label_actors:
+        #         self.interactor.renderer.RemoveActor(actor)
+        # self.label_flag = not self.label_flag
+        # self.interactor.GetRenderWindow().Render()
+
+    def show_items(self, items: list[vtk.vtkActor], flag):  # 直接调用代表interactor是此方法的观察者
+        if not flag:
+            for actor in items:
+                self.interactor.renderer.AddActor(actor)
+        else:
+            for actor in items:
+                self.interactor.renderer.RemoveActor(actor)
+        self.interactor.GetRenderWindow().Render()

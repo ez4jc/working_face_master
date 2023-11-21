@@ -7,6 +7,8 @@ import open3d as o3d
 import numpy as np
 from PySide6.QtCore import Qt, QTimer
 import math
+
+import Actors
 from Actors import *
 from camera_controller import CameraController
 from readers import *
@@ -70,6 +72,8 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.point_cloud_actors = []
         self.point_cloud_actors_checkBox = []
         self.point_cloud_actors_filename = []
+        # 存储当前加载的支撑架演员
+        self.supporter_actors = []
 
         # 正在显示某信息则设置为True,此标志用来帮助释放资源
         self.show_planeXY = False
@@ -79,9 +83,10 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.highlight_point = False  # 是否突出点
 
         # 直接加载工作场景,并加载网格面xy
+        self.support_init()
         self.load_device_and_workplace()
         self.toggled_planeXY()
-        self.label_info('zhao_xi/support/test_support_1.ply')
+        # self.label_info('zhao_xi/support/test_support_1.ply')
         # self.generate_supporter_label()
         # self.add_wraparound_frame('zhao_xi/support/test_support_1.ply')
 
@@ -91,24 +96,17 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         for line in lines:
             self.generate_supporter_label(line[0], line[1], line[2])
 
-    def add_wraparound_frame(self, filename):
-        polydata = drawing_the_bounding_box(
-            sort_obb_of_support(support_standard, get_obb_size(filename)))
-        poly_mapper = vtk.vtkPolyDataMapper()
-        poly_mapper.SetInputData(polydata)
-        wraparound_frame_property = vtk.vtkProperty()
-        wraparound_frame_property.SetColor(1, 0, 0)
-        actor = vtk.vtkActor()
-        actor.SetMapper(poly_mapper)
-        actor.SetProperty(wraparound_frame_property)
-        self.renderer.AddActor(actor)
-        self.GetRenderWindow().Render()
-
     def load_device_and_workplace(self):
-        # 加载顺序不能修改，程序其它模块直接依赖此顺序
-        self.add_actor_and_checkbox(scene_initial_info.supporters_filename)
-        # self.add_actor_and_checkbox(scene_initial_info.FX_filename)
-        # self.add_actor_and_checkbox(scene_initial_info.workplace_filename)
+        self.add_actor_and_checkbox(scene_initial_info.FX_filename)
+        self.add_actor_and_checkbox(scene_initial_info.workplace_filename)
+
+    def support_init(self):
+        for i in range(20):
+            support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self)
+            self.supporter_actors.append(support_actor)
+            self.renderer.AddActor(support_actor)
+            self.window.add_check_box(scene_initial_info.supporters_filename[i], support_actor,
+                                      self.point_cloud_actors_checkBox)
 
     def set_camera_position(self, position):
         self.camera_controller.set_camera_position(position)
@@ -182,11 +180,11 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.renderer.AddActor(point_actor)
         return point_actor
 
-    def move_actor(self, actor, dis):
+    def move_actor(self, actor: Actors.SupporterActor, dis):
         self.window.simulate_win.pushButton_pushSupport.setEnabled(False)
         ticks = 60
         for i in range(ticks):
-            Support.move_actor(actor, dis / 60.0)
+            actor.move(dis / 60.0)
             self.renderer.GetRenderWindow().Render()
             time.sleep(0.02)
         self.window.simulate_win.pushButton_pushSupport.setEnabled(True)
