@@ -96,8 +96,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self)
             self.supporter_actors.append(support_actor)
             self.renderer.AddActor(support_actor)
-            self.window.add_check_box(scene_initial_info.supporters_filename[i], support_actor,
-                                      self.point_cloud_actors_checkBox)
 
     def set_camera_position(self, position):
         self.camera_controller.set_camera_position(position)
