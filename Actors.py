@@ -4,6 +4,22 @@ import vtkmodules.all as vtk
 import zhao_xi.tools
 import zhao_xi.mine_device
 
+import numpy as np
+
+
+def gen_line_actor(point1, point2, color: typing.List):
+    line_source = vtk.vtkLineSource()
+    line_source.SetPoint1(point1)
+    line_source.SetPoint2(point2)
+    line_mapper = vtk.vtkPolyDataMapper()
+    line_mapper.SetInputConnection(line_source.GetOutputPort())
+    line_actor = vtk.vtkActor()
+    line_actor.SetMapper(line_mapper)
+    line_property = vtk.vtkProperty()
+    line_property.SetColor(color[0], color[1], color[2])
+    line_actor.SetProperty(line_property)
+    return line_actor
+
 
 class HorizontalPlaneActor(vtk.vtkActor):
     def __init__(self, type):
@@ -73,27 +89,35 @@ class SphereActor(vtk.vtkActor):
 
 
 class GyroActor(vtk.vtkActor):
-    def __init__(self):
+    def __init__(self, radis, center):
         super().__init__()
 
         # 创建xoy演员
-        self.xoy_circle_actor = self.gen_circle([0, 0, 0], [0, 0, 1], [0, 0, 1])
+        self.xoy_circle_actor = self.gen_circle(radis, center, [0, 0, 1], [0, 0, 1])
+        self.xoy_line_actor = self.gen_cross(radis, np.array(center),
+                                             np.array([1, 0, 0]), [0, 0, 1])
 
         # 创建zox的映射器和演员
-        self.zox_circle_actor = self.gen_circle([0, 0, 0], [0, 1, 0], [0, 1, 0])
+        self.zox_circle_actor = self.gen_circle(radis, center, [0, 1, 0], [0, 1, 0])
+        self.zox_line_actor = self.gen_cross(radis, np.array(center),
+                                             np.array([0, 0, 1]), [0, 1, 0])
 
         # 创建yoz映射器和演员
-        self.yoz_circle_actor = self.gen_circle([0, 0, 0], [1, 0, 0], [1, 0, 0])
+        self.yoz_circle_actor = self.gen_circle(radis, center, [1, 0, 0], [1, 0, 0])
+        self.yoz_line_actor = self.gen_cross(radis, np.array(center),
+                                             np.array([0, 1, 0]), [1, 0, 0])
 
     def get_actor(self):
-        return [self.xoy_circle_actor, self.zox_circle_actor, self.yoz_circle_actor]
+        return [self.xoy_circle_actor, self.xoy_line_actor,
+                self.zox_circle_actor, self.zox_line_actor,
+                self.yoz_circle_actor, self.yoz_line_actor]
 
     @staticmethod
-    def gen_circle(center: typing.List, vector: typing.List, color: typing.List):
+    def gen_circle(radis, center: typing.List, vector: typing.List, color: typing.List):
         # 创建zox的圆
         zox_circle = vtk.vtkRegularPolygonSource()
         zox_circle.SetCenter(center[0], center[1], center[2])
-        zox_circle.SetRadius(1.0)
+        zox_circle.SetRadius(radis)
         zox_circle.SetNumberOfSides(50)  # 可以根据需要调整边数
         zox_circle.SetNormal(vector[0], vector[1], vector[2])  # 设置法向量为Y轴，使其垂直于横向圆
         # 创建zox映射器和演员
@@ -106,6 +130,13 @@ class GyroActor(vtk.vtkActor):
         circle_actor.GetProperty().SetRepresentationToWireframe()
 
         return circle_actor
+
+    @staticmethod
+    def gen_cross(radis, center: np.array, vector: np.array, color: typing.List):
+        """生成圆内的十字线"""
+        vector = radis * vector
+        line_actor = gen_line_actor(center + vector, center - vector, color)
+        return line_actor
 
 
 class SupporterActor(vtk.vtkActor):
@@ -122,7 +153,8 @@ class SupporterActor(vtk.vtkActor):
         self.label_actors = []
         self.generate_3D_label()  # 此方法会添加标签到self.label_actor
         # 陀螺仪（本身是演员列表组成的演员）
-        self.gyro = GyroActor().get_actor()
+        self.radis = zhao_xi.tools.support_standard['max_length']
+        self.gyro = GyroActor(self.radis, self.GetCenter()).get_actor()
         # self.axis_x, self.axis_y, self.axis_z = zhao_xi.tools.get_supporter_axis(self.filename)
 
         # 标志位
@@ -245,5 +277,5 @@ class SupporterActor(vtk.vtkActor):
             zhao_xi.mine_device.Support.rotate_actor(self, theta / tick, axis)
             self.notice_render_window()
 
-    def notice_render_window(self):
+    def notice_render_window(self):  # interactor为此类的观察者
         self.interactor.GetRenderWindow().Render()
