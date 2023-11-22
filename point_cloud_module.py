@@ -1,11 +1,11 @@
 import time
 
 import vtkmodules.all as vtk
-from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QCheckBox
+from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QCheckBox, QProgressDialog
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 import open3d as o3d
 import numpy as np
-from PySide6.QtCore import Qt, QTimer
+from PySide6.QtCore import Qt, QTimer, Signal, QThread
 import math
 
 import Actors
@@ -17,6 +17,22 @@ import scene_initial_info
 # 项目模块
 from zhao_xi.mine_device import Support
 from zhao_xi.tools import *
+
+
+class WorkerThread(QThread):
+    update_progress = Signal(int)
+
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.parent = parent
+
+    def run(self):
+        for i in range(20):
+            support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self.parent)
+            self.parent.supporter_actors.append(support_actor)
+            self.parent.renderer.AddActor(support_actor)
+            progress_value = int((i + 1) * 100 / 20)
+            self.update_progress.emit(progress_value)
 
 
 class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
@@ -83,9 +99,25 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.highlight_point = False  # 是否突出点
 
         # 直接加载工作场景,并加载网格面xy
-        self.support_init()
-        self.load_device_and_workplace()
+        # self.support_init()
+        # self.load_device_and_workplace()
+        self.show_progress_dialog()
         self.toggled_planeXY()
+
+    def show_progress_dialog(self):
+        progress_dialog = QProgressDialog(self)
+        progress_dialog.setWindowModality(Qt.WindowModal)
+        progress_dialog.setWindowTitle('加载工作场景...')
+        progress_dialog.setLabelText('稍等...')
+        progress_dialog.setCancelButton(None)  # 禁用取消按钮
+
+        worker_thread = WorkerThread(self)
+        worker_thread.update_progress.connect(progress_dialog.setValue)
+
+        progress_dialog.canceled.connect(worker_thread.terminate)
+
+        worker_thread.start()
+        progress_dialog.exec()
 
     def load_device_and_workplace(self):
         self.add_actor_and_checkbox(scene_initial_info.FX_filename)

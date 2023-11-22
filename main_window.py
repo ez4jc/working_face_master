@@ -42,7 +42,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 点云模块实例
         self.vtkWidget = CustomQVTKRenderWindowInteractor(self)
 
-        # 子窗口
+        # 点云模块实例后，子窗口实例才不会出错
         self.simulate_win = SubWinSupport(self.vtkWidget)
 
         # 摄像头模块实例

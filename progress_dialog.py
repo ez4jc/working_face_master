@@ -31,8 +31,8 @@ class ProgressDialogExample(QWidget):
     def show_progress_dialog(self):
         progress_dialog = QProgressDialog(self)
         progress_dialog.setWindowModality(Qt.WindowModal)
-        progress_dialog.setWindowTitle('Processing...')
-        progress_dialog.setLabelText('Please wait...')
+        progress_dialog.setWindowTitle('正在加载工作场景')
+        progress_dialog.setLabelText('稍等...')
         progress_dialog.setCancelButton(None)  # 禁用取消按钮
 
         worker_thread = WorkerThread()
