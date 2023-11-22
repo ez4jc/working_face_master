@@ -38,6 +38,12 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         # xoy旋转按钮
         self.pushButton_xoy.clicked.connect(
             lambda: self.vtkWidget.supporter_actors[0].roll_xoy(float(self.lineEdit_xoy.text())))
+        # yoz旋转按钮
+        self.pushButton_yoz.clicked.connect(
+            lambda: self.vtkWidget.supporter_actors[0].roll_yoz(float(self.lineEdit_yoz.text())))
+        # zox旋转按钮
+        self.pushButton_zox.clicked.connect(
+            lambda: self.vtkWidget.supporter_actors[0].roll_zox(float(self.lineEdit_zox.text())))
 
     def update_selected_supporter(self):
         # 断开槽函数，控件回默认值
@@ -47,6 +53,9 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.checkBox_wraparound_frame.clicked.disconnect()
         self.checkBox_static_wraparound_frame.clicked.disconnect()
         self.checkBox_gyro.clicked.disconnect()
+        self.pushButton_xoy.clicked.disconnect()
+        self.pushButton_yoz.clicked.disconnect()
+        self.pushButton_zox.clicked.disconnect()
 
         # 同步控件和支撑架的状态，保证一致性
         self.checkBox_supporter_model.setChecked(
@@ -75,3 +84,15 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
             self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].show_static_wraparound_frame)
         self.checkBox_gyro.clicked.connect(
             self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].show_gyro)
+        # xoy旋转按钮
+        self.pushButton_xoy.clicked.connect(
+            lambda: self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].roll_xoy(
+                float(self.lineEdit_xoy.text())))
+        # yoz旋转按钮
+        self.pushButton_yoz.clicked.connect(
+            lambda: self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].roll_yoz(
+                float(self.lineEdit_yoz.text())))
+        # zox旋转按钮
+        self.pushButton_zox.clicked.connect(
+            lambda: self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].roll_zox(
+                float(self.lineEdit_zox.text())))

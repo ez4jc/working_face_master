@@ -123,7 +123,7 @@ class SupporterActor(vtk.vtkActor):
         self.generate_3D_label()  # 此方法会添加标签到self.label_actor
         # 陀螺仪（本身是演员列表组成的演员）
         self.gyro = GyroActor().get_actor()
-        self.axis_x, self.axis_y, self.axis_z = zhao_xi.tools.get_supporter_axis(self.filename)
+        # self.axis_x, self.axis_y, self.axis_z = zhao_xi.tools.get_supporter_axis(self.filename)
 
         # 标志位
         self.model_flag = True
@@ -231,10 +231,18 @@ class SupporterActor(vtk.vtkActor):
         self.notice_render_window()
 
     def roll_xoy(self, theta):
+        self.roll(theta, [0, 0, 1])
+
+    def roll_yoz(self, theta):
+        self.roll(theta, [1, 0, 0])
+
+    def roll_zox(self, theta):
+        self.roll(theta, [0, 1, 0])
+
+    def roll(self, theta, axis):
         tick = 60
         for i in range(tick):
-            zhao_xi.mine_device.Support.rotate_actor(self, theta / tick, self.axis_z)
-            print(self.axis_z)
+            zhao_xi.mine_device.Support.rotate_actor(self, theta / tick, axis)
             self.notice_render_window()
 
     def notice_render_window(self):

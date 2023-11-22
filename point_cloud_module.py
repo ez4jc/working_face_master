@@ -110,6 +110,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         progress_dialog.setWindowTitle('加载工作场景...')
         progress_dialog.setLabelText('稍等...')
         progress_dialog.setCancelButton(None)  # 禁用取消按钮
+        progress_dialog.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
 
         worker_thread = WorkerThread(self)
         worker_thread.update_progress.connect(progress_dialog.setValue)
