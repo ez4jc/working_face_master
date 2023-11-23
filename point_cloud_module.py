@@ -97,11 +97,12 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.show_planeXZ = False
         self.show_axes = False
         self.highlight_point = False  # 是否突出点
+        self.supporter_init_flag = False
 
         # 直接加载工作场景,并加载网格面xy
         # self.support_init()
         # self.load_device_and_workplace()
-        self.show_progress_dialog()
+        # self.show_progress_dialog()
         self.toggled_planeXY()
 
     def show_progress_dialog(self):
@@ -124,11 +125,19 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.add_actor_and_checkbox(scene_initial_info.FX_filename)
         self.add_actor_and_checkbox(scene_initial_info.workplace_filename)
 
+    # def support_init(self):
+    #     for i in range(20):
+    #         support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self)
+    #         self.supporter_actors.append(support_actor)
+    #         self.renderer.AddActor(support_actor)
+
     def support_init(self):
-        for i in range(20):
-            support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self)
-            self.supporter_actors.append(support_actor)
-            self.renderer.AddActor(support_actor)
+        if not self.supporter_init_flag:
+            self.show_progress_dialog()  # 这里面包含了加载
+            self.window.simulate_win_init()  # 这个函数仅是在实例子窗口
+            self.supporter_init_flag = True
+        else:
+            return
 
     def set_camera_position(self, position):
         self.camera_controller.set_camera_position(position)
@@ -164,6 +173,11 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             # 记录名称
             self.point_cloud_actors_filename.append(file_name)
 
+    def update_workplace(self):
+        for i in range(5):
+            self.point_cloud_actors[i].SetMapper(self.create_single_actor(scene_initial_info.workplace_filename[i]))
+        self.renderer.GetRenderWindow().Render()
+
     def add_actor(self, point_mapper):
         # 创建点云的可视化对象
         point_actor = vtk.vtkActor()
@@ -178,13 +192,11 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         return point_actor
 
     def move_actor(self, actor: Actors.SupporterActor, dis):
-        self.window.simulate_win.pushButton_pushSupport.setEnabled(False)
         ticks = 60
         for i in range(ticks):
             actor.move(dis / 60.0)
             self.renderer.GetRenderWindow().Render()
             time.sleep(0.02)
-        self.window.simulate_win.pushButton_pushSupport.setEnabled(True)
 
     @staticmethod
     def create_single_actor(file_name):

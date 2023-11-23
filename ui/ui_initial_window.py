@@ -87,9 +87,25 @@ class Ui_MainWindow(object):
         self.toolBox = QToolBox(self.widget_control)
         self.toolBox.setObjectName(u"toolBox")
         self.toolBox.setFrameShape(QFrame.StyledPanel)
+        self.page_2 = QWidget()
+        self.page_2.setObjectName(u"page_2")
+        self.page_2.setGeometry(QRect(0, 0, 188, 115))
+        self.verticalLayout_17 = QVBoxLayout(self.page_2)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.pushButton_roadwayAndCoalmineSettings = QPushButton(self.page_2)
+        self.pushButton_roadwayAndCoalmineSettings.setObjectName(u"pushButton_roadwayAndCoalmineSettings")
+
+        self.verticalLayout_17.addWidget(self.pushButton_roadwayAndCoalmineSettings)
+
+        self.pushButton_supporterInit = QPushButton(self.page_2)
+        self.pushButton_supporterInit.setObjectName(u"pushButton_supporterInit")
+
+        self.verticalLayout_17.addWidget(self.pushButton_supporterInit)
+
+        self.toolBox.addItem(self.page_2, u"\u573a\u666f\u52a0\u8f7d")
         self.page_pointCloud = QWidget()
         self.page_pointCloud.setObjectName(u"page_pointCloud")
-        self.page_pointCloud.setGeometry(QRect(0, 0, 188, 145))
+        self.page_pointCloud.setGeometry(QRect(0, 0, 98, 38))
         self.verticalLayout_11 = QVBoxLayout(self.page_pointCloud)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_pointCloudCheckBox = QWidget(self.page_pointCloud)
@@ -454,7 +470,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.toolBox.setCurrentIndex(2)
+        self.toolBox.setCurrentIndex(0)
         self.toolBox.layout().setSpacing(6)
 
 
@@ -470,6 +486,9 @@ class Ui_MainWindow(object):
         self.action_4.setText(QCoreApplication.translate("MainWindow", u"\u89d2\u8272\u8bbe\u7f6e", None))
         self.about_us_action.setText(QCoreApplication.translate("MainWindow", u"\u5173\u4e8e", None))
         self.action_supportControler.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u63a7\u5236", None))
+        self.pushButton_roadwayAndCoalmineSettings.setText(QCoreApplication.translate("MainWindow", u"\u5df7\u9053\u7164\u5ca9\u5c42\u8bbe\u7f6e", None))
+        self.pushButton_supporterInit.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u521d\u59cb\u5316", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("MainWindow", u"\u573a\u666f\u52a0\u8f7d", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_pointCloud), QCoreApplication.translate("MainWindow", u"\u70b9\u4e91\u5bf9\u8c61", None))
         self.checkBox_planeXZ.setText(QCoreApplication.translate("MainWindow", u"\u7f51\u683c\u7ebfXZ", None))
         self.checkBox_planeYZ.setText(QCoreApplication.translate("MainWindow", u"\u7f51\u683c\u7ebfYZ", None))

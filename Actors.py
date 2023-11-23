@@ -155,7 +155,7 @@ class SupporterActor(vtk.vtkActor):
         # 陀螺仪（本身是演员列表组成的演员）
         self.radis = zhao_xi.tools.support_standard['max_length']
         self.gyro = GyroActor(self.radis, self.GetCenter()).get_actor()
-        # self.axis_x, self.axis_y, self.axis_z = zhao_xi.tools.get_supporter_axis(self.filename)
+        self.axis_x, self.axis_y, self.axis_z = zhao_xi.tools.get_supporter_axis(self.filename)
 
         # 标志位
         self.model_flag = True

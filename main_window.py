@@ -21,6 +21,7 @@ import numpy as np
 from frame.frame_dialog import InformationDialog
 from ui.ui_initial_window import Ui_MainWindow
 from sub_win_support import SubWinSupport
+from roadway_win import RoadWayWin
 
 import common.project_memory as ProjectMemory
 
@@ -42,8 +43,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 点云模块实例
         self.vtkWidget = CustomQVTKRenderWindowInteractor(self)
 
-        # 点云模块实例后，子窗口实例才不会出错
-        self.simulate_win = SubWinSupport(self.vtkWidget)
+        # 巷道窗口实例
+        self.roadway_win = RoadWayWin(self.vtkWidget)
 
         # 摄像头模块实例
         self.videoWidget = CustomCameraLabel(self)
@@ -59,11 +60,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 工具栏模块
         self._create_actions()
 
-        # 菜单栏模块
-        self.action_supportControler.triggered.connect(lambda: self.simulate_win.show())
-
         # 固定视角的摄像头位置
         self.camera_fixed_position = [(-7.3, 2.2, 0.9)]
+
+    def simulate_win_init(self):
+        # 点云模块实例后，支撑架窗口实例才不会出错
+        self.simulate_win = SubWinSupport(self.vtkWidget)
+        # 菜单栏绑定
+        self.action_supportControler.triggered.connect(self.simulate_win.show)
+        self.simulate_win_init_flag = True
+
 
     def button_init(self):
         self.widget_control.setEnabled(False)
@@ -75,6 +81,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.radioButton_jiankong.clicked.connect(self.videoWidget.show_video)
         self.radioButton_clear.clicked.connect(self.show_blank)
         # 控制面板的按钮
+        # 加载场景选项卡
+        self.pushButton_roadwayAndCoalmineSettings.clicked.connect(self.roadway_win.show)
+        self.pushButton_supporterInit.clicked.connect(self.vtkWidget.support_init)
+        ##############################
         self.checkBox_planeXY.toggled.connect(self.vtkWidget.toggled_planeXY)
         self.checkBox_planeYZ.toggled.connect(self.vtkWidget.toggled_planeYZ)
         self.checkBox_planeXZ.toggled.connect(self.vtkWidget.toggled_planeXZ)

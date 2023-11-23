@@ -49,18 +49,47 @@
                  <enum>QFrame::StyledPanel</enum>
                 </property>
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>0</number>
                 </property>
                 <property name="tabSpacing">
                  <number>6</number>
                 </property>
-                <widget class="QWidget" name="page_pointCloud">
+                <widget class="QWidget" name="page_2">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
                    <y>0</y>
                    <width>188</width>
-                   <height>145</height>
+                   <height>115</height>
+                  </rect>
+                 </property>
+                 <attribute name="label">
+                  <string>场景加载</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_17">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_roadwayAndCoalmineSettings">
+                    <property name="text">
+                     <string>巷道煤岩层设置</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_supporterInit">
+                    <property name="text">
+                     <string>支撑架初始化</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="page_pointCloud">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>98</width>
+                   <height>38</height>
                   </rect>
                  </property>
                  <attribute name="label">
