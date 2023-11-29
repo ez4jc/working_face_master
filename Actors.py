@@ -277,12 +277,15 @@ class SupporterActor(vtk.vtkActor):
 
     def roll_xoy(self, theta):
         self.roll(theta, [0, 0, 1])
+        zhao_xi.tools.calculate_theta(self, [0, 0, 1])
 
     def roll_yoz(self, theta):
         self.roll(theta, [1, 0, 0])
+        zhao_xi.tools.calculate_theta(self, [1, 0, 0])
 
     def roll_zox(self, theta):
         self.roll(theta, [0, 1, 0])
+        zhao_xi.tools.calculate_theta(self, [0, 1, 0])
 
     def roll(self, theta, axis):
         tick = 60
@@ -317,3 +320,6 @@ class ScraperActor(vtk.vtkActor):
         zhao_xi.mine_device.Support.move_actor(self, dis)
         # 通知对应的支撑架移动
         self.supporter.move(dis)
+
+    def gen_obb(self):
+        pass
