@@ -31,7 +31,7 @@ def main():
 
     ui.show()
     logger.info("current version : {}", global_all_config.version)
-    ProjectMemory.set_value("version", global_all_config.version)
+    ProjectMemory.set_value("versio n", global_all_config.version)
 
     sys.exit(app.exec_())
 

@@ -178,7 +178,8 @@ class SupporterActor(vtk.vtkActor):
         self.radis = zhao_xi.tools.support_standard['max_length']
         self.gyro = GyroActor(self.radis, self.GetCenter()).get_actor()
         self.axis_x, self.axis_y, self.axis_z = zhao_xi.tools.get_supporter_axis(self.filename)
-
+        self.axis = [self.axis_x, self.axis_y, self.axis_z]
+        self.theta = zhao_xi.tools.calculate_theta(self.axis, 0, [0, 0, 1])  # 不旋转，得到一个初始角度组
         # 标志位
         self.model_flag = True
         self.wraparound_actor_flag = False
@@ -277,15 +278,21 @@ class SupporterActor(vtk.vtkActor):
 
     def roll_xoy(self, theta):
         self.roll(theta, [0, 0, 1])
-        zhao_xi.tools.calculate_theta(self, [0, 0, 1])
+        self.theta = zhao_xi.tools.calculate_theta(self.axis, theta, [0, 0, 1])
+        self.interactor.window.simulate_win.textEdit.setText(str(self.theta[0]))
+        self.interactor.window.simulate_win.textEdit_2.setText(str(self.theta[1]))
+        self.interactor.window.simulate_win.textEdit_3.setText(str(self.theta[2]))
+        print(self.theta)
 
     def roll_yoz(self, theta):
         self.roll(theta, [1, 0, 0])
-        zhao_xi.tools.calculate_theta(self, [1, 0, 0])
+        self.theta = zhao_xi.tools.calculate_theta(self.axis, theta, [1, 0, 0])
+        print(self.theta)
 
     def roll_zox(self, theta):
         self.roll(theta, [0, 1, 0])
-        zhao_xi.tools.calculate_theta(self, [0, 1, 0])
+        self.theta = zhao_xi.tools.calculate_theta(self.axis, theta, [0, 1, 0])
+        print(self.theta)
 
     def roll(self, theta, axis):
         tick = 60
