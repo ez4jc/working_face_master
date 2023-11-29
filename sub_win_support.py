@@ -20,7 +20,6 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.push_scraper_mutex = QMutex()
         self.push_scraper_is_executing = False
 
-
     def bind(self):
         self.comboBox_supporter.currentIndexChanged.connect(self.update_selected_supporter)
         # 绑定初始支撑架

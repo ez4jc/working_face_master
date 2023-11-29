@@ -179,7 +179,9 @@ class SupporterActor(vtk.vtkActor):
         self.gyro = GyroActor(self.radis, self.GetCenter()).get_actor()
         self.axis_x, self.axis_y, self.axis_z = zhao_xi.tools.get_supporter_axis(self.filename)
         self.axis = [self.axis_x, self.axis_y, self.axis_z]
-        self.theta = zhao_xi.tools.calculate_theta(self.axis, 0, [0, 0, 1])  # 不旋转，得到一个初始角度组
+        self.axis_theta = zhao_xi.tools.calculate_theta(self.axis, 0, [0, 0, 1])  # 不旋转，得到一个初始角度组
+        print(self.axis[0], self.axis[1], self.axis[2])
+        print(*self.axis_theta)
         # 标志位
         self.model_flag = True
         self.wraparound_actor_flag = False
@@ -232,10 +234,10 @@ class SupporterActor(vtk.vtkActor):
             self.generate_line_label(line[0], line[1], line[2])
 
     def generate_line_label(self, point1, point2, text):
-        middel_point = (point2 + point1) / 2.0
-        x = middel_point[0]
-        y = middel_point[1]
-        z = middel_point[2]
+        middle_point = (point2 + point1) / 2.0
+        x = middle_point[0]
+        y = middle_point[1]
+        z = middle_point[2]
         # 提示线
         line_source = vtk.vtkLineSource()
         line_source.SetPoint1(point1)
@@ -278,21 +280,19 @@ class SupporterActor(vtk.vtkActor):
 
     def roll_xoy(self, theta):
         self.roll(theta, [0, 0, 1])
-        self.theta = zhao_xi.tools.calculate_theta(self.axis, theta, [0, 0, 1])
-        self.interactor.window.simulate_win.textEdit.setText(str(self.theta[0]))
-        self.interactor.window.simulate_win.textEdit_2.setText(str(self.theta[1]))
-        self.interactor.window.simulate_win.textEdit_3.setText(str(self.theta[2]))
-        print(self.theta)
+        # self.axis会在此方法内部被改变
+        self.axis_theta = zhao_xi.tools.calculate_theta(self.axis, theta, [0, 0, 1])
+        self.update_text()
 
     def roll_yoz(self, theta):
         self.roll(theta, [1, 0, 0])
-        self.theta = zhao_xi.tools.calculate_theta(self.axis, theta, [1, 0, 0])
-        print(self.theta)
+        self.axis_theta = zhao_xi.tools.calculate_theta(self.axis, theta, [1, 0, 0])
+        self.update_text()
 
     def roll_zox(self, theta):
         self.roll(theta, [0, 1, 0])
-        self.theta = zhao_xi.tools.calculate_theta(self.axis, theta, [0, 1, 0])
-        print(self.theta)
+        self.axis_theta = zhao_xi.tools.calculate_theta(self.axis, theta, [0, 1, 0])
+        self.update_text()
 
     def roll(self, theta, axis):
         tick = 60
@@ -302,6 +302,11 @@ class SupporterActor(vtk.vtkActor):
 
     def notice_render_window(self):  # interactor为此类的观察者
         self.interactor.GetRenderWindow().Render()
+
+    def update_text(self):  # simulate_win为此类的观察者
+        self.interactor.window.simulate_win.textEdit.setText(str(self.axis_theta[0]))
+        self.interactor.window.simulate_win.textEdit_2.setText(str(self.axis_theta[1]))
+        self.interactor.window.simulate_win.textEdit_3.setText(str(self.axis_theta[2]))
 
 
 class ScraperActor(vtk.vtkActor):
