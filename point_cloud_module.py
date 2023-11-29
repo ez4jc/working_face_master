@@ -24,13 +24,13 @@ class WorkerThread(QThread):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self.parent = parent
+        self.interactor = parent
 
     def run(self):
         for i in range(20):
-            support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self.parent)
-            self.parent.supporter_actors.append(support_actor)
-            self.parent.renderer.AddActor(support_actor)
+            support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self.interactor)
+            self.interactor.supporter_actors.append(support_actor)
+            self.interactor.renderer.AddActor(support_actor)
             progress_value = int((i + 1) * 100 / 20)
             self.update_progress.emit(progress_value)
 
@@ -90,6 +90,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.point_cloud_actors_filename = []
         # 存储当前加载的支撑架演员
         self.supporter_actors = []
+        self.scraper_actors = []
 
         # 正在显示某信息则设置为True,此标志用来帮助释放资源
         self.show_planeXY = False
@@ -99,11 +100,14 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.highlight_point = False  # 是否突出点
         self.supporter_init_flag = False
 
-        # 直接加载工作场景,并加载网格面xy
-        # self.support_init()
-        # self.load_device_and_workplace()
-        # self.show_progress_dialog()
+        # 默认实例化的角色
+        self.coal_cutter_actor = CoalCutterActor(scene_initial_info.coal_cutter[0], self)
         self.toggled_planeXY()
+
+    def scraper_init(self):  # 此函数在支撑架初始化中调用
+        scraper_actor = ScraperActor('zhao_xi/scraper/FX_1.ply', self)
+        self.scraper_actors.append(scraper_actor)
+        self.renderer.AddActor(scraper_actor)
 
     def show_progress_dialog(self):
         progress_dialog = QProgressDialog(self)
@@ -134,6 +138,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
     def support_init(self):
         if not self.supporter_init_flag:
             self.show_progress_dialog()  # 这里面包含了加载
+            self.scraper_init()  # 溜子初始化
             self.window.simulate_win_init()  # 这个函数仅是在实例子窗口
             self.supporter_init_flag = True
         else:
@@ -197,6 +202,15 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             actor.move(dis / 60.0)
             self.renderer.GetRenderWindow().Render()
             time.sleep(0.02)
+
+    def show_actors(self, items: list[vtk.vtkActor], flag):
+        if not flag:
+            for actor in items:
+                self.renderer.AddActor(actor)
+        else:
+            for actor in items:
+                self.renderer.RemoveActor(actor)
+        self.GetRenderWindow().Render()
 
     @staticmethod
     def create_single_actor(file_name):

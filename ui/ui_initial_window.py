@@ -97,6 +97,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_17.addWidget(self.pushButton_roadwayAndCoalmineSettings)
 
+        self.pushButton_coalCutter = QPushButton(self.page_2)
+        self.pushButton_coalCutter.setObjectName(u"pushButton_coalCutter")
+
+        self.verticalLayout_17.addWidget(self.pushButton_coalCutter)
+
         self.pushButton_supporterInit = QPushButton(self.page_2)
         self.pushButton_supporterInit.setObjectName(u"pushButton_supporterInit")
 
@@ -487,6 +492,7 @@ class Ui_MainWindow(object):
         self.about_us_action.setText(QCoreApplication.translate("MainWindow", u"\u5173\u4e8e", None))
         self.action_supportControler.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u63a7\u5236", None))
         self.pushButton_roadwayAndCoalmineSettings.setText(QCoreApplication.translate("MainWindow", u"\u5df7\u9053\u7164\u5ca9\u5c42\u8bbe\u7f6e", None))
+        self.pushButton_coalCutter.setText(QCoreApplication.translate("MainWindow", u"\u5272\u7164\u673a\u52a0\u8f7d", None))
         self.pushButton_supporterInit.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u521d\u59cb\u5316", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("MainWindow", u"\u573a\u666f\u52a0\u8f7d", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_pointCloud), QCoreApplication.translate("MainWindow", u"\u70b9\u4e91\u5bf9\u8c61", None))

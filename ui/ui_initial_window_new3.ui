@@ -75,6 +75,13 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="pushButton_coalCutter">
+                    <property name="text">
+                     <string>割煤机加载</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="pushButton_supporterInit">
                     <property name="text">
                      <string>支撑架初始化</string>

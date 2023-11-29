@@ -45,5 +45,6 @@ workplace_filename = ['zhao_xi/tunnel/coal_wall/up_coal_wall.ply',
                       'zhao_xi/tunnel/coal_wall/coal_wall.ply',
                       'zhao_xi/tunnel/coal_wall/down_coal_wall.ply',
                       'zhao_xi/tunnel/yunshuxiang/yunshuxiang_vertices.vtk',
-                      'zhao_xi/tunnel/tongfengxiang/tongfengxiang_vertices.vtk',
-                      'zhao_xi/cmj/test_cmj_1.ply']
+                      'zhao_xi/tunnel/tongfengxiang/tongfengxiang_vertices.vtk']
+
+coal_cutter = ['zhao_xi/cmj/CoalCutter.ply']

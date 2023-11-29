@@ -70,7 +70,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.action_supportControler.triggered.connect(self.simulate_win.show)
         self.simulate_win_init_flag = True
 
-
     def button_init(self):
         self.widget_control.setEnabled(False)
         self.checkBox_planeXY.setChecked(True)
@@ -83,6 +82,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 控制面板的按钮
         # 加载场景选项卡
         self.pushButton_roadwayAndCoalmineSettings.clicked.connect(self.roadway_win.show)
+        self.pushButton_coalCutter.clicked.connect(self.vtkWidget.coal_cutter_actor.show_model)
         self.pushButton_supporterInit.clicked.connect(self.vtkWidget.support_init)
         ##############################
         self.checkBox_planeXY.toggled.connect(self.vtkWidget.toggled_planeXY)

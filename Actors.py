@@ -26,7 +26,7 @@ class HorizontalPlaneActor(vtk.vtkActor):
         super().__init__()
         # 1.创建一个水平平面设置分辨率并增加网格线
         self.plane = vtk.vtkPlaneSource()
-        length = 1000  # 网格最大覆盖面
+        length = 1000  # 网格最大覆盖面length*2
         # 设置平面的大小和位置
         self.plane.SetCenter(0, 0, 0)
         if type == "XY":
@@ -139,6 +139,44 @@ class GyroActor(vtk.vtkActor):
         return line_actor
 
 
+class CoalCutterActor(vtk.vtkActor):
+    def __init__(self, filename, interactor):
+        super().__init__()
+        self.filename = filename
+        self.interactor = interactor
+        self.init()
+
+        # 标志位
+        self.model_flag = False
+
+    def init(self):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        self.SetProperty(self.interactor.base_property)
+
+    def show_model(self):
+        self.interactor.show_actors([self], self.model_flag)
+        self.model_flag = not self.model_flag
+
+
+class ScraperActor(vtk.vtkActor):
+    def __init__(self, filename, interactor):
+        super().__init__()
+        self.filename = filename
+        self.interactor = interactor
+        self.init()
+
+        # 标志位
+        self.model_flag = True
+
+    def init(self):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        self.SetProperty(self.interactor.base_property)
+
+    def show_model(self):
+        self.interactor.show_actors([self], self.model_flag)
+        self.model_flag = not self.model_flag
+
+
 class SupporterActor(vtk.vtkActor):
     def __init__(self, filename, interactor):
         super().__init__()
@@ -234,33 +272,24 @@ class SupporterActor(vtk.vtkActor):
         self.label_actors.append(text_actor)
 
     def show_model(self):
-        self.show_items([self], self.model_flag)
+        self.interactor.show_actors([self], self.model_flag)
         self.model_flag = not self.model_flag
 
     def show_wraparound_frame(self):
-        self.show_items([self.wraparound_actor], self.wraparound_actor_flag)
+        self.interactor.show_actors([self.wraparound_actor], self.wraparound_actor_flag)
         self.wraparound_actor_flag = not self.wraparound_actor_flag
 
     def show_static_wraparound_frame(self):
-        self.show_items([self.static_wraparound_actor], self.static_wraparound_actor_flag)
+        self.interactor.show_actors([self.static_wraparound_actor], self.static_wraparound_actor_flag)
         self.static_wraparound_actor_flag = not self.static_wraparound_actor_flag
 
     def show_label(self):
-        self.show_items(self.label_actors, self.label_flag)
+        self.interactor.show_actors(self.label_actors, self.label_flag)
         self.label_flag = not self.label_flag
 
     def show_gyro(self):
-        self.show_items(self.gyro, self.gyro_flag)
+        self.interactor.show_actors(self.gyro, self.gyro_flag)
         self.gyro_flag = not self.gyro_flag
-
-    def show_items(self, items: list[vtk.vtkActor], flag):  # 直接调用代表interactor是此方法的观察者
-        if not flag:
-            for actor in items:
-                self.interactor.renderer.AddActor(actor)
-        else:
-            for actor in items:
-                self.interactor.renderer.RemoveActor(actor)
-        self.notice_render_window()
 
     def roll_xoy(self, theta):
         self.roll(theta, [0, 0, 1])

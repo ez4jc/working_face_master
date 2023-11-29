@@ -50,6 +50,9 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.pushButton_zox.clicked.connect(
             lambda: self.vtkWidget.supporter_actors[0].roll_zox(float(self.lineEdit_zox.text())))
 
+        # 临时Demo按钮，待重写
+        self.checkBox_scraper.clicked.connect(self.vtkWidget.scraper_actors[0].show_model)
+
     def update_selected_supporter(self):
         # 断开槽函数，控件回默认值
         # self.pushButton_pushSupport.clicked.disconnect()
