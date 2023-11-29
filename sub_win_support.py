@@ -17,16 +17,13 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.bind()
 
         # 互斥锁
-        self.push_supporter_mutex = QMutex()
-        self.push_supporter_is_executing = False
+        self.push_scraper_mutex = QMutex()
+        self.push_scraper_is_executing = False
 
     def bind(self):
         self.comboBox_supporter.currentIndexChanged.connect(self.update_selected_supporter)
         # 绑定初始支撑架
-        # self.pushButton_pushSupport.clicked.connect(
-        #     lambda: self.vtkWidget.move_actor(self.vtkWidget.supporter_actors[0],
-        #                                       float(self.lineEdit_pushSupporter.text())))
-        self.pushButton_pushSupport.clicked.connect(self.push_supporter)
+        self.pushButton_pushScraper.clicked.connect(self.push_scraper)
         # 模型勾选框
         self.checkBox_supporter_model.clicked.connect(self.vtkWidget.supporter_actors[0].show_model)
         # 标签勾选框
@@ -50,7 +47,7 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.pushButton_zox.clicked.connect(
             lambda: self.vtkWidget.supporter_actors[0].roll_zox(float(self.lineEdit_zox.text())))
 
-        # 临时Demo按钮，待重写
+        # 刮板机按钮勾选
         self.checkBox_scraper.clicked.connect(self.vtkWidget.scraper_actors[0].show_model)
 
     def update_selected_supporter(self):
@@ -64,6 +61,7 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.pushButton_xoy.clicked.disconnect()
         self.pushButton_yoz.clicked.disconnect()
         self.pushButton_zox.clicked.disconnect()
+        self.checkBox_scraper.clicked.disconnect()
 
         # 同步控件和支撑架的状态，保证一致性
         self.checkBox_supporter_model.setChecked(
@@ -76,12 +74,6 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
             self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].static_wraparound_actor_flag)
         self.checkBox_gyro.setChecked(
             self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].gyro_flag)
-
-        # 重新绑定支撑架和相应所有按钮
-        # self.pushButton_pushSupport.clicked.connect(
-        #     lambda: self.vtkWidget.move_actor(
-        #         self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()],
-        #         float(self.lineEdit_pushSupporter.text())))
         self.checkBox_supporter_model.clicked.connect(
             self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].show_model)
         self.checkBox_label.clicked.connect(
@@ -104,22 +96,23 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.pushButton_zox.clicked.connect(
             lambda: self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].roll_zox(
                 float(self.lineEdit_zox.text())))
+        # 刮板机按钮勾选
+        self.checkBox_scraper.clicked.connect(
+            self.vtkWidget.scraper_actors[self.comboBox_supporter.currentIndex()].show_model)
 
-    def push_supporter(self):
-        with QMutexLocker(self.push_supporter_mutex):
-            if self.push_supporter_is_executing:
+    def push_scraper(self):
+        with QMutexLocker(self.push_scraper_mutex):
+            if self.push_scraper_is_executing:
                 return
-            self.push_supporter_is_executing = True
+            self.push_scraper_is_executing = True
 
-        self.pushButton_pushSupport.setEnabled(False)
+        self.pushButton_pushScraper.setEnabled(False)
         QCoreApplication.processEvents()
 
-        # 在这里执行你的操作，例如 move_actor
-        self.vtkWidget.move_actor(self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()],
-                                  float(self.lineEdit_pushSupporter.text()))
+        # 在这里执行实际操作 move_actor
+        self.vtkWidget.move_actor(self.vtkWidget.scraper_actors[self.comboBox_supporter.currentIndex()],
+                                  float(self.lineEdit_pushScraper.text()))
 
-        with QMutexLocker(self.push_supporter_mutex):
-            self.push_supporter_is_executing = False
-            self.pushButton_pushSupport.setEnabled(True)
-
-
+        with QMutexLocker(self.push_scraper_mutex):
+            self.push_scraper_is_executing = False
+            self.pushButton_pushScraper.setEnabled(True)

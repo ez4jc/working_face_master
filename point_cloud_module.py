@@ -27,11 +27,11 @@ class WorkerThread(QThread):
         self.interactor = parent
 
     def run(self):
-        for i in range(20):
+        for i in range(self.interactor.supporter_num):
             support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self.interactor)
             self.interactor.supporter_actors.append(support_actor)
             self.interactor.renderer.AddActor(support_actor)
-            progress_value = int((i + 1) * 100 / 20)
+            progress_value = int((i + 1) * 100 / self.interactor.supporter_num)
             self.update_progress.emit(progress_value)
 
 
@@ -101,13 +101,15 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.supporter_init_flag = False
 
         # 默认实例化的角色
+        self.supporter_num = 20
         self.coal_cutter_actor = CoalCutterActor(scene_initial_info.coal_cutter[0], self)
         self.toggled_planeXY()
 
     def scraper_init(self):  # 此函数在支撑架初始化中调用
-        scraper_actor = ScraperActor('zhao_xi/scraper/FX_1.ply', self)
-        self.scraper_actors.append(scraper_actor)
-        self.renderer.AddActor(scraper_actor)
+        for i in range(self.supporter_num):
+            scraper_actor = ScraperActor(scene_initial_info.FX_filename[i], self.supporter_actors[i], self)
+            self.scraper_actors.append(scraper_actor)
+            self.renderer.AddActor(scraper_actor)
 
     def show_progress_dialog(self):
         progress_dialog = QProgressDialog(self)
@@ -129,12 +131,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.add_actor_and_checkbox(scene_initial_info.FX_filename)
         self.add_actor_and_checkbox(scene_initial_info.workplace_filename)
 
-    # def support_init(self):
-    #     for i in range(20):
-    #         support_actor = SupporterActor(scene_initial_info.supporters_filename[i], self)
-    #         self.supporter_actors.append(support_actor)
-    #         self.renderer.AddActor(support_actor)
-
     def support_init(self):
         if not self.supporter_init_flag:
             self.show_progress_dialog()  # 这里面包含了加载
@@ -150,7 +146,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
     def show_point_cloud(self):
         if not self.window.showPointCloud:
-            # self.load_dianyun_module()  # 暂时关闭点击时弹窗选文件
             self.Start()
             self.window.viewer_show("PointCloud")
             self.window.showPointCloud = True
@@ -196,7 +191,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.renderer.AddActor(point_actor)
         return point_actor
 
-    def move_actor(self, actor: Actors.SupporterActor, dis):
+    def move_actor(self, actor: Actors.ScraperActor, dis):
         ticks = 60
         for i in range(ticks):
             actor.move(dis / 60.0)

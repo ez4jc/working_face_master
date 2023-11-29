@@ -157,24 +157,8 @@ class CoalCutterActor(vtk.vtkActor):
         self.interactor.show_actors([self], self.model_flag)
         self.model_flag = not self.model_flag
 
-
-class ScraperActor(vtk.vtkActor):
-    def __init__(self, filename, interactor):
-        super().__init__()
-        self.filename = filename
-        self.interactor = interactor
-        self.init()
-
-        # 标志位
-        self.model_flag = True
-
-    def init(self):
-        self.SetMapper(self.interactor.create_single_actor(self.filename))
-        self.SetProperty(self.interactor.base_property)
-
-    def show_model(self):
-        self.interactor.show_actors([self], self.model_flag)
-        self.model_flag = not self.model_flag
+    def move(self, dis):
+        zhao_xi.mine_device.Support.move_actor(self, dis)
 
 
 class SupporterActor(vtk.vtkActor):
@@ -308,3 +292,28 @@ class SupporterActor(vtk.vtkActor):
 
     def notice_render_window(self):  # interactor为此类的观察者
         self.interactor.GetRenderWindow().Render()
+
+
+class ScraperActor(vtk.vtkActor):
+    def __init__(self, filename, supporter: SupporterActor, interactor):
+        super().__init__()
+        self.filename = filename
+        self.supporter = supporter
+        self.interactor = interactor
+        self.init()
+
+        # 标志位
+        self.model_flag = True
+
+    def init(self):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        self.SetProperty(self.interactor.base_property)
+
+    def show_model(self):
+        self.interactor.show_actors([self], self.model_flag)
+        self.model_flag = not self.model_flag
+
+    def move(self, dis):
+        zhao_xi.mine_device.Support.move_actor(self, dis)
+        # 通知对应的支撑架移动
+        self.supporter.move(dis)
