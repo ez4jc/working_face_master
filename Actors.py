@@ -280,17 +280,17 @@ class SupporterActor(vtk.vtkActor):
         self.roll(theta, [0, 0, 1])
         # self.axis会在此方法内部被改变
         self.axis_theta = zhao_xi.tools.calculate_theta(self.axis, theta, [0, 0, 1])
-        self.update_text()
+        self.update_sub_win_text()
 
     def roll_yoz(self, theta):
         self.roll(theta, [1, 0, 0])
         self.axis_theta = zhao_xi.tools.calculate_theta(self.axis, theta, [1, 0, 0])
-        self.update_text()
+        self.update_sub_win_text()
 
     def roll_zox(self, theta):
         self.roll(theta, [0, 1, 0])
         self.axis_theta = zhao_xi.tools.calculate_theta(self.axis, theta, [0, 1, 0])
-        self.update_text()
+        self.update_sub_win_text()
 
     def roll(self, theta, axis):
         tick = 60
@@ -301,7 +301,7 @@ class SupporterActor(vtk.vtkActor):
     def notice_render_window(self):  # interactor为此类的观察者
         self.interactor.GetRenderWindow().Render()
 
-    def update_text(self):  # simulate_win为此类的观察者
+    def update_sub_win_text(self):  # simulate_win为此类的观察者
         self.interactor.window.simulate_win.update_text(str("%.3f" % self.axis_theta[0]),
                                                         str("%.3f" % (180 - self.axis_theta[1])),
                                                         str("%.3f" % (180 - self.axis_theta[2])))
