@@ -180,8 +180,6 @@ class SupporterActor(vtk.vtkActor):
         self.axis_x, self.axis_y, self.axis_z = zhao_xi.tools.get_supporter_axis(self.filename)
         self.axis = [self.axis_x, self.axis_y, self.axis_z]
         self.axis_theta = zhao_xi.tools.calculate_theta(self.axis, 0, [0, 0, 1])  # 不旋转，得到一个初始角度组
-        print(self.axis[0], self.axis[1], self.axis[2])
-        print(*self.axis_theta)
         # 标志位
         self.model_flag = True
         self.wraparound_actor_flag = False
@@ -304,9 +302,9 @@ class SupporterActor(vtk.vtkActor):
         self.interactor.GetRenderWindow().Render()
 
     def update_text(self):  # simulate_win为此类的观察者
-        self.interactor.window.simulate_win.textEdit.setText(str(self.axis_theta[0]))
-        self.interactor.window.simulate_win.textEdit_2.setText(str(self.axis_theta[1]))
-        self.interactor.window.simulate_win.textEdit_3.setText(str(self.axis_theta[2]))
+        self.interactor.window.simulate_win.update_text(str("%.3f" % self.axis_theta[0]),
+                                                        str("%.3f" % (180 - self.axis_theta[1])),
+                                                        str("%.3f" % (180 - self.axis_theta[2])))
 
 
 class ScraperActor(vtk.vtkActor):

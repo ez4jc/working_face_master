@@ -50,6 +50,11 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         # 刮板机按钮勾选
         self.checkBox_scraper.clicked.connect(self.vtkWidget.scraper_actors[0].show_model)
 
+        # 文本初始数值
+        self.update_text(str("%.3f" % self.vtkWidget.supporter_actors[0].axis_theta[0]),
+                         str("%.3f" % (180 - self.vtkWidget.supporter_actors[0].axis_theta[1])),
+                         str("%.3f" % (180 - self.vtkWidget.supporter_actors[0].axis_theta[2])))
+
     def update_selected_supporter(self):
         # 断开槽函数，控件回默认值
         # self.pushButton_pushSupport.clicked.disconnect()
@@ -99,6 +104,17 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         # 刮板机按钮勾选
         self.checkBox_scraper.clicked.connect(
             self.vtkWidget.scraper_actors[self.comboBox_supporter.currentIndex()].show_model)
+
+        # 文本切换对应支撑架的数值
+        self.update_text(
+            str("%.3f" % self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].axis_theta[0]),
+            str("%.3f" % (180 - self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].axis_theta[1])),
+            str("%.3f" % (180 - self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].axis_theta[2])))
+
+    def update_text(self, theta1: str, theta2: str, theta3: str):
+        self.textEdit_4.setText(theta1)
+        self.textEdit_5.setText(theta2)
+        self.textEdit_6.setText(theta3)
 
     def push_scraper(self):
         with QMutexLocker(self.push_scraper_mutex):
