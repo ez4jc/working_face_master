@@ -53,11 +53,27 @@ class HorizontalPlaneActor(vtk.vtkActor):
         self.SetProperty(self.grid_property)  # 设置平面表示为表面
 
 
-class CubeAxesActor(vtk.vtkCubeAxesActor2D):
-    def __init__(self, interactor):
+class CubeAxesActor(vtk.vtkAxesActor):
+    def __init__(self):
         super().__init__()
-        self.SetCamera(interactor.renderer.GetActiveCamera())  # 关联渲染器的相机
-        self.SetFlyModeToOuterEdges()  # 设置坐标轴显示在场景边缘
+        # 获取坐标轴演员的X轴线的属性
+        x_axis_property = self.GetXAxisShaftProperty()
+
+        line_width = 10.0
+        # 设置线宽
+        x_axis_property.SetLineWidth(line_width)
+
+        # 获取坐标轴演员的Y轴线的属性
+        y_axis_property = self.GetYAxisShaftProperty()
+
+        # 设置线宽
+        y_axis_property.SetLineWidth(line_width)
+
+        # 获取坐标轴演员的Z轴线的属性
+        z_axis_property = self.GetZAxisShaftProperty()
+
+        # 设置线宽
+        z_axis_property.SetLineWidth(line_width)
 
 
 class SphereActor(vtk.vtkActor):

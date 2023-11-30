@@ -72,7 +72,8 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.plane_actorXZ = HorizontalPlaneActor("XZ")
 
         # 2.实例一个坐标轴演员
-        self.cube_axes = vtk.vtkAxesActor()
+        self.cube_axes = CubeAxesActor()
+
         # 创建一个坐标轴变换小部件
         axes_transform_widget = vtk.vtkAxesTransformWidget()
         axes_transform_widget.SetInteractor(self)
@@ -102,8 +103,11 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
         # 默认实例化的角色
         self.supporter_num = 20
-        self.coal_cutter_actor = CoalCutterActor(scene_initial_info.coal_cutter[0], self)
         self.toggled_planeXY()
+
+    def coalCutter_init(self):
+        self.coal_cutter_actor = CoalCutterActor(scene_initial_info.coal_cutter[0], self)
+        self.coal_cutter_actor.show_model()
 
     def scraper_init(self):  # 此函数在支撑架初始化中调用
         for i in range(self.supporter_num):

@@ -203,6 +203,7 @@ class Ui_RoadwayWin(object):
 
         self.spinBox_transportAlley_z = QSpinBox(self.groupBox_3)
         self.spinBox_transportAlley_z.setObjectName(u"spinBox_transportAlley_z")
+        self.spinBox_transportAlley_z.setEnabled(False)
 
         self.gridLayout_3.addWidget(self.spinBox_transportAlley_z, 2, 1, 1, 1)
 
@@ -306,6 +307,7 @@ class Ui_RoadwayWin(object):
 
         self.spinBox_transportAlley_height = QSpinBox(self.frame_6)
         self.spinBox_transportAlley_height.setObjectName(u"spinBox_transportAlley_height")
+        self.spinBox_transportAlley_height.setEnabled(False)
         self.spinBox_transportAlley_height.setValue(3)
 
         self.horizontalLayout_4.addWidget(self.spinBox_transportAlley_height)

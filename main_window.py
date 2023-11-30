@@ -22,6 +22,7 @@ from frame.frame_dialog import InformationDialog
 from ui.ui_initial_window import Ui_MainWindow
 from sub_win_support import SubWinSupport
 from roadway_win import RoadWayWin
+from coalCutter_win import CoalCutterWin
 
 import common.project_memory as ProjectMemory
 
@@ -45,6 +46,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # 巷道窗口实例
         self.roadway_win = RoadWayWin(self.vtkWidget)
+
+        # 割煤机窗口实例
+        self.coalCutter = CoalCutterWin(self.vtkWidget)
 
         # 摄像头模块实例
         self.videoWidget = CustomCameraLabel(self)
@@ -82,7 +86,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 控制面板的按钮
         # 加载场景选项卡
         self.pushButton_roadwayAndCoalmineSettings.clicked.connect(self.roadway_win.show)
-        self.pushButton_coalCutter.clicked.connect(self.vtkWidget.coal_cutter_actor.show_model)
+        self.pushButton_coalCutter.clicked.connect(self.coalCutter.show)
         self.pushButton_supporterInit.clicked.connect(self.vtkWidget.support_init)
         ##############################
         self.checkBox_planeXY.toggled.connect(self.vtkWidget.toggled_planeXY)
