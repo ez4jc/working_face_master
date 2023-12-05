@@ -60,7 +60,7 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
 
     def generate_coalmine(self):
         self.pushButton_generate_coalmine.setEnabled(False)
-        zhao_xi.tools.update_coalmine(float(self.spinBox_ventilationShaft_height.value()))
+        zhao_xi.tools.update_coalmine(float(2*self.spinBox_ventilationShaft_height.value()))
         # #################################################################待删
         self.interactor.update_workplace()
         # #################################################################

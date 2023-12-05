@@ -173,9 +173,6 @@ class CoalCutterActor(vtk.vtkActor):
         self.interactor.show_actors([self], self.model_flag)
         self.model_flag = not self.model_flag
 
-    def move(self, dis):
-        zhao_xi.mine_device.Support.move_actor(self, dis)
-
 
 class SupporterActor(vtk.vtkActor):
     def __init__(self, filename, interactor):
@@ -207,9 +204,7 @@ class SupporterActor(vtk.vtkActor):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
         self.SetProperty(self.interactor.base_property)
 
-    def move(self, dis):
-        zhao_xi.mine_device.Support.move_actor(self, dis)
-        zhao_xi.mine_device.Support.move_actor(self.wraparound_actor, dis)
+
 
     def generate_wraparound_frame(self):
         polydata = zhao_xi.tools.drawing_the_bounding_box(
@@ -292,6 +287,10 @@ class SupporterActor(vtk.vtkActor):
         self.interactor.show_actors(self.gyro, self.gyro_flag)
         self.gyro_flag = not self.gyro_flag
 
+    def move(self, dis):
+        zhao_xi.mine_device.Support.move_actor(self, dis, self.axis[1])
+        zhao_xi.mine_device.Support.move_actor(self.wraparound_actor, dis, self.axis[1])
+
     def roll_xoy(self, theta):
         self.roll(theta, [0, 0, 1])
         # self.axis会在此方法内部被改变
@@ -343,7 +342,7 @@ class ScraperActor(vtk.vtkActor):
         self.model_flag = not self.model_flag
 
     def move(self, dis):
-        zhao_xi.mine_device.Support.move_actor(self, dis)
+        zhao_xi.mine_device.Support.move_actor(self, dis, [0, 1, 0])
         # 通知对应的支撑架移动
         self.supporter.move(dis)
 
