@@ -243,6 +243,9 @@
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="1" column="1">
           <widget class="QSpinBox" name="spinBox_transportAlley_y">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="value">
             <number>20</number>
            </property>
@@ -450,7 +453,7 @@
       <item>
        <widget class="QPushButton" name="pushButton_generate_coalmine">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="text">
          <string>生成煤层（需先生成巷道）</string>

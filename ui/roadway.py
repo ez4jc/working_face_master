@@ -331,7 +331,7 @@ class Ui_RoadwayWin(object):
 
         self.pushButton_generate_coalmine = QPushButton(self.frame_7)
         self.pushButton_generate_coalmine.setObjectName(u"pushButton_generate_coalmine")
-        self.pushButton_generate_coalmine.setEnabled(False)
+        self.pushButton_generate_coalmine.setEnabled(True)
 
         self.verticalLayout_7.addWidget(self.pushButton_generate_coalmine)
 

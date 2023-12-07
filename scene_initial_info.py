@@ -40,10 +40,11 @@ FX_filename = ['zhao_xi/scraper/FX_1.ply',
                'zhao_xi/scraper/FX_19.ply',
                'zhao_xi/scraper/FX_20.ply']
 
-workplace_filename = ['zhao_xi/tunnel/coal_wall/up_coal_wall.ply',
-                      'zhao_xi/tunnel/coal_wall/coal_wall.ply',
-                      'zhao_xi/tunnel/coal_wall/down_coal_wall.ply',
-                      'zhao_xi/tunnel/yunshuxiang/yunshuxiang_vertices.vtk',
-                      'zhao_xi/tunnel/tongfengxiang/tongfengxiang_vertices.vtk']
+seam_filename = ['zhao_xi/tunnel/coal_wall/up_coal_wall.ply',
+                 'zhao_xi/tunnel/coal_wall/coal_wall.ply',
+                 'zhao_xi/tunnel/coal_wall/down_coal_wall.ply']
+
+roadway_filename = ['zhao_xi/tunnel/tongfengxiang/tongfengxiang_vertices.vtk',
+                    'zhao_xi/tunnel/yunshuxiang/yunshuxiang_vertices.vtk']
 
 coal_cutter = ['zhao_xi/cmj/CoalCutter.ply']

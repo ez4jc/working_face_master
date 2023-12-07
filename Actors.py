@@ -204,8 +204,6 @@ class SupporterActor(vtk.vtkActor):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
         self.SetProperty(self.interactor.base_property)
 
-
-
     def generate_wraparound_frame(self):
         polydata = zhao_xi.tools.drawing_the_bounding_box(
             zhao_xi.tools.sort_obb_of_support(zhao_xi.tools.support_standard,
@@ -288,8 +286,10 @@ class SupporterActor(vtk.vtkActor):
         self.gyro_flag = not self.gyro_flag
 
     def move(self, dis):
-        zhao_xi.mine_device.Support.move_actor(self, dis, self.axis[1])
-        zhao_xi.mine_device.Support.move_actor(self.wraparound_actor, dis, self.axis[1])
+        # 由于xoz面法向量反向，需处理
+        move_vector = [-v for v in self.axis[1]]
+        zhao_xi.mine_device.Support.move_actor(self, dis, move_vector)
+        zhao_xi.mine_device.Support.move_actor(self.wraparound_actor, dis, move_vector)
 
     def roll_xoy(self, theta):
         self.roll(theta, [0, 0, 1])
@@ -342,7 +342,9 @@ class ScraperActor(vtk.vtkActor):
         self.model_flag = not self.model_flag
 
     def move(self, dis):
-        zhao_xi.mine_device.Support.move_actor(self, dis, [0, 1, 0])
+        # 由于xoz面法向量反向，需处理
+        move_vector = [-v for v in self.supporter.axis[1]]
+        zhao_xi.mine_device.Support.move_actor(self, dis, move_vector)
         # 通知对应的支撑架移动
         self.supporter.move(dis)
 

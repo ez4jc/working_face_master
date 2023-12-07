@@ -18,6 +18,7 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
 
         # 标志位
         self.roadway_loaded = False
+        self.seam_loaded = False
 
     def bind(self):
         self.pushButton_generate_roadway.clicked.connect(self.load_roadway)
@@ -29,6 +30,8 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
                                                                   self.spinBox_transportAlley_height.setValue(
                                                                       float(
                                                                           self.spinBox_ventilationShaft_height.value())))
+        self.spinBox_ventilationShaft_y.valueChanged.connect(lambda: self.spinBox_transportAlley_y.setValue(
+                                                                        float(self.spinBox_ventilationShaft_y.value())))
         # self.pushButton_clear_workplace.clicked.connect(self.clear_workplace)
 
     def load_roadway(self):
@@ -48,24 +51,29 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
                                        "zhao_xi/tunnel/yunshuxiang/yunshuxiang_center_line.pcd",
                                        "zhao_xi/tunnel/yunshuxiang/yunshuxiang_vertices")
         if not self.roadway_loaded:
-            self.interactor.add_actor_and_checkbox(scene_initial_info.workplace_filename)  # 通知渲染器
+            self.interactor.add_actor_and_checkbox(scene_initial_info.roadway_filename,
+                                                   self.interactor.roadway_actors)  # 通知渲染器
             self.roadway_loaded = True
         else:
-            self.interactor.update_workplace()
+            self.interactor.update_roadway()
 
         # #################################################################待删
         self.interactor.renderer.GetRenderWindow().Render()
         # #################################################################
-        self.pushButton_generate_coalmine.setEnabled(True)
+        self.pushButton_generate_roadway.setEnabled(True)
 
     def generate_coalmine(self):
         self.pushButton_generate_coalmine.setEnabled(False)
-        zhao_xi.tools.update_coalmine(float(2*self.spinBox_ventilationShaft_height.value()))
+        zhao_xi.tools.update_coalmine(float(2 * self.spinBox_ventilationShaft_height.value()),
+                                      self.spinBox_ventilationShaft_y.value(),
+                                      self.spinBox_ventilationShaft_z.value())
+        if not self.seam_loaded:
+            self.interactor.add_actor_and_checkbox(scene_initial_info.seam_filename,
+                                                   self.interactor.seam_actors)  # 通知渲染器
+            self.seam_loaded = True
+        else:
+            self.interactor.update_seam()
         # #################################################################待删
-        self.interactor.update_workplace()
+        self.interactor.renderer.GetRenderWindow().Render()
         # #################################################################
-        self.pushButton_generate_roadway.setEnabled(True)
-
-    # def clear_workplace(self):
-    #     self.pushButton_clear_workplace.setEnabled(False)
-    #     self.pushButton_generate_roadway.setEnabled(True)
+        self.pushButton_generate_coalmine.setEnabled(True)

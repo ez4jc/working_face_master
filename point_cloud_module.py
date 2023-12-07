@@ -92,6 +92,10 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         # 存储当前加载的支撑架演员
         self.supporter_actors = []
         self.scraper_actors = []
+        # 存储上[0]中[1]下[2]煤层
+        self.seam_actors = []
+        # 存储通风巷[0]和运输巷[1]
+        self.roadway_actors = []
 
         # 正在显示某信息则设置为True,此标志用来帮助释放资源
         self.show_planeXY = False
@@ -131,10 +135,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         worker_thread.start()
         progress_dialog.exec()
 
-    def load_device_and_workplace(self):
-        self.add_actor_and_checkbox(scene_initial_info.FX_filename)
-        self.add_actor_and_checkbox(scene_initial_info.workplace_filename)
-
     def support_init(self):
         if not self.supporter_init_flag:
             self.show_progress_dialog()  # 这里面包含了加载
@@ -169,17 +169,24 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             self.renderer.AddActor(actor)
         self.renderer.GetRenderWindow().Render()
 
-    def add_actor_and_checkbox(self, files_name):
+    def add_actor_and_checkbox(self, files_name, actors_list=None):
         for file_name in files_name:
             actor = self.add_actor(self.create_single_actor(file_name))
+            if actors_list is not None:
+                actors_list.append(actor)
             # 添加点云对象的可选框
             self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBox)
             # 记录名称
             self.point_cloud_actors_filename.append(file_name)
 
-    def update_workplace(self):
-        for i in range(5):
-            self.point_cloud_actors[i].SetMapper(self.create_single_actor(scene_initial_info.workplace_filename[i]))
+    def update_roadway(self):
+        for i in range(2):
+            self.roadway_actors[i].SetMapper(self.create_single_actor(scene_initial_info.roadway_filename[i]))
+        self.renderer.GetRenderWindow().Render()
+
+    def update_seam(self):
+        for i in range(3):
+            self.seam_actors[i].SetMapper(self.create_single_actor(scene_initial_info.seam_filename[i]))
         self.renderer.GetRenderWindow().Render()
 
     def add_actor(self, point_mapper):

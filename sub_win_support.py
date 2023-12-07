@@ -1,3 +1,5 @@
+import typing
+
 from PySide6 import QtWidgets
 from PySide6.QtCore import Qt, QCoreApplication, QMutex, QMutexLocker
 
@@ -53,7 +55,8 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         # 文本初始数值
         self.update_text(str("%.3f" % self.vtkWidget.supporter_actors[0].axis_theta[0]),
                          str("%.3f" % (180 - self.vtkWidget.supporter_actors[0].axis_theta[1])),
-                         str("%.3f" % (180 - self.vtkWidget.supporter_actors[0].axis_theta[2])))
+                         str("%.3f" % (180 - self.vtkWidget.supporter_actors[0].axis_theta[2])),
+                         str(self.float_tupleorlist_cutter(self.vtkWidget.supporter_actors[0].GetCenter(), 3)))
 
     def update_selected_supporter(self):
         # 断开槽函数，控件回默认值
@@ -109,12 +112,15 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.update_text(
             str("%.3f" % self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].axis_theta[0]),
             str("%.3f" % (180 - self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].axis_theta[1])),
-            str("%.3f" % (180 - self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].axis_theta[2])))
+            str("%.3f" % (180 - self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].axis_theta[2])),
+            str(self.float_tupleorlist_cutter(
+                self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].GetCenter(), 3)))
 
-    def update_text(self, theta1: str, theta2: str, theta3: str):
+    def update_text(self, theta1: str, theta2: str, theta3: str, center):
         self.textEdit_4.setText(theta1)
         self.textEdit_5.setText(theta2)
         self.textEdit_6.setText(theta3)
+        self.textEdit_centerPoint.setText(center)
 
     def push_scraper(self):
         with QMutexLocker(self.push_scraper_mutex):
@@ -132,3 +138,13 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         with QMutexLocker(self.push_scraper_mutex):
             self.push_scraper_is_executing = False
             self.pushButton_pushScraper.setEnabled(True)
+
+    @staticmethod
+    def float_tupleorlist_cutter(center: typing.Tuple, num: int):
+        """
+        此函数用于将浮点数类型的元组或列表中的浮点数保留3位
+        :param center:
+        :param num:
+        :return:
+        """
+        return round(center[0], num), round(center[1], num), round(center[2], num)
