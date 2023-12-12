@@ -135,6 +135,27 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         worker_thread.start()
         progress_dialog.exec()
 
+    def roadway_init(self, theta):
+        ventilation_alley = AlleyActor(scene_initial_info.roadway_filename[0], self, theta)
+        transport_alley = AlleyActor(scene_initial_info.roadway_filename[1], self, theta)
+        self.roadway_actors.append(ventilation_alley)
+        self.roadway_actors.append(transport_alley)
+        self.renderer.AddActor(ventilation_alley)
+        self.renderer.AddActor(transport_alley)
+        self.GetRenderWindow().Render()
+
+    def seam_init(self):
+        up_coal_wall = CoalWallActor(scene_initial_info.seam_filename[0], self)
+        coal_wall = CoalWallActor(scene_initial_info.seam_filename[1], self)
+        down_coal_wall = CoalWallActor(scene_initial_info.seam_filename[2], self)
+        self.seam_actors.append(up_coal_wall)
+        self.seam_actors.append(coal_wall)
+        self.seam_actors.append(down_coal_wall)
+        self.renderer.AddActor(up_coal_wall)
+        self.renderer.AddActor(coal_wall)
+        self.renderer.AddActor(down_coal_wall)
+        self.GetRenderWindow().Render()
+
     def support_init(self):
         if not self.supporter_init_flag:
             self.show_progress_dialog()  # 这里面包含了加载
@@ -179,15 +200,16 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             # 记录名称
             self.point_cloud_actors_filename.append(file_name)
 
-    def update_roadway(self):
-        for i in range(2):
-            self.roadway_actors[i].SetMapper(self.create_single_actor(scene_initial_info.roadway_filename[i]))
-        self.renderer.GetRenderWindow().Render()
+    def update_roadway(self, theta):
+        self.roadway_actors[0].update(theta)
+        self.roadway_actors[1].update(theta)
+        self.GetRenderWindow().Render()
 
     def update_seam(self):
-        for i in range(3):
-            self.seam_actors[i].SetMapper(self.create_single_actor(scene_initial_info.seam_filename[i]))
-        self.renderer.GetRenderWindow().Render()
+        self.seam_actors[0].update()
+        self.seam_actors[1].update()
+        self.seam_actors[2].update()
+        self.GetRenderWindow().Render()
 
     def add_actor(self, point_mapper):
         # 创建点云的可视化对象

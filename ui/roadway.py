@@ -23,7 +23,7 @@ class Ui_RoadwayWin(object):
     def setupUi(self, RoadwayWin):
         if not RoadwayWin.objectName():
             RoadwayWin.setObjectName(u"RoadwayWin")
-        RoadwayWin.resize(547, 468)
+        RoadwayWin.resize(586, 468)
         self.horizontalLayout_5 = QHBoxLayout(RoadwayWin)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.frame_3 = QFrame(RoadwayWin)
@@ -188,6 +188,7 @@ class Ui_RoadwayWin(object):
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.spinBox_transportAlley_y = QSpinBox(self.groupBox_3)
         self.spinBox_transportAlley_y.setObjectName(u"spinBox_transportAlley_y")
+        self.spinBox_transportAlley_y.setEnabled(False)
         self.spinBox_transportAlley_y.setValue(20)
 
         self.gridLayout_3.addWidget(self.spinBox_transportAlley_y, 1, 1, 1, 1)
@@ -318,6 +319,70 @@ class Ui_RoadwayWin(object):
 
         self.horizontalLayout_5.addWidget(self.frame_4)
 
+        self.frame_8 = QFrame(RoadwayWin)
+        self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setFrameShape(QFrame.StyledPanel)
+        self.frame_8.setFrameShadow(QFrame.Raised)
+        self.verticalLayout = QVBoxLayout(self.frame_8)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.label_19 = QLabel(self.frame_8)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.label_19)
+
+        self.frame_9 = QFrame(self.frame_8)
+        self.frame_9.setObjectName(u"frame_9")
+        self.frame_9.setFrameShape(QFrame.StyledPanel)
+        self.frame_9.setFrameShadow(QFrame.Raised)
+        self.gridLayout_5 = QGridLayout(self.frame_9)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.spinBox_seamThickness = QSpinBox(self.frame_9)
+        self.spinBox_seamThickness.setObjectName(u"spinBox_seamThickness")
+
+        self.gridLayout_5.addWidget(self.spinBox_seamThickness, 0, 2, 1, 1)
+
+        self.label_20 = QLabel(self.frame_9)
+        self.label_20.setObjectName(u"label_20")
+
+        self.gridLayout_5.addWidget(self.label_20, 0, 0, 1, 1)
+
+        self.pushButton_seamThicknessApply = QPushButton(self.frame_9)
+        self.pushButton_seamThicknessApply.setObjectName(u"pushButton_seamThicknessApply")
+
+        self.gridLayout_5.addWidget(self.pushButton_seamThicknessApply, 1, 2, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.frame_9)
+
+        self.label_21 = QLabel(self.frame_8)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.label_21)
+
+        self.frame_10 = QFrame(self.frame_8)
+        self.frame_10.setObjectName(u"frame_10")
+        self.frame_10.setFrameShape(QFrame.StyledPanel)
+        self.frame_10.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.frame_10)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_22 = QLabel(self.frame_10)
+        self.label_22.setObjectName(u"label_22")
+
+        self.horizontalLayout_7.addWidget(self.label_22)
+
+        self.spinBox_4 = QSpinBox(self.frame_10)
+        self.spinBox_4.setObjectName(u"spinBox_4")
+
+        self.horizontalLayout_7.addWidget(self.spinBox_4)
+
+
+        self.verticalLayout.addWidget(self.frame_10)
+
+
+        self.horizontalLayout_5.addWidget(self.frame_8)
+
         self.frame_7 = QFrame(RoadwayWin)
         self.frame_7.setObjectName(u"frame_7")
         self.frame_7.setFrameShape(QFrame.StyledPanel)
@@ -374,6 +439,11 @@ class Ui_RoadwayWin(object):
         self.label_18.setText(QCoreApplication.translate("RoadwayWin", u"Z", None))
         self.label_6.setText(QCoreApplication.translate("RoadwayWin", u"\u5bbd\uff1a", None))
         self.label_4.setText(QCoreApplication.translate("RoadwayWin", u"\u9ad8\uff1a", None))
+        self.label_19.setText(QCoreApplication.translate("RoadwayWin", u"\u7164\u5c42", None))
+        self.label_20.setText(QCoreApplication.translate("RoadwayWin", u"\u539a\u5ea6\u7f29\u653e\uff1a", None))
+        self.pushButton_seamThicknessApply.setText(QCoreApplication.translate("RoadwayWin", u"\u5e94\u7528", None))
+        self.label_21.setText(QCoreApplication.translate("RoadwayWin", u"\u573a\u666f\u65cb\u8f6c", None))
+        self.label_22.setText(QCoreApplication.translate("RoadwayWin", u"\u5ea6\u6570\uff1a", None))
         self.pushButton_generate_roadway.setText(QCoreApplication.translate("RoadwayWin", u"\u751f\u6210\u5df7\u9053\uff08\u9700\u6e05\u7a7a\u5f53\u524d\u751f\u6210\uff09", None))
         self.pushButton_generate_coalmine.setText(QCoreApplication.translate("RoadwayWin", u"\u751f\u6210\u7164\u5c42\uff08\u9700\u5148\u751f\u6210\u5df7\u9053\uff09", None))
         self.pushButton_clear_workplace.setText(QCoreApplication.translate("RoadwayWin", u"\u6e05\u7a7a\u751f\u6210", None))

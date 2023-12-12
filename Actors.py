@@ -350,3 +350,46 @@ class ScraperActor(vtk.vtkActor):
 
     def gen_obb(self):
         pass
+
+
+class CoalWallActor(vtk.vtkActor):
+    def __init__(self, filename, interactor):
+        super().__init__()
+        self.filename = filename
+        self.interactor = interactor
+        self.init()
+        self.theta = 0  # 煤层与XOY平面的夹角
+
+    def init(self):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        self.SetProperty(self.interactor.base_property)
+
+    def update(self):
+        # 读入文件前清空之前的变换
+        identity_transform = vtk.vtkTransform()
+        identity_transform.Identity()
+        self.SetUserTransform(identity_transform)
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+
+    def thickness_adjust(self, factor):
+        zhao_xi.tools.seam_thickness_adjust(self, [1, 0, 0], self.interactor.roadway_actors[0].theta, factor)
+        print("旋转完成")
+        self.interactor.GetRenderWindow().Render()
+
+
+class AlleyActor(vtk.vtkActor):
+    def __init__(self, filename, interactor, theta):
+        super().__init__()
+        self.filename = filename
+        self.interactor = interactor
+        self.init(theta)
+
+    def init(self, theta):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        self.SetProperty(self.interactor.base_property)
+        self.theta = theta
+
+    def update(self, theta):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        self.theta = theta
+        print(self.theta)
