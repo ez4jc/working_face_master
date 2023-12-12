@@ -86,6 +86,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 控制面板的按钮
         # 加载场景选项卡
         self.pushButton_roadwayAndCoalmineSettings.clicked.connect(self.roadway_win.show)
+        self.pushButton_loadWorkRoadway.clicked.connect(self.vtkWidget.load_work_roadway)
         self.pushButton_coalCutter.clicked.connect(self.coalCutter.show)
         self.pushButton_supporterInit.clicked.connect(self.vtkWidget.support_init)
         ##############################

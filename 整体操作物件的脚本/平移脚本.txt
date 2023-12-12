@@ -1,0 +1,35 @@
+import vtk
+
+# 从PLY文件读取源
+reader = vtk.vtkPLYReader()
+for i in range(21):
+    # reader.SetFileName(f'zhao_xi/view_support/view_support_{i + 1}.ply')
+    reader.SetFileName(f'zhao_xi/scraper/FX_{i+1}.ply')
+    # reader.SetFileName('zhao_xi/cmj/CoalCutter.ply')
+    reader.Update()
+
+    # 获取PLY文件中的PolyData
+    input_polydata = reader.GetOutput()
+
+    # 创建一个Transform对象并进行平移
+    transform = vtk.vtkTransform()
+    transform.Translate(0.8, 0.0, 0.0)  # 在X轴方向上平移1个单位
+
+    # 使用vtkTransformPolyDataFilter进行变换
+    transform_filter = vtk.vtkTransformPolyDataFilter()
+    transform_filter.SetInputData(input_polydata)
+    transform_filter.SetTransform(transform)
+    transform_filter.Update()
+
+    # 获取变换后的PolyData
+    transformed_polydata = transform_filter.GetOutput()
+
+    # 保存变换后的PolyData为PLY文件
+    # output_filename = f'zhao_xi/view_support/view_support_{i + 1}.ply'
+    output_filename = f'zhao_xi/scraper/FX_{i+1}.ply'
+    # output_filename = 'zhao_xi/cmj/CoalCutter.ply'
+
+    writer = vtk.vtkPLYWriter()
+    writer.SetFileName(output_filename)
+    writer.SetInputData(transformed_polydata)
+    writer.Write()

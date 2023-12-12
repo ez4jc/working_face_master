@@ -21,17 +21,17 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="lineEdit_translateDis">
-     <property name="maxLength">
-      <number>5</number>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="2">
     <widget class="QPushButton" name="pushButton_translateCoalCutter">
      <property name="text">
       <string>贴煤壁面平移</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="lineEdit_translateDis">
+     <property name="maxLength">
+      <number>5</number>
      </property>
     </widget>
    </item>
@@ -49,6 +49,13 @@
     <widget class="QPushButton" name="pushButton_loadCoalCutter">
      <property name="text">
       <string>加载模型</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pushButton_fitSeamSurface">
+     <property name="text">
+      <string>贴住煤壁面</string>
      </property>
     </widget>
    </item>

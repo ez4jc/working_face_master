@@ -173,6 +173,13 @@ class CoalCutterActor(vtk.vtkActor):
         self.interactor.show_actors([self], self.model_flag)
         self.model_flag = not self.model_flag
 
+    def roll_yoz(self, theta):
+        self.roll(theta, [1, 0, 0])
+
+    def roll(self, theta, axis):
+        zhao_xi.mine_device.Support.rotate_actor(self, theta, axis)
+        self.interactor.GetRenderWindow().Render()
+
 
 class SupporterActor(vtk.vtkActor):
     def __init__(self, filename, interactor):
@@ -371,11 +378,6 @@ class CoalWallActor(vtk.vtkActor):
         self.SetUserTransform(identity_transform)
         self.SetMapper(self.interactor.create_single_actor(self.filename))
 
-    def thickness_adjust(self, factor):
-        zhao_xi.tools.seam_thickness_adjust(self, [1, 0, 0], self.interactor.roadway_actors[0].theta, factor)
-        print("旋转完成")
-        self.interactor.GetRenderWindow().Render()
-
 
 class AlleyActor(vtk.vtkActor):
     def __init__(self, filename, interactor, theta):
@@ -393,3 +395,19 @@ class AlleyActor(vtk.vtkActor):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
         self.theta = theta
         print(self.theta)
+
+
+class WorkRoadway(vtk.vtkActor):
+    def __init__(self, filename, interactor):
+        super().__init__()
+        self.filename = filename
+        self.interactor = interactor
+        self.init()
+
+    def init(self):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        self.SetProperty(self.interactor.base_property)
+        self.show()
+
+    def show(self):
+        self.interactor.show_actors([self], False)

@@ -30,16 +30,16 @@ class Ui_CoalCutter(object):
 
         self.gridLayout.addWidget(self.label, 2, 0, 1, 1)
 
+        self.pushButton_translateCoalCutter = QPushButton(CoalCutter)
+        self.pushButton_translateCoalCutter.setObjectName(u"pushButton_translateCoalCutter")
+
+        self.gridLayout.addWidget(self.pushButton_translateCoalCutter, 2, 2, 1, 1)
+
         self.lineEdit_translateDis = QLineEdit(CoalCutter)
         self.lineEdit_translateDis.setObjectName(u"lineEdit_translateDis")
         self.lineEdit_translateDis.setMaxLength(5)
 
         self.gridLayout.addWidget(self.lineEdit_translateDis, 2, 1, 1, 1)
-
-        self.pushButton_translateCoalCutter = QPushButton(CoalCutter)
-        self.pushButton_translateCoalCutter.setObjectName(u"pushButton_translateCoalCutter")
-
-        self.gridLayout.addWidget(self.pushButton_translateCoalCutter, 2, 2, 1, 1)
 
         self.checkBox_showCoalCutter = QCheckBox(CoalCutter)
         self.checkBox_showCoalCutter.setObjectName(u"checkBox_showCoalCutter")
@@ -51,6 +51,11 @@ class Ui_CoalCutter(object):
         self.pushButton_loadCoalCutter.setObjectName(u"pushButton_loadCoalCutter")
 
         self.gridLayout.addWidget(self.pushButton_loadCoalCutter, 1, 1, 1, 1)
+
+        self.pushButton_fitSeamSurface = QPushButton(CoalCutter)
+        self.pushButton_fitSeamSurface.setObjectName(u"pushButton_fitSeamSurface")
+
+        self.gridLayout.addWidget(self.pushButton_fitSeamSurface, 3, 2, 1, 1)
 
 
         self.retranslateUi(CoalCutter)
@@ -64,5 +69,6 @@ class Ui_CoalCutter(object):
         self.pushButton_translateCoalCutter.setText(QCoreApplication.translate("CoalCutter", u"\u8d34\u7164\u58c1\u9762\u5e73\u79fb", None))
         self.checkBox_showCoalCutter.setText(QCoreApplication.translate("CoalCutter", u"\u6a21\u578b", None))
         self.pushButton_loadCoalCutter.setText(QCoreApplication.translate("CoalCutter", u"\u52a0\u8f7d\u6a21\u578b", None))
+        self.pushButton_fitSeamSurface.setText(QCoreApplication.translate("CoalCutter", u"\u8d34\u4f4f\u7164\u58c1\u9762", None))
     # retranslateUi
 

@@ -59,8 +59,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>188</width>
-                   <height>115</height>
+                   <width>171</width>
+                   <height>132</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -71,6 +71,13 @@
                    <widget class="QPushButton" name="pushButton_roadwayAndCoalmineSettings">
                     <property name="text">
                      <string>巷道煤岩层设置</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_loadWorkRoadway">
+                    <property name="text">
+                     <string>工作巷道加载</string>
                     </property>
                    </widget>
                   </item>
@@ -95,8 +102,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>98</width>
-                   <height>38</height>
+                   <width>188</width>
+                   <height>115</height>
                   </rect>
                  </property>
                  <attribute name="label">

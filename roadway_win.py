@@ -33,8 +33,6 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
                                                                           self.spinBox_ventilationShaft_height.value())))
         self.spinBox_ventilationShaft_y.valueChanged.connect(lambda: self.spinBox_transportAlley_y.setValue(
             float(self.spinBox_ventilationShaft_y.value())))
-        # self.pushButton_clear_workplace.clicked.connect(self.clear_workplace)
-        self.pushButton_seamThicknessApply.clicked.connect(self.seam_thickness_apply)
 
     def load_roadway(self):
         self.pushButton_generate_roadway.setEnabled(False)
@@ -69,14 +67,7 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
 
     def generate_coalmine(self):
         self.pushButton_generate_coalmine.setEnabled(False)
-        zhao_xi.tools.update_coalmine([0.0, 0.0, 0.0], [float(self.spinBox_ventilationShaft_x.value()),
-                                                        float(self.spinBox_ventilationShaft_y.value()),
-                                                        float(self.spinBox_ventilationShaft_z.value())],
-                                      float(self.spinBox_ventilationShaft_width.value()),
-                                      float(self.spinBox_ventilationShaft_height.value()),
-                                      float(2 * self.spinBox_ventilationShaft_height.value()),
-                                      self.spinBox_ventilationShaft_y.value(),
-                                      self.spinBox_ventilationShaft_z.value())
+        zhao_xi.tools.update_coalmine(self.spinBox_seamThickness.value(), self.spinBox_ventilationShaft_width.value())
         if not self.seam_loaded:
             self.interactor.seam_init()
             self.seam_loaded = True
@@ -86,6 +77,3 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
         self.interactor.GetRenderWindow().Render()
         # #################################################################
         self.pushButton_generate_coalmine.setEnabled(True)
-
-    def seam_thickness_apply(self):
-        self.interactor.seam_actors[1].thickness_adjust(self.spinBox_seamThickness)

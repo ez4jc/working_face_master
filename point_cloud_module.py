@@ -1,4 +1,5 @@
 import time
+import typing
 
 import vtkmodules.all as vtk
 from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QCheckBox, QProgressDialog
@@ -109,6 +110,10 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.supporter_num = 20
         self.toggled_planeXY()
 
+    def load_work_roadway(self):
+        self.work_roadway = WorkRoadway("zhao_xi/tunnel/work_surface/work_surface_vertices.vtk", self)
+        self.window.pushButton_loadWorkRoadway.clicked.disconnect()  # 加载一次后解除绑定
+
     def coalCutter_init(self):
         self.coal_cutter_actor = CoalCutterActor(scene_initial_info.coal_cutter[0], self)
         self.coal_cutter_actor.show_model()
@@ -154,7 +159,12 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.renderer.AddActor(up_coal_wall)
         self.renderer.AddActor(coal_wall)
         self.renderer.AddActor(down_coal_wall)
+        self.load_seam_back()
         self.GetRenderWindow().Render()
+
+    def load_seam_back(self):
+        self.add_actor_and_checkbox(['zhao_xi/tunnel/coal_wall/up_coal_wall_back.ply',
+                                     'zhao_xi/tunnel/coal_wall/down_coal_wall_back.ply'])
 
     def support_init(self):
         if not self.supporter_init_flag:
@@ -190,7 +200,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             self.renderer.AddActor(actor)
         self.renderer.GetRenderWindow().Render()
 
-    def add_actor_and_checkbox(self, files_name, actors_list=None):
+    def add_actor_and_checkbox(self, files_name: typing.List, actors_list=None):
         for file_name in files_name:
             actor = self.add_actor(self.create_single_actor(file_name))
             if actors_list is not None:

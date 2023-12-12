@@ -97,10 +97,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_17.addWidget(self.pushButton_roadwayAndCoalmineSettings)
 
-        self.pushButton_loadWorkRoadway = QPushButton(self.page_2)
-        self.pushButton_loadWorkRoadway.setObjectName(u"pushButton_loadWorkRoadway")
+        self.pushButton_loadWorkSpace = QPushButton(self.page_2)
+        self.pushButton_loadWorkSpace.setObjectName(u"pushButton_loadWorkSpace")
 
-        self.verticalLayout_17.addWidget(self.pushButton_loadWorkRoadway)
+        self.verticalLayout_17.addWidget(self.pushButton_loadWorkSpace)
 
         self.pushButton_coalCutter = QPushButton(self.page_2)
         self.pushButton_coalCutter.setObjectName(u"pushButton_coalCutter")
@@ -115,7 +115,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_2, u"\u573a\u666f\u52a0\u8f7d")
         self.page_pointCloud = QWidget()
         self.page_pointCloud.setObjectName(u"page_pointCloud")
-        self.page_pointCloud.setGeometry(QRect(0, 0, 188, 115))
+        self.page_pointCloud.setGeometry(QRect(0, 0, 98, 38))
         self.verticalLayout_11 = QVBoxLayout(self.page_pointCloud)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_pointCloudCheckBox = QWidget(self.page_pointCloud)
@@ -497,7 +497,7 @@ class Ui_MainWindow(object):
         self.about_us_action.setText(QCoreApplication.translate("MainWindow", u"\u5173\u4e8e", None))
         self.action_supportControler.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u63a7\u5236", None))
         self.pushButton_roadwayAndCoalmineSettings.setText(QCoreApplication.translate("MainWindow", u"\u5df7\u9053\u7164\u5ca9\u5c42\u8bbe\u7f6e", None))
-        self.pushButton_loadWorkRoadway.setText(QCoreApplication.translate("MainWindow", u"\u5de5\u4f5c\u5df7\u9053\u52a0\u8f7d", None))
+        self.pushButton_loadWorkSpace.setText(QCoreApplication.translate("MainWindow", u"\u5de5\u4f5c\u5df7\u9053\u52a0\u8f7d", None))
         self.pushButton_coalCutter.setText(QCoreApplication.translate("MainWindow", u"\u5272\u7164\u673a\u52a0\u8f7d", None))
         self.pushButton_supporterInit.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u521d\u59cb\u5316", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("MainWindow", u"\u573a\u666f\u52a0\u8f7d", None))
