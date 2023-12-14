@@ -48,6 +48,10 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         # zox旋转按钮
         self.pushButton_zox.clicked.connect(
             lambda: self.vtkWidget.supporter_actors[0].roll_zox(float(self.lineEdit_zox.text())))
+        
+        # 升起
+        self.pushButton_uprise.clicked.connect(
+            lambda: self.vtkWidget.supporter_actors[0].uprise(float(self.lineEdit_uprise_dis.text())))
 
         # 刮板机按钮勾选
         self.checkBox_scraper.clicked.connect(self.vtkWidget.scraper_actors[0].show_model)
@@ -69,6 +73,7 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.pushButton_xoy.clicked.disconnect()
         self.pushButton_yoz.clicked.disconnect()
         self.pushButton_zox.clicked.disconnect()
+        self.pushButton_uprise.clicked.disconnect()
         self.checkBox_scraper.clicked.disconnect()
 
         # 同步控件和支撑架的状态，保证一致性
@@ -104,6 +109,10 @@ class SubWinSupport(QtWidgets.QWidget, Ui_simulate_win):
         self.pushButton_zox.clicked.connect(
             lambda: self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].roll_zox(
                 float(self.lineEdit_zox.text())))
+        # 升起
+        self.pushButton_uprise.clicked.connect(
+            lambda: self.vtkWidget.supporter_actors[self.comboBox_supporter.currentIndex()].uprise(
+                float(self.lineEdit_uprise_dis.text())))
         # 刮板机按钮勾选
         self.checkBox_scraper.clicked.connect(
             self.vtkWidget.scraper_actors[self.comboBox_supporter.currentIndex()].show_model)

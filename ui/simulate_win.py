@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'simulate_win.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.3
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -26,39 +26,31 @@ class Ui_simulate_win(object):
         simulate_win.resize(400, 391)
         self.gridLayout = QGridLayout(simulate_win)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.lineEdit_xoy = QLineEdit(simulate_win)
-        self.lineEdit_xoy.setObjectName(u"lineEdit_xoy")
-        self.lineEdit_xoy.setMaxLength(2)
-        self.lineEdit_xoy.setFrame(False)
-        self.lineEdit_xoy.setAlignment(Qt.AlignCenter)
+        self.textEdit_1 = QTextEdit(simulate_win)
+        self.textEdit_1.setObjectName(u"textEdit_1")
+        self.textEdit_1.setAcceptDrops(True)
+        self.textEdit_1.setReadOnly(True)
+        self.textEdit_1.setTextInteractionFlags(Qt.NoTextInteraction)
 
-        self.gridLayout.addWidget(self.lineEdit_xoy, 7, 0, 1, 2)
+        self.gridLayout.addWidget(self.textEdit_1, 0, 0, 1, 1)
 
-        self.checkBox_static_wraparound_frame = QCheckBox(simulate_win)
-        self.checkBox_static_wraparound_frame.setObjectName(u"checkBox_static_wraparound_frame")
+        self.textEdit = QTextEdit(simulate_win)
+        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setTextInteractionFlags(Qt.NoTextInteraction)
 
-        self.gridLayout.addWidget(self.checkBox_static_wraparound_frame, 4, 3, 1, 1)
+        self.gridLayout.addWidget(self.textEdit, 0, 4, 1, 1)
 
-        self.checkBox_scraper = QCheckBox(simulate_win)
-        self.checkBox_scraper.setObjectName(u"checkBox_scraper")
-        self.checkBox_scraper.setChecked(True)
+        self.checkBox_wraparound_frame = QCheckBox(simulate_win)
+        self.checkBox_wraparound_frame.setObjectName(u"checkBox_wraparound_frame")
+        self.checkBox_wraparound_frame.setChecked(False)
+        self.checkBox_wraparound_frame.setTristate(False)
 
-        self.gridLayout.addWidget(self.checkBox_scraper, 10, 0, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_wraparound_frame, 3, 3, 1, 1)
 
-        self.pushButton_yoz = QPushButton(simulate_win)
-        self.pushButton_yoz.setObjectName(u"pushButton_yoz")
+        self.checkBox_label = QCheckBox(simulate_win)
+        self.checkBox_label.setObjectName(u"checkBox_label")
 
-        self.gridLayout.addWidget(self.pushButton_yoz, 8, 3, 1, 1)
-
-        self.textEdit_6 = QTextEdit(simulate_win)
-        self.textEdit_6.setObjectName(u"textEdit_6")
-        self.textEdit_6.setEnabled(True)
-        self.textEdit_6.setAcceptDrops(True)
-        self.textEdit_6.setReadOnly(True)
-        self.textEdit_6.setOverwriteMode(False)
-        self.textEdit_6.setTextInteractionFlags(Qt.NoTextInteraction)
-
-        self.gridLayout.addWidget(self.textEdit_6, 1, 3, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_label, 4, 0, 1, 1)
 
         self.textEdit_5 = QTextEdit(simulate_win)
         self.textEdit_5.setObjectName(u"textEdit_5")
@@ -69,92 +61,11 @@ class Ui_simulate_win(object):
 
         self.gridLayout.addWidget(self.textEdit_5, 1, 1, 1, 1)
 
-        self.label = QLabel(simulate_win)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout.addWidget(self.label, 11, 0, 1, 1)
-
-        self.pushButton_xoy = QPushButton(simulate_win)
-        self.pushButton_xoy.setObjectName(u"pushButton_xoy")
-
-        self.gridLayout.addWidget(self.pushButton_xoy, 7, 3, 1, 1)
-
         self.checkBox_supporter_model = QCheckBox(simulate_win)
         self.checkBox_supporter_model.setObjectName(u"checkBox_supporter_model")
         self.checkBox_supporter_model.setChecked(True)
 
         self.gridLayout.addWidget(self.checkBox_supporter_model, 3, 0, 1, 1)
-
-        self.textEdit_3 = QTextEdit(simulate_win)
-        self.textEdit_3.setObjectName(u"textEdit_3")
-        self.textEdit_3.setAcceptDrops(True)
-        self.textEdit_3.setReadOnly(True)
-        self.textEdit_3.setTextInteractionFlags(Qt.NoTextInteraction)
-
-        self.gridLayout.addWidget(self.textEdit_3, 0, 3, 1, 1)
-
-        self.lineEdit_pushScraper = QLineEdit(simulate_win)
-        self.lineEdit_pushScraper.setObjectName(u"lineEdit_pushScraper")
-        self.lineEdit_pushScraper.setMaxLength(5)
-        self.lineEdit_pushScraper.setFrame(False)
-
-        self.gridLayout.addWidget(self.lineEdit_pushScraper, 11, 1, 1, 1)
-
-        self.checkBox_static_gyro = QCheckBox(simulate_win)
-        self.checkBox_static_gyro.setObjectName(u"checkBox_static_gyro")
-
-        self.gridLayout.addWidget(self.checkBox_static_gyro, 4, 1, 1, 1)
-
-        self.textEdit_4 = QTextEdit(simulate_win)
-        self.textEdit_4.setObjectName(u"textEdit_4")
-        self.textEdit_4.setAcceptDrops(True)
-        self.textEdit_4.setReadOnly(True)
-        self.textEdit_4.setOverwriteMode(False)
-        self.textEdit_4.setTextInteractionFlags(Qt.NoTextInteraction)
-
-        self.gridLayout.addWidget(self.textEdit_4, 1, 0, 1, 1)
-
-        self.textEdit_2 = QTextEdit(simulate_win)
-        self.textEdit_2.setObjectName(u"textEdit_2")
-        self.textEdit_2.setAcceptDrops(True)
-        self.textEdit_2.setReadOnly(True)
-        self.textEdit_2.setTextInteractionFlags(Qt.NoTextInteraction)
-
-        self.gridLayout.addWidget(self.textEdit_2, 0, 1, 1, 1)
-
-        self.lineEdit_zox = QLineEdit(simulate_win)
-        self.lineEdit_zox.setObjectName(u"lineEdit_zox")
-        self.lineEdit_zox.setMaxLength(3)
-        self.lineEdit_zox.setFrame(False)
-        self.lineEdit_zox.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.lineEdit_zox, 9, 0, 1, 2)
-
-        self.textEdit_1 = QTextEdit(simulate_win)
-        self.textEdit_1.setObjectName(u"textEdit_1")
-        self.textEdit_1.setAcceptDrops(True)
-        self.textEdit_1.setReadOnly(True)
-        self.textEdit_1.setTextInteractionFlags(Qt.NoTextInteraction)
-
-        self.gridLayout.addWidget(self.textEdit_1, 0, 0, 1, 1)
-
-        self.checkBox_gyro = QCheckBox(simulate_win)
-        self.checkBox_gyro.setObjectName(u"checkBox_gyro")
-
-        self.gridLayout.addWidget(self.checkBox_gyro, 3, 1, 1, 1)
-
-        self.pushButton_zox = QPushButton(simulate_win)
-        self.pushButton_zox.setObjectName(u"pushButton_zox")
-
-        self.gridLayout.addWidget(self.pushButton_zox, 9, 3, 1, 1)
-
-        self.lineEdit_yoz = QLineEdit(simulate_win)
-        self.lineEdit_yoz.setObjectName(u"lineEdit_yoz")
-        self.lineEdit_yoz.setMaxLength(2)
-        self.lineEdit_yoz.setFrame(False)
-        self.lineEdit_yoz.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.lineEdit_yoz, 8, 0, 1, 2)
 
         self.comboBox_supporter = QComboBox(simulate_win)
         self.comboBox_supporter.addItem("")
@@ -181,22 +92,87 @@ class Ui_simulate_win(object):
 
         self.gridLayout.addWidget(self.comboBox_supporter, 2, 0, 1, 4)
 
-        self.checkBox_label = QCheckBox(simulate_win)
-        self.checkBox_label.setObjectName(u"checkBox_label")
+        self.lineEdit_zox = QLineEdit(simulate_win)
+        self.lineEdit_zox.setObjectName(u"lineEdit_zox")
+        self.lineEdit_zox.setMaxLength(3)
+        self.lineEdit_zox.setFrame(False)
+        self.lineEdit_zox.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.checkBox_label, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_zox, 9, 0, 1, 1)
 
-        self.checkBox_wraparound_frame = QCheckBox(simulate_win)
-        self.checkBox_wraparound_frame.setObjectName(u"checkBox_wraparound_frame")
-        self.checkBox_wraparound_frame.setChecked(False)
-        self.checkBox_wraparound_frame.setTristate(False)
+        self.pushButton_zox = QPushButton(simulate_win)
+        self.pushButton_zox.setObjectName(u"pushButton_zox")
 
-        self.gridLayout.addWidget(self.checkBox_wraparound_frame, 3, 3, 1, 1)
+        self.gridLayout.addWidget(self.pushButton_zox, 9, 1, 1, 1)
 
-        self.pushButton_pushScraper = QPushButton(simulate_win)
-        self.pushButton_pushScraper.setObjectName(u"pushButton_pushScraper")
+        self.checkBox_scraper = QCheckBox(simulate_win)
+        self.checkBox_scraper.setObjectName(u"checkBox_scraper")
+        self.checkBox_scraper.setChecked(True)
 
-        self.gridLayout.addWidget(self.pushButton_pushScraper, 11, 3, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_scraper, 10, 0, 1, 1)
+
+        self.textEdit_6 = QTextEdit(simulate_win)
+        self.textEdit_6.setObjectName(u"textEdit_6")
+        self.textEdit_6.setEnabled(True)
+        self.textEdit_6.setAcceptDrops(True)
+        self.textEdit_6.setReadOnly(True)
+        self.textEdit_6.setOverwriteMode(False)
+        self.textEdit_6.setTextInteractionFlags(Qt.NoTextInteraction)
+
+        self.gridLayout.addWidget(self.textEdit_6, 1, 3, 1, 1)
+
+        self.textEdit_4 = QTextEdit(simulate_win)
+        self.textEdit_4.setObjectName(u"textEdit_4")
+        self.textEdit_4.setAcceptDrops(True)
+        self.textEdit_4.setReadOnly(True)
+        self.textEdit_4.setOverwriteMode(False)
+        self.textEdit_4.setTextInteractionFlags(Qt.NoTextInteraction)
+
+        self.gridLayout.addWidget(self.textEdit_4, 1, 0, 1, 1)
+
+        self.checkBox_static_gyro = QCheckBox(simulate_win)
+        self.checkBox_static_gyro.setObjectName(u"checkBox_static_gyro")
+
+        self.gridLayout.addWidget(self.checkBox_static_gyro, 4, 1, 1, 1)
+
+        self.pushButton_yoz = QPushButton(simulate_win)
+        self.pushButton_yoz.setObjectName(u"pushButton_yoz")
+
+        self.gridLayout.addWidget(self.pushButton_yoz, 8, 1, 1, 1)
+
+        self.checkBox_static_wraparound_frame = QCheckBox(simulate_win)
+        self.checkBox_static_wraparound_frame.setObjectName(u"checkBox_static_wraparound_frame")
+
+        self.gridLayout.addWidget(self.checkBox_static_wraparound_frame, 4, 3, 1, 1)
+
+        self.label = QLabel(simulate_win)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout.addWidget(self.label, 11, 0, 1, 1)
+
+        self.textEdit_3 = QTextEdit(simulate_win)
+        self.textEdit_3.setObjectName(u"textEdit_3")
+        self.textEdit_3.setAcceptDrops(True)
+        self.textEdit_3.setReadOnly(True)
+        self.textEdit_3.setTextInteractionFlags(Qt.NoTextInteraction)
+
+        self.gridLayout.addWidget(self.textEdit_3, 0, 3, 1, 1)
+
+        self.lineEdit_yoz = QLineEdit(simulate_win)
+        self.lineEdit_yoz.setObjectName(u"lineEdit_yoz")
+        self.lineEdit_yoz.setMaxLength(2)
+        self.lineEdit_yoz.setFrame(False)
+        self.lineEdit_yoz.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.lineEdit_yoz, 8, 0, 1, 1)
+
+        self.lineEdit_xoy = QLineEdit(simulate_win)
+        self.lineEdit_xoy.setObjectName(u"lineEdit_xoy")
+        self.lineEdit_xoy.setMaxLength(2)
+        self.lineEdit_xoy.setFrame(False)
+        self.lineEdit_xoy.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.lineEdit_xoy, 7, 0, 1, 1)
 
         self.textEdit_centerPoint = QTextEdit(simulate_win)
         self.textEdit_centerPoint.setObjectName(u"textEdit_centerPoint")
@@ -204,11 +180,52 @@ class Ui_simulate_win(object):
 
         self.gridLayout.addWidget(self.textEdit_centerPoint, 1, 4, 1, 1)
 
-        self.textEdit = QTextEdit(simulate_win)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.pushButton_uprise = QPushButton(simulate_win)
+        self.pushButton_uprise.setObjectName(u"pushButton_uprise")
 
-        self.gridLayout.addWidget(self.textEdit, 0, 4, 1, 1)
+        self.gridLayout.addWidget(self.pushButton_uprise, 8, 4, 1, 1)
+
+        self.pushButton_pushScraper = QPushButton(simulate_win)
+        self.pushButton_pushScraper.setObjectName(u"pushButton_pushScraper")
+
+        self.gridLayout.addWidget(self.pushButton_pushScraper, 11, 3, 1, 1)
+
+        self.textEdit_2 = QTextEdit(simulate_win)
+        self.textEdit_2.setObjectName(u"textEdit_2")
+        self.textEdit_2.setAcceptDrops(True)
+        self.textEdit_2.setReadOnly(True)
+        self.textEdit_2.setTextInteractionFlags(Qt.NoTextInteraction)
+
+        self.gridLayout.addWidget(self.textEdit_2, 0, 1, 1, 1)
+
+        self.lineEdit_pushScraper = QLineEdit(simulate_win)
+        self.lineEdit_pushScraper.setObjectName(u"lineEdit_pushScraper")
+        self.lineEdit_pushScraper.setMaxLength(5)
+        self.lineEdit_pushScraper.setFrame(False)
+
+        self.gridLayout.addWidget(self.lineEdit_pushScraper, 11, 1, 1, 1)
+
+        self.checkBox_gyro = QCheckBox(simulate_win)
+        self.checkBox_gyro.setObjectName(u"checkBox_gyro")
+
+        self.gridLayout.addWidget(self.checkBox_gyro, 3, 1, 1, 1)
+
+        self.pushButton_xoy = QPushButton(simulate_win)
+        self.pushButton_xoy.setObjectName(u"pushButton_xoy")
+
+        self.gridLayout.addWidget(self.pushButton_xoy, 7, 1, 1, 1)
+
+        self.lineEdit_uprise_dis = QLineEdit(simulate_win)
+        self.lineEdit_uprise_dis.setObjectName(u"lineEdit_uprise_dis")
+        self.lineEdit_uprise_dis.setMaxLength(4)
+
+        self.gridLayout.addWidget(self.lineEdit_uprise_dis, 8, 3, 1, 1)
+
+        self.label_2 = QLabel(simulate_win)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_2, 7, 3, 1, 2)
 
 
         self.retranslateUi(simulate_win)
@@ -221,33 +238,6 @@ class Ui_simulate_win(object):
 
     def retranslateUi(self, simulate_win):
         simulate_win.setWindowTitle(QCoreApplication.translate("simulate_win", u"\u4eff\u771f\u9762\u677f", None))
-        self.lineEdit_xoy.setText(QCoreApplication.translate("simulate_win", u"5", None))
-        self.checkBox_static_wraparound_frame.setText(QCoreApplication.translate("simulate_win", u"\u7edd\u5bf9\u5305\u56f4\u6846", None))
-        self.checkBox_scraper.setText(QCoreApplication.translate("simulate_win", u"\u522e\u677f\u673a", None))
-        self.pushButton_yoz.setText(QCoreApplication.translate("simulate_win", u"yoz\u65cb\u8f6c", None))
-        self.label.setText(QCoreApplication.translate("simulate_win", u"\u79fb\u52a8\u8ddd\u79bb\u5355\u4f4d\uff1a\u6beb\u7c73", None))
-        self.pushButton_xoy.setText(QCoreApplication.translate("simulate_win", u"xoy\u65cb\u8f6c", None))
-        self.checkBox_supporter_model.setText(QCoreApplication.translate("simulate_win", u"\u6a21\u578b", None))
-        self.textEdit_3.setHtml(QCoreApplication.translate("simulate_win", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u65cb\u8f6c\u89d2\uff1a(\u5355\u4f4d\uff1a\u5ea6)</p></body></html>", None))
-        self.lineEdit_pushScraper.setText(QCoreApplication.translate("simulate_win", u"800", None))
-        self.lineEdit_pushScraper.setPlaceholderText(QCoreApplication.translate("simulate_win", u"\u79fb\u52a8\u8ddd\u79bb\uff08\u5355\u4f4d\uff1a\u6beb\u7c73\uff09", None))
-        self.checkBox_static_gyro.setText(QCoreApplication.translate("simulate_win", u"\u7edd\u5bf9\u9640\u87ba\u4eea", None))
-        self.textEdit_2.setHtml(QCoreApplication.translate("simulate_win", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u503e\u659c\u89d2\uff1a(\u5355\u4f4d\uff1a\u5ea6)</p></body></html>", None))
-        self.lineEdit_zox.setText(QCoreApplication.translate("simulate_win", u"5", None))
         self.textEdit_1.setHtml(QCoreApplication.translate("simulate_win", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -256,9 +246,17 @@ class Ui_simulate_win(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u4fef\u4ef0\u89d2\uff1a(\u5355\u4f4d\uff1a\u5ea6)</p></body></html>", None))
-        self.checkBox_gyro.setText(QCoreApplication.translate("simulate_win", u"\u9640\u87ba\u4eea", None))
-        self.pushButton_zox.setText(QCoreApplication.translate("simulate_win", u"zox\u65cb\u8f6c", None))
-        self.lineEdit_yoz.setText(QCoreApplication.translate("simulate_win", u"-5", None))
+        self.textEdit.setHtml(QCoreApplication.translate("simulate_win", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u4e2d\u5fc3\u70b9\u5750\u6807\uff1a\uff08\u5355\u4f4d\uff1a\u7c73\uff09</p></body></html>", None))
+        self.checkBox_wraparound_frame.setText(QCoreApplication.translate("simulate_win", u"\u5305\u56f4\u6846", None))
+        self.checkBox_label.setText(QCoreApplication.translate("simulate_win", u"\u6807\u7b7e", None))
+        self.checkBox_supporter_model.setText(QCoreApplication.translate("simulate_win", u"\u6a21\u578b", None))
         self.comboBox_supporter.setItemText(0, QCoreApplication.translate("simulate_win", u"1\u53f7\u652f\u6491\u67b6", None))
         self.comboBox_supporter.setItemText(1, QCoreApplication.translate("simulate_win", u"2\u53f7\u652f\u6491\u67b6", None))
         self.comboBox_supporter.setItemText(2, QCoreApplication.translate("simulate_win", u"3\u53f7\u652f\u6491\u67b6", None))
@@ -280,16 +278,38 @@ class Ui_simulate_win(object):
         self.comboBox_supporter.setItemText(18, QCoreApplication.translate("simulate_win", u"19\u53f7\u652f\u6491\u67b6", None))
         self.comboBox_supporter.setItemText(19, QCoreApplication.translate("simulate_win", u"20\u53f7\u652f\u6491\u67b6", None))
 
-        self.checkBox_label.setText(QCoreApplication.translate("simulate_win", u"\u6807\u7b7e", None))
-        self.checkBox_wraparound_frame.setText(QCoreApplication.translate("simulate_win", u"\u5305\u56f4\u6846", None))
-        self.pushButton_pushScraper.setText(QCoreApplication.translate("simulate_win", u"\u522e\u677f\u673a\u79fb\u52a8", None))
-        self.textEdit.setHtml(QCoreApplication.translate("simulate_win", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.lineEdit_zox.setText(QCoreApplication.translate("simulate_win", u"5", None))
+        self.pushButton_zox.setText(QCoreApplication.translate("simulate_win", u"zox\u65cb\u8f6c", None))
+        self.checkBox_scraper.setText(QCoreApplication.translate("simulate_win", u"\u522e\u677f\u673a", None))
+        self.checkBox_static_gyro.setText(QCoreApplication.translate("simulate_win", u"\u7edd\u5bf9\u9640\u87ba\u4eea", None))
+        self.pushButton_yoz.setText(QCoreApplication.translate("simulate_win", u"yoz\u65cb\u8f6c", None))
+        self.checkBox_static_wraparound_frame.setText(QCoreApplication.translate("simulate_win", u"\u7edd\u5bf9\u5305\u56f4\u6846", None))
+        self.label.setText(QCoreApplication.translate("simulate_win", u"\u79fb\u52a8\u8ddd\u79bb\u5355\u4f4d\uff1a\u6beb\u7c73", None))
+        self.textEdit_3.setHtml(QCoreApplication.translate("simulate_win", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u4e2d\u5fc3\u70b9\u5750\u6807\uff1a\uff08\u5355\u4f4d\uff1a\u7c73\uff09</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u65cb\u8f6c\u89d2\uff1a(\u5355\u4f4d\uff1a\u5ea6)</p></body></html>", None))
+        self.lineEdit_yoz.setText(QCoreApplication.translate("simulate_win", u"-5", None))
+        self.lineEdit_xoy.setText(QCoreApplication.translate("simulate_win", u"5", None))
+        self.pushButton_uprise.setText(QCoreApplication.translate("simulate_win", u"\u5347/\u964d", None))
+        self.pushButton_pushScraper.setText(QCoreApplication.translate("simulate_win", u"\u522e\u677f\u673a\u79fb\u52a8", None))
+        self.textEdit_2.setHtml(QCoreApplication.translate("simulate_win", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u503e\u659c\u89d2\uff1a(\u5355\u4f4d\uff1a\u5ea6)</p></body></html>", None))
+        self.lineEdit_pushScraper.setText(QCoreApplication.translate("simulate_win", u"800", None))
+        self.lineEdit_pushScraper.setPlaceholderText(QCoreApplication.translate("simulate_win", u"\u79fb\u52a8\u8ddd\u79bb\uff08\u5355\u4f4d\uff1a\u6beb\u7c73\uff09", None))
+        self.checkBox_gyro.setText(QCoreApplication.translate("simulate_win", u"\u9640\u87ba\u4eea", None))
+        self.pushButton_xoy.setText(QCoreApplication.translate("simulate_win", u"xoy\u65cb\u8f6c", None))
+        self.lineEdit_uprise_dis.setPlaceholderText(QCoreApplication.translate("simulate_win", u"\u8ddd\u79bb\uff1amm", None))
+        self.label_2.setText(QCoreApplication.translate("simulate_win", u"\u652f\u6491\u67b6\u5347\u964d", None))
     # retranslateUi
 

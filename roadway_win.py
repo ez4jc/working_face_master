@@ -4,9 +4,10 @@ import typing
 import scene_initial_info
 from ui.roadway import Ui_RoadwayWin
 from PySide6 import QtWidgets
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QCoreApplication
 import zhao_xi.tools
 import open3d as o3d
+from loading_dialog import LoadingDialogWin
 
 
 class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
@@ -66,6 +67,9 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
         self.pushButton_generate_roadway.setEnabled(True)
 
     def generate_coalmine(self):
+        self.interactor.window.loading_dialog.show()
+        # 强制处理完当前事务，再向下执行
+        QCoreApplication.processEvents()
         self.pushButton_generate_coalmine.setEnabled(False)
         zhao_xi.tools.update_coalmine(self.spinBox_seamThickness.value(), self.spinBox_ventilationShaft_width.value())
         if not self.seam_loaded:
@@ -77,3 +81,5 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
         self.interactor.GetRenderWindow().Render()
         # #################################################################
         self.pushButton_generate_coalmine.setEnabled(True)
+        self.interactor.window.loading_dialog.close()
+

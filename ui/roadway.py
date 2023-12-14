@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'roadway.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.3
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -55,7 +55,7 @@ class Ui_RoadwayWin(object):
 
         self.spinBox_ventilationShaft_x = QSpinBox(self.groupBox_2)
         self.spinBox_ventilationShaft_x.setObjectName(u"spinBox_ventilationShaft_x")
-        self.spinBox_ventilationShaft_x.setEnabled(False)
+        self.spinBox_ventilationShaft_x.setEnabled(True)
         self.spinBox_ventilationShaft_x.setMaximum(5)
         self.spinBox_ventilationShaft_x.setValue(0)
 
@@ -88,19 +88,19 @@ class Ui_RoadwayWin(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.spinBox_3 = QSpinBox(self.groupBox)
         self.spinBox_3.setObjectName(u"spinBox_3")
-        self.spinBox_3.setEnabled(False)
+        self.spinBox_3.setEnabled(True)
 
         self.gridLayout_2.addWidget(self.spinBox_3, 2, 1, 1, 1)
 
         self.spinBox_2 = QSpinBox(self.groupBox)
         self.spinBox_2.setObjectName(u"spinBox_2")
-        self.spinBox_2.setEnabled(False)
+        self.spinBox_2.setEnabled(True)
 
         self.gridLayout_2.addWidget(self.spinBox_2, 1, 1, 1, 1)
 
         self.spinBox = QSpinBox(self.groupBox)
         self.spinBox.setObjectName(u"spinBox")
-        self.spinBox.setEnabled(False)
+        self.spinBox.setEnabled(True)
 
         self.gridLayout_2.addWidget(self.spinBox, 0, 1, 1, 1)
 
@@ -188,14 +188,14 @@ class Ui_RoadwayWin(object):
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.spinBox_transportAlley_y = QSpinBox(self.groupBox_3)
         self.spinBox_transportAlley_y.setObjectName(u"spinBox_transportAlley_y")
-        self.spinBox_transportAlley_y.setEnabled(False)
+        self.spinBox_transportAlley_y.setEnabled(True)
         self.spinBox_transportAlley_y.setValue(20)
 
         self.gridLayout_3.addWidget(self.spinBox_transportAlley_y, 1, 1, 1, 1)
 
         self.spinBox_transportAlley_x = QSpinBox(self.groupBox_3)
         self.spinBox_transportAlley_x.setObjectName(u"spinBox_transportAlley_x")
-        self.spinBox_transportAlley_x.setEnabled(False)
+        self.spinBox_transportAlley_x.setEnabled(True)
         self.spinBox_transportAlley_x.setMinimum(35)
         self.spinBox_transportAlley_x.setMaximum(40)
         self.spinBox_transportAlley_x.setValue(40)
@@ -204,7 +204,7 @@ class Ui_RoadwayWin(object):
 
         self.spinBox_transportAlley_z = QSpinBox(self.groupBox_3)
         self.spinBox_transportAlley_z.setObjectName(u"spinBox_transportAlley_z")
-        self.spinBox_transportAlley_z.setEnabled(False)
+        self.spinBox_transportAlley_z.setEnabled(True)
 
         self.gridLayout_3.addWidget(self.spinBox_transportAlley_z, 2, 1, 1, 1)
 
@@ -235,20 +235,20 @@ class Ui_RoadwayWin(object):
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.spinBox_10 = QSpinBox(self.groupBox_4)
         self.spinBox_10.setObjectName(u"spinBox_10")
-        self.spinBox_10.setEnabled(False)
+        self.spinBox_10.setEnabled(True)
         self.spinBox_10.setValue(40)
 
         self.gridLayout_4.addWidget(self.spinBox_10, 0, 1, 1, 1)
 
         self.spinBox_11 = QSpinBox(self.groupBox_4)
         self.spinBox_11.setObjectName(u"spinBox_11")
-        self.spinBox_11.setEnabled(False)
+        self.spinBox_11.setEnabled(True)
 
         self.gridLayout_4.addWidget(self.spinBox_11, 1, 1, 1, 1)
 
         self.spinBox_12 = QSpinBox(self.groupBox_4)
         self.spinBox_12.setObjectName(u"spinBox_12")
-        self.spinBox_12.setEnabled(False)
+        self.spinBox_12.setEnabled(True)
 
         self.gridLayout_4.addWidget(self.spinBox_12, 2, 1, 1, 1)
 
@@ -308,7 +308,7 @@ class Ui_RoadwayWin(object):
 
         self.spinBox_transportAlley_height = QSpinBox(self.frame_6)
         self.spinBox_transportAlley_height.setObjectName(u"spinBox_transportAlley_height")
-        self.spinBox_transportAlley_height.setEnabled(False)
+        self.spinBox_transportAlley_height.setEnabled(True)
         self.spinBox_transportAlley_height.setValue(3)
 
         self.horizontalLayout_4.addWidget(self.spinBox_transportAlley_height)
@@ -397,12 +397,6 @@ class Ui_RoadwayWin(object):
 
         self.verticalLayout_7.addWidget(self.pushButton_generate_coalmine)
 
-        self.pushButton_clear_workplace = QPushButton(self.frame_7)
-        self.pushButton_clear_workplace.setObjectName(u"pushButton_clear_workplace")
-        self.pushButton_clear_workplace.setEnabled(False)
-
-        self.verticalLayout_7.addWidget(self.pushButton_clear_workplace)
-
 
         self.horizontalLayout_5.addWidget(self.frame_7)
 
@@ -442,6 +436,5 @@ class Ui_RoadwayWin(object):
         self.label_22.setText(QCoreApplication.translate("RoadwayWin", u"\u5ea6\u6570\uff1a", None))
         self.pushButton_generate_roadway.setText(QCoreApplication.translate("RoadwayWin", u"\u751f\u6210\u5df7\u9053\uff08\u9700\u6e05\u7a7a\u5f53\u524d\u751f\u6210\uff09", None))
         self.pushButton_generate_coalmine.setText(QCoreApplication.translate("RoadwayWin", u"\u751f\u6210\u7164\u5c42\uff08\u9700\u5148\u751f\u6210\u5df7\u9053\uff09", None))
-        self.pushButton_clear_workplace.setText(QCoreApplication.translate("RoadwayWin", u"\u6e05\u7a7a\u751f\u6210", None))
     # retranslateUi
 

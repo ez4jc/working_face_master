@@ -320,6 +320,13 @@ class SupporterActor(vtk.vtkActor):
             zhao_xi.mine_device.Support.rotate_actor(self, theta / tick, axis)
             self.notice_render_window()
 
+    def uprise(self, dis):
+        # 由于xoy面法向量也反向，需处理。这里跟move的实现逻辑一样，可复用。
+        move_vector = [-v for v in self.axis[2]]
+        zhao_xi.mine_device.Support.move_actor(self, dis, move_vector)
+        zhao_xi.mine_device.Support.move_actor(self.wraparound_actor, dis, move_vector)
+        self.notice_render_window()
+
     def notice_render_window(self):  # interactor为此类的观察者
         self.interactor.GetRenderWindow().Render()
 

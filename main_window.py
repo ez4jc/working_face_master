@@ -7,8 +7,6 @@ from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 from loguru import logger
 
-import win32gui
-
 import open3d as o3d
 
 import vtkmodules.all as vtk
@@ -23,6 +21,7 @@ from ui.ui_initial_window import Ui_MainWindow
 from sub_win_support import SubWinSupport
 from roadway_win import RoadWayWin
 from coalCutter_win import CoalCutterWin
+from loading_dialog import LoadingDialogWin
 
 import common.project_memory as ProjectMemory
 
@@ -49,6 +48,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # 割煤机窗口实例
         self.coalCutter = CoalCutterWin(self.vtkWidget)
+
+        # 等待操作窗口实例
+        self.loading_dialog = LoadingDialogWin()
 
         # 摄像头模块实例
         self.videoWidget = CustomCameraLabel(self)

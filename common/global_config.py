@@ -1,6 +1,6 @@
 # *coding:utf-8 *
 import yaml
-
+import os
 
 # 需要定义全局变量的放在这里，最好定义一个初始值
 class GlobalConfig:
