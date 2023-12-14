@@ -4,10 +4,10 @@ import typing
 import scene_initial_info
 from ui.roadway import Ui_RoadwayWin
 from PySide6 import QtWidgets
-from PySide6.QtCore import Qt, QCoreApplication
+from PySide6.QtCore import Qt
 import zhao_xi.tools
 import open3d as o3d
-from loading_dialog import LoadingDialogWin
+from loading_dialog import load_hint
 
 
 class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
@@ -67,19 +67,17 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
         self.pushButton_generate_roadway.setEnabled(True)
 
     def generate_coalmine(self):
-        self.interactor.window.loading_dialog.show()
-        # 强制处理完当前事务，再向下执行
-        QCoreApplication.processEvents()
-        self.pushButton_generate_coalmine.setEnabled(False)
-        zhao_xi.tools.update_coalmine(self.spinBox_seamThickness.value(), self.spinBox_ventilationShaft_width.value())
-        if not self.seam_loaded:
-            self.interactor.seam_init()
-            self.seam_loaded = True
-        else:
-            self.interactor.update_seam()
-        # #################################################################待删
-        self.interactor.GetRenderWindow().Render()
-        # #################################################################
-        self.pushButton_generate_coalmine.setEnabled(True)
-        self.interactor.window.loading_dialog.close()
-
+        @load_hint(self.interactor.window.loading_dialog)  # 这里是因为要用self，因此在外面又加了一层函数
+        def generate_coalmine():
+            self.pushButton_generate_coalmine.setEnabled(False)
+            zhao_xi.tools.update_coalmine(self.spinBox_seamThickness.value(), self.spinBox_ventilationShaft_width.value())
+            if not self.seam_loaded:
+                self.interactor.seam_init()
+                self.seam_loaded = True
+            else:
+                self.interactor.update_seam()
+            # #################################################################待删
+            self.interactor.GetRenderWindow().Render()
+            # #################################################################
+            self.pushButton_generate_coalmine.setEnabled(True)
+        generate_coalmine()
