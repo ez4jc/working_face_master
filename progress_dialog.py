@@ -44,8 +44,8 @@ class ProgressDialogExample(QWidget):
         progress_dialog.exec()
 
 
-if __name__ == '__main__':
-    app = QApplication([])
-    main_window = ProgressDialogExample()
-    main_window.show()
-    app.exec()
+# if __name__ == '__main__':
+#     app = QApplication([])
+#     main_window = ProgressDialogExample()
+#     main_window.show()
+#     app.exec()

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
-    <height>605</height>
+    <width>933</width>
+    <height>599</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -39,55 +39,391 @@
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
-               <verstretch>1</verstretch>
+               <verstretch>2</verstretch>
               </sizepolicy>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <item>
-               <layout class="QGridLayout" name="gridLayout">
-                <item row="0" column="0">
-                 <widget class="QCheckBox" name="checkBox_plane">
-                  <property name="text">
-                   <string>网格线</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QCheckBox" name="checkBox_highlight_point">
-                  <property name="text">
-                   <string>突出点</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QCheckBox" name="checkBox_axes">
-                  <property name="text">
-                   <string>坐标轴</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QCheckBox" name="checkBox_4">
-                  <property name="text">
-                   <string>CheckBox</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QPushButton" name="pushButton_add_ply">
-                  <property name="text">
-                   <string>添加</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QPushButton" name="pushButton_clear">
-                  <property name="text">
-                   <string>清空</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <widget class="QToolBox" name="toolBox">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="currentIndex">
+                 <number>0</number>
+                </property>
+                <property name="tabSpacing">
+                 <number>6</number>
+                </property>
+                <widget class="QWidget" name="page_2">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>171</width>
+                   <height>132</height>
+                  </rect>
+                 </property>
+                 <attribute name="label">
+                  <string>场景加载</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_17">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_roadwaySettings">
+                    <property name="text">
+                     <string>巷道设置</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_seamSettings">
+                    <property name="text">
+                     <string>煤层设置</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_coalCutter">
+                    <property name="text">
+                     <string>割煤机加载</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_supporterInit">
+                    <property name="text">
+                     <string>支撑架初始化</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="page_pointCloud">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>188</width>
+                   <height>115</height>
+                  </rect>
+                 </property>
+                 <attribute name="label">
+                  <string>点云对象</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <item>
+                   <widget class="QWidget" name="widget_pointCloudCheckBox" native="true">
+                    <layout class="QVBoxLayout" name="verticalLayout_13">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_widget_pointCloudCheckBox"/>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="page_settings">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>177</width>
+                   <height>407</height>
+                  </rect>
+                 </property>
+                 <attribute name="label">
+                  <string>属性设置</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_14">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_12">
+                    <item>
+                     <layout class="QGridLayout" name="gridLayout_2">
+                      <item row="0" column="1">
+                       <widget class="QCheckBox" name="checkBox_planeXZ">
+                        <property name="text">
+                         <string>网格线XZ</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QCheckBox" name="checkBox_planeYZ">
+                        <property name="text">
+                         <string>网格线YZ</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QCheckBox" name="checkBox_planeXY">
+                        <property name="text">
+                         <string>网格线XY</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="8" column="0">
+                       <widget class="QLabel" name="label_diffuse">
+                        <property name="text">
+                         <string>漫反射</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="0">
+                       <widget class="QLabel" name="label_ambient">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>亮度</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QCheckBox" name="checkBox_axes">
+                        <property name="text">
+                         <string>坐标轴</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QCheckBox" name="checkBox_highlight_point">
+                        <property name="text">
+                         <string>突出点</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <widget class="QSlider" name="horizontalSlider_ambient">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="value">
+                         <number>30</number>
+                        </property>
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="1">
+                       <widget class="QPushButton" name="pushButton_add_ply">
+                        <property name="text">
+                         <string>添加</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="8" column="1">
+                       <widget class="QSlider" name="horizontalSlider_diffuse">
+                        <property name="value">
+                         <number>70</number>
+                        </property>
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_sliderHint">
+                    <property name="text">
+                     <string>（建议亮度值低于漫反射值）</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_2">
+                    <property name="text">
+                     <string>滚轮缩放速度</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="horizontalSlider_viewSpeed">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;摄像头速度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="value">
+                     <number>50</number>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_3">
+                    <property name="text">
+                     <string>漫游速度</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="horizontalSlider_flySpeed">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;漫游速度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="value">
+                     <number>10</number>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupBox">
+                    <property name="title">
+                     <string>受限旋转</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_10">
+                     <item>
+                      <widget class="QRadioButton" name="radioButton_horizon_rotate">
+                       <property name="text">
+                        <string>仅横向</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="radioButton_vertical_rotate">
+                       <property name="text">
+                        <string>仅竖向</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="radioButton_roll">
+                       <property name="text">
+                        <string>横滚</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="radioButton_unlimited">
+                       <property name="text">
+                        <string>无限制</string>
+                       </property>
+                       <property name="checked">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_6"/>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="page">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>216</width>
+                   <height>144</height>
+                  </rect>
+                 </property>
+                 <attribute name="label">
+                  <string>视角选择</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_15">
+                  <item>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="2" column="1">
+                     <widget class="QRadioButton" name="radioButton_6">
+                      <property name="text">
+                       <string>煤层右视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QRadioButton" name="radioButton_supporterHead">
+                      <property name="text">
+                       <string>支撑架头视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="0">
+                     <widget class="QRadioButton" name="radioButton_7">
+                      <property name="text">
+                       <string>煤层俯视</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QRadioButton" name="radioButton_supportertail">
+                      <property name="text">
+                       <string>支撑架尾视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QRadioButton" name="radioButton_4">
+                      <property name="text">
+                       <string>割煤机尾视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QRadioButton" name="radioButton_3">
+                      <property name="text">
+                       <string>割煤机头视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QRadioButton" name="radioButton_5">
+                      <property name="text">
+                       <string>煤层左视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QRadioButton" name="radioButton_8">
+                      <property name="text">
+                       <string>煤层底部</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="0">
+                     <widget class="QRadioButton" name="radioButton_9">
+                      <property name="text">
+                       <string>通风巷视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="1">
+                     <widget class="QRadioButton" name="radioButton_10">
+                      <property name="text">
+                       <string>运输巷视角</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -103,6 +439,16 @@
              <layout class="QVBoxLayout" name="verticalLayout_8">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_7">
+                <item>
+                 <widget class="QPushButton" name="pushButton_getCameraPosition">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string>保存点云摄像头信息（开发使用）</string>
+                  </property>
+                 </widget>
+                </item>
                 <item>
                  <widget class="QLabel" name="label">
                   <property name="text">
@@ -127,7 +473,7 @@
        <widget class="QWidget" name="widget_2" native="true">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>4</horstretch>
+          <horstretch>3</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
@@ -142,6 +488,11 @@
                <verstretch>5</verstretch>
               </sizepolicy>
              </property>
+             <layout class="QVBoxLayout" name="verticalLayout_16">
+              <item>
+               <layout class="QVBoxLayout" name="view_layout"/>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
@@ -195,7 +546,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>839</width>
+     <width>933</width>
      <height>31</height>
     </rect>
    </property>
@@ -208,7 +559,7 @@
     <property name="title">
      <string>屏幕显示</string>
     </property>
-    <addaction name="action"/>
+    <addaction name="action_pcdScreen"/>
     <addaction name="action_2"/>
    </widget>
    <widget class="QMenu" name="menu">
@@ -227,9 +578,16 @@
     </property>
     <addaction name="about_us_action"/>
    </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>仿真面板</string>
+    </property>
+    <addaction name="action_supportControler"/>
+   </widget>
    <addaction name="menu_1"/>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
   </widget>
   <widget class="QToolBar" name="top_tool_bar">
    <property name="sizePolicy">
@@ -267,7 +625,7 @@
    </attribute>
    <addaction name="separator"/>
   </widget>
-  <action name="action">
+  <action name="action_pcdScreen">
    <property name="text">
     <string>点云屏</string>
    </property>
@@ -320,6 +678,19 @@
   <action name="about_us_action">
    <property name="text">
     <string>关于</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="action_supportControler">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>支撑架控制</string>
    </property>
    <property name="font">
     <font>

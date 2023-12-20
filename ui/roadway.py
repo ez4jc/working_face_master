@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'roadway.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.5.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -42,24 +42,29 @@ class Ui_RoadwayWin(object):
         self.groupBox_2.setObjectName(u"groupBox_2")
         self.gridLayout = QGridLayout(self.groupBox_2)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.spinBox_ventilationShaft_z = QSpinBox(self.groupBox_2)
-        self.spinBox_ventilationShaft_z.setObjectName(u"spinBox_ventilationShaft_z")
+        self.spinBox_ez1 = QSpinBox(self.groupBox_2)
+        self.spinBox_ez1.setObjectName(u"spinBox_ez1")
+        self.spinBox_ez1.setMinimum(-10000)
+        self.spinBox_ez1.setMaximum(10000)
 
-        self.gridLayout.addWidget(self.spinBox_ventilationShaft_z, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.spinBox_ez1, 2, 1, 1, 1)
 
-        self.spinBox_ventilationShaft_y = QSpinBox(self.groupBox_2)
-        self.spinBox_ventilationShaft_y.setObjectName(u"spinBox_ventilationShaft_y")
-        self.spinBox_ventilationShaft_y.setValue(20)
+        self.spinBox_ey1 = QSpinBox(self.groupBox_2)
+        self.spinBox_ey1.setObjectName(u"spinBox_ey1")
+        self.spinBox_ey1.setMinimum(-10000)
+        self.spinBox_ey1.setMaximum(10000)
+        self.spinBox_ey1.setValue(20)
 
-        self.gridLayout.addWidget(self.spinBox_ventilationShaft_y, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.spinBox_ey1, 1, 1, 1, 1)
 
-        self.spinBox_ventilationShaft_x = QSpinBox(self.groupBox_2)
-        self.spinBox_ventilationShaft_x.setObjectName(u"spinBox_ventilationShaft_x")
-        self.spinBox_ventilationShaft_x.setEnabled(True)
-        self.spinBox_ventilationShaft_x.setMaximum(5)
-        self.spinBox_ventilationShaft_x.setValue(0)
+        self.spinBox_ex1 = QSpinBox(self.groupBox_2)
+        self.spinBox_ex1.setObjectName(u"spinBox_ex1")
+        self.spinBox_ex1.setEnabled(True)
+        self.spinBox_ex1.setMinimum(-10000)
+        self.spinBox_ex1.setMaximum(10000)
+        self.spinBox_ex1.setValue(0)
 
-        self.gridLayout.addWidget(self.spinBox_ventilationShaft_x, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.spinBox_ex1, 0, 1, 1, 1)
 
         self.label_7 = QLabel(self.groupBox_2)
         self.label_7.setObjectName(u"label_7")
@@ -86,23 +91,29 @@ class Ui_RoadwayWin(object):
         self.groupBox.setObjectName(u"groupBox")
         self.gridLayout_2 = QGridLayout(self.groupBox)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.spinBox_3 = QSpinBox(self.groupBox)
-        self.spinBox_3.setObjectName(u"spinBox_3")
-        self.spinBox_3.setEnabled(True)
+        self.spinBox_sz1 = QSpinBox(self.groupBox)
+        self.spinBox_sz1.setObjectName(u"spinBox_sz1")
+        self.spinBox_sz1.setEnabled(True)
+        self.spinBox_sz1.setMinimum(-10000)
+        self.spinBox_sz1.setMaximum(10000)
 
-        self.gridLayout_2.addWidget(self.spinBox_3, 2, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.spinBox_sz1, 2, 1, 1, 1)
 
-        self.spinBox_2 = QSpinBox(self.groupBox)
-        self.spinBox_2.setObjectName(u"spinBox_2")
-        self.spinBox_2.setEnabled(True)
+        self.spinBox_sy1 = QSpinBox(self.groupBox)
+        self.spinBox_sy1.setObjectName(u"spinBox_sy1")
+        self.spinBox_sy1.setEnabled(True)
+        self.spinBox_sy1.setMinimum(-10000)
+        self.spinBox_sy1.setMaximum(10000)
 
-        self.gridLayout_2.addWidget(self.spinBox_2, 1, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.spinBox_sy1, 1, 1, 1, 1)
 
-        self.spinBox = QSpinBox(self.groupBox)
-        self.spinBox.setObjectName(u"spinBox")
-        self.spinBox.setEnabled(True)
+        self.spinBox_sx1 = QSpinBox(self.groupBox)
+        self.spinBox_sx1.setObjectName(u"spinBox_sx1")
+        self.spinBox_sx1.setEnabled(True)
+        self.spinBox_sx1.setMinimum(-10000)
+        self.spinBox_sx1.setMaximum(10000)
 
-        self.gridLayout_2.addWidget(self.spinBox, 0, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.spinBox_sx1, 0, 1, 1, 1)
 
         self.label_10 = QLabel(self.groupBox)
         self.label_10.setObjectName(u"label_10")
@@ -186,27 +197,31 @@ class Ui_RoadwayWin(object):
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.gridLayout_3 = QGridLayout(self.groupBox_3)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.spinBox_transportAlley_y = QSpinBox(self.groupBox_3)
-        self.spinBox_transportAlley_y.setObjectName(u"spinBox_transportAlley_y")
-        self.spinBox_transportAlley_y.setEnabled(True)
-        self.spinBox_transportAlley_y.setValue(20)
+        self.spinBox_ey2 = QSpinBox(self.groupBox_3)
+        self.spinBox_ey2.setObjectName(u"spinBox_ey2")
+        self.spinBox_ey2.setEnabled(True)
+        self.spinBox_ey2.setMinimum(-10000)
+        self.spinBox_ey2.setMaximum(10000)
+        self.spinBox_ey2.setValue(20)
 
-        self.gridLayout_3.addWidget(self.spinBox_transportAlley_y, 1, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.spinBox_ey2, 1, 1, 1, 1)
 
-        self.spinBox_transportAlley_x = QSpinBox(self.groupBox_3)
-        self.spinBox_transportAlley_x.setObjectName(u"spinBox_transportAlley_x")
-        self.spinBox_transportAlley_x.setEnabled(True)
-        self.spinBox_transportAlley_x.setMinimum(35)
-        self.spinBox_transportAlley_x.setMaximum(40)
-        self.spinBox_transportAlley_x.setValue(40)
+        self.spinBox_ex2 = QSpinBox(self.groupBox_3)
+        self.spinBox_ex2.setObjectName(u"spinBox_ex2")
+        self.spinBox_ex2.setEnabled(True)
+        self.spinBox_ex2.setMinimum(-10000)
+        self.spinBox_ex2.setMaximum(10000)
+        self.spinBox_ex2.setValue(40)
 
-        self.gridLayout_3.addWidget(self.spinBox_transportAlley_x, 0, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.spinBox_ex2, 0, 1, 1, 1)
 
-        self.spinBox_transportAlley_z = QSpinBox(self.groupBox_3)
-        self.spinBox_transportAlley_z.setObjectName(u"spinBox_transportAlley_z")
-        self.spinBox_transportAlley_z.setEnabled(True)
+        self.spinBox_ez2 = QSpinBox(self.groupBox_3)
+        self.spinBox_ez2.setObjectName(u"spinBox_ez2")
+        self.spinBox_ez2.setEnabled(True)
+        self.spinBox_ez2.setMinimum(-10000)
+        self.spinBox_ez2.setMaximum(10000)
 
-        self.gridLayout_3.addWidget(self.spinBox_transportAlley_z, 2, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.spinBox_ez2, 2, 1, 1, 1)
 
         self.label_13 = QLabel(self.groupBox_3)
         self.label_13.setObjectName(u"label_13")
@@ -233,24 +248,30 @@ class Ui_RoadwayWin(object):
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.gridLayout_4 = QGridLayout(self.groupBox_4)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.spinBox_10 = QSpinBox(self.groupBox_4)
-        self.spinBox_10.setObjectName(u"spinBox_10")
-        self.spinBox_10.setEnabled(True)
-        self.spinBox_10.setValue(40)
+        self.spinBox_sx2 = QSpinBox(self.groupBox_4)
+        self.spinBox_sx2.setObjectName(u"spinBox_sx2")
+        self.spinBox_sx2.setEnabled(True)
+        self.spinBox_sx2.setMinimum(-10000)
+        self.spinBox_sx2.setMaximum(10000)
+        self.spinBox_sx2.setValue(40)
 
-        self.gridLayout_4.addWidget(self.spinBox_10, 0, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.spinBox_sx2, 0, 1, 1, 1)
 
-        self.spinBox_11 = QSpinBox(self.groupBox_4)
-        self.spinBox_11.setObjectName(u"spinBox_11")
-        self.spinBox_11.setEnabled(True)
+        self.spinBox_sy2 = QSpinBox(self.groupBox_4)
+        self.spinBox_sy2.setObjectName(u"spinBox_sy2")
+        self.spinBox_sy2.setEnabled(True)
+        self.spinBox_sy2.setMinimum(-10000)
+        self.spinBox_sy2.setMaximum(10000)
 
-        self.gridLayout_4.addWidget(self.spinBox_11, 1, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.spinBox_sy2, 1, 1, 1, 1)
 
-        self.spinBox_12 = QSpinBox(self.groupBox_4)
-        self.spinBox_12.setObjectName(u"spinBox_12")
-        self.spinBox_12.setEnabled(True)
+        self.spinBox_sz2 = QSpinBox(self.groupBox_4)
+        self.spinBox_sz2.setObjectName(u"spinBox_sz2")
+        self.spinBox_sz2.setEnabled(True)
+        self.spinBox_sz2.setMinimum(-10000)
+        self.spinBox_sz2.setMaximum(10000)
 
-        self.gridLayout_4.addWidget(self.spinBox_12, 2, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.spinBox_sz2, 2, 1, 1, 1)
 
         self.label_16 = QLabel(self.groupBox_4)
         self.label_16.setObjectName(u"label_16")
@@ -331,32 +352,127 @@ class Ui_RoadwayWin(object):
 
         self.verticalLayout.addWidget(self.label_19)
 
+        self.groupBox_5 = QGroupBox(self.frame_8)
+        self.groupBox_5.setObjectName(u"groupBox_5")
+        self.gridLayout_5 = QGridLayout(self.groupBox_5)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.spinBox_ey3 = QSpinBox(self.groupBox_5)
+        self.spinBox_ey3.setObjectName(u"spinBox_ey3")
+        self.spinBox_ey3.setEnabled(True)
+        self.spinBox_ey3.setMinimum(-10000)
+        self.spinBox_ey3.setMaximum(10000)
+        self.spinBox_ey3.setValue(0)
+
+        self.gridLayout_5.addWidget(self.spinBox_ey3, 1, 1, 1, 1)
+
+        self.spinBox_ex3 = QSpinBox(self.groupBox_5)
+        self.spinBox_ex3.setObjectName(u"spinBox_ex3")
+        self.spinBox_ex3.setEnabled(True)
+        self.spinBox_ex3.setMinimum(-10000)
+        self.spinBox_ex3.setMaximum(10000)
+        self.spinBox_ex3.setValue(40)
+
+        self.gridLayout_5.addWidget(self.spinBox_ex3, 0, 1, 1, 1)
+
+        self.spinBox_ez3 = QSpinBox(self.groupBox_5)
+        self.spinBox_ez3.setObjectName(u"spinBox_ez3")
+        self.spinBox_ez3.setEnabled(True)
+        self.spinBox_ez3.setMinimum(-10000)
+        self.spinBox_ez3.setMaximum(10000)
+
+        self.gridLayout_5.addWidget(self.spinBox_ez3, 2, 1, 1, 1)
+
+        self.label_20 = QLabel(self.groupBox_5)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_5.addWidget(self.label_20, 0, 0, 1, 1)
+
+        self.label_21 = QLabel(self.groupBox_5)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_5.addWidget(self.label_21, 1, 0, 1, 1)
+
+        self.label_22 = QLabel(self.groupBox_5)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_5.addWidget(self.label_22, 2, 0, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.groupBox_5)
+
+        self.groupBox_6 = QGroupBox(self.frame_8)
+        self.groupBox_6.setObjectName(u"groupBox_6")
+        self.gridLayout_6 = QGridLayout(self.groupBox_6)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.spinBox_sx3 = QSpinBox(self.groupBox_6)
+        self.spinBox_sx3.setObjectName(u"spinBox_sx3")
+        self.spinBox_sx3.setEnabled(True)
+        self.spinBox_sx3.setMinimum(-10000)
+        self.spinBox_sx3.setMaximum(10000)
+        self.spinBox_sx3.setValue(0)
+
+        self.gridLayout_6.addWidget(self.spinBox_sx3, 0, 1, 1, 1)
+
+        self.spinBox_sy3 = QSpinBox(self.groupBox_6)
+        self.spinBox_sy3.setObjectName(u"spinBox_sy3")
+        self.spinBox_sy3.setEnabled(True)
+        self.spinBox_sy3.setMinimum(-10000)
+        self.spinBox_sy3.setMaximum(10000)
+
+        self.gridLayout_6.addWidget(self.spinBox_sy3, 1, 1, 1, 1)
+
+        self.spinBox_sz3 = QSpinBox(self.groupBox_6)
+        self.spinBox_sz3.setObjectName(u"spinBox_sz3")
+        self.spinBox_sz3.setEnabled(True)
+        self.spinBox_sz3.setMinimum(-10000)
+        self.spinBox_sz3.setMaximum(10000)
+
+        self.gridLayout_6.addWidget(self.spinBox_sz3, 2, 1, 1, 1)
+
+        self.label_23 = QLabel(self.groupBox_6)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_6.addWidget(self.label_23, 0, 0, 1, 1)
+
+        self.label_24 = QLabel(self.groupBox_6)
+        self.label_24.setObjectName(u"label_24")
+        self.label_24.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_6.addWidget(self.label_24, 1, 0, 1, 1)
+
+        self.label_25 = QLabel(self.groupBox_6)
+        self.label_25.setObjectName(u"label_25")
+        self.label_25.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_6.addWidget(self.label_25, 2, 0, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.groupBox_6)
+
         self.frame_9 = QFrame(self.frame_8)
         self.frame_9.setObjectName(u"frame_9")
         self.frame_9.setFrameShape(QFrame.StyledPanel)
         self.frame_9.setFrameShadow(QFrame.Raised)
-        self.gridLayout_5 = QGridLayout(self.frame_9)
-        self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.label_20 = QLabel(self.frame_9)
-        self.label_20.setObjectName(u"label_20")
+        self.horizontalLayout_6 = QHBoxLayout(self.frame_9)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.label_26 = QLabel(self.frame_9)
+        self.label_26.setObjectName(u"label_26")
+        self.label_26.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_5.addWidget(self.label_20, 0, 0, 1, 1)
+        self.horizontalLayout_6.addWidget(self.label_26)
 
-        self.spinBox_seamThickness = QSpinBox(self.frame_9)
-        self.spinBox_seamThickness.setObjectName(u"spinBox_seamThickness")
-        self.spinBox_seamThickness.setMinimum(2)
-        self.spinBox_seamThickness.setMaximum(4)
+        self.spinBox_transportAlley_width_2 = QSpinBox(self.frame_9)
+        self.spinBox_transportAlley_width_2.setObjectName(u"spinBox_transportAlley_width_2")
+        self.spinBox_transportAlley_width_2.setValue(3)
 
-        self.gridLayout_5.addWidget(self.spinBox_seamThickness, 0, 2, 1, 1)
+        self.horizontalLayout_6.addWidget(self.spinBox_transportAlley_width_2)
 
 
         self.verticalLayout.addWidget(self.frame_9)
-
-        self.label_21 = QLabel(self.frame_8)
-        self.label_21.setObjectName(u"label_21")
-        self.label_21.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout.addWidget(self.label_21)
 
         self.frame_10 = QFrame(self.frame_8)
         self.frame_10.setObjectName(u"frame_10")
@@ -364,15 +480,18 @@ class Ui_RoadwayWin(object):
         self.frame_10.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_7 = QHBoxLayout(self.frame_10)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.label_22 = QLabel(self.frame_10)
-        self.label_22.setObjectName(u"label_22")
+        self.label_27 = QLabel(self.frame_10)
+        self.label_27.setObjectName(u"label_27")
+        self.label_27.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_7.addWidget(self.label_22)
+        self.horizontalLayout_7.addWidget(self.label_27)
 
-        self.spinBox_4 = QSpinBox(self.frame_10)
-        self.spinBox_4.setObjectName(u"spinBox_4")
+        self.spinBox_transportAlley_height_2 = QSpinBox(self.frame_10)
+        self.spinBox_transportAlley_height_2.setObjectName(u"spinBox_transportAlley_height_2")
+        self.spinBox_transportAlley_height_2.setEnabled(True)
+        self.spinBox_transportAlley_height_2.setValue(3)
 
-        self.horizontalLayout_7.addWidget(self.spinBox_4)
+        self.horizontalLayout_7.addWidget(self.spinBox_transportAlley_height_2)
 
 
         self.verticalLayout.addWidget(self.frame_10)
@@ -390,12 +509,6 @@ class Ui_RoadwayWin(object):
         self.pushButton_generate_roadway.setObjectName(u"pushButton_generate_roadway")
 
         self.verticalLayout_7.addWidget(self.pushButton_generate_roadway)
-
-        self.pushButton_generate_coalmine = QPushButton(self.frame_7)
-        self.pushButton_generate_coalmine.setObjectName(u"pushButton_generate_coalmine")
-        self.pushButton_generate_coalmine.setEnabled(True)
-
-        self.verticalLayout_7.addWidget(self.pushButton_generate_coalmine)
 
 
         self.horizontalLayout_5.addWidget(self.frame_7)
@@ -430,11 +543,17 @@ class Ui_RoadwayWin(object):
         self.label_18.setText(QCoreApplication.translate("RoadwayWin", u"Z", None))
         self.label_6.setText(QCoreApplication.translate("RoadwayWin", u"\u5bbd\uff1a", None))
         self.label_4.setText(QCoreApplication.translate("RoadwayWin", u"\u9ad8\uff1a", None))
-        self.label_19.setText(QCoreApplication.translate("RoadwayWin", u"\u7164\u5c42", None))
-        self.label_20.setText(QCoreApplication.translate("RoadwayWin", u"\u539a\u5ea6\uff1a", None))
-        self.label_21.setText(QCoreApplication.translate("RoadwayWin", u"\u573a\u666f\u65cb\u8f6c", None))
-        self.label_22.setText(QCoreApplication.translate("RoadwayWin", u"\u5ea6\u6570\uff1a", None))
+        self.label_19.setText(QCoreApplication.translate("RoadwayWin", u"\u8fd0\u8f93\u5df7", None))
+        self.groupBox_5.setTitle(QCoreApplication.translate("RoadwayWin", u"\u7ec8\u70b9\u5750\u6807\uff1a", None))
+        self.label_20.setText(QCoreApplication.translate("RoadwayWin", u"X", None))
+        self.label_21.setText(QCoreApplication.translate("RoadwayWin", u"Y", None))
+        self.label_22.setText(QCoreApplication.translate("RoadwayWin", u"Z", None))
+        self.groupBox_6.setTitle(QCoreApplication.translate("RoadwayWin", u"\u8d77\u59cb\u70b9\u5750\u6807\uff1a", None))
+        self.label_23.setText(QCoreApplication.translate("RoadwayWin", u"X", None))
+        self.label_24.setText(QCoreApplication.translate("RoadwayWin", u"Y", None))
+        self.label_25.setText(QCoreApplication.translate("RoadwayWin", u"Z", None))
+        self.label_26.setText(QCoreApplication.translate("RoadwayWin", u"\u5bbd\uff1a", None))
+        self.label_27.setText(QCoreApplication.translate("RoadwayWin", u"\u9ad8\uff1a", None))
         self.pushButton_generate_roadway.setText(QCoreApplication.translate("RoadwayWin", u"\u751f\u6210\u5df7\u9053\uff08\u9700\u6e05\u7a7a\u5f53\u524d\u751f\u6210\uff09", None))
-        self.pushButton_generate_coalmine.setText(QCoreApplication.translate("RoadwayWin", u"\u751f\u6210\u7164\u5c42\uff08\u9700\u5148\u751f\u6210\u5df7\u9053\uff09", None))
     # retranslateUi
 

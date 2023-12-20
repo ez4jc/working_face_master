@@ -110,10 +110,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.supporter_num = 20
         self.toggled_planeXY()
 
-    def load_work_roadway(self):
-        self.work_roadway = WorkRoadway("zhao_xi/tunnel/work_surface/work_surface_vertices.vtk", self)
-        self.window.pushButton_loadWorkRoadway.clicked.disconnect()  # 加载一次后解除绑定
-
     def coalCutter_init(self):
         self.coal_cutter_actor = CoalCutterActor(scene_initial_info.coal_cutter[0], self)
         self.coal_cutter_actor.show_model()
@@ -126,10 +122,8 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
 
     def show_progress_dialog(self):
         progress_dialog = QProgressDialog(self)
-        progress_dialog.setWindowModality(Qt.WindowModal)
-        progress_dialog.setWindowTitle('加载工作场景...')
-        progress_dialog.setLabelText('稍等...')
         progress_dialog.setCancelButton(None)  # 禁用取消按钮
+        progress_dialog.setLabelText("支撑架加载中，勿操作。")
         progress_dialog.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
 
         worker_thread = WorkerThread(self)
@@ -143,11 +137,12 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
     def roadway_init(self, theta):
         ventilation_alley = AlleyActor(scene_initial_info.roadway_filename[0], self, theta)
         transport_alley = AlleyActor(scene_initial_info.roadway_filename[1], self, theta)
+        self.work_roadway = WorkRoadway(scene_initial_info.roadway_filename[2], self)
         self.roadway_actors.append(ventilation_alley)
         self.roadway_actors.append(transport_alley)
-        self.renderer.AddActor(ventilation_alley)
-        self.renderer.AddActor(transport_alley)
-        self.GetRenderWindow().Render()
+        self.roadway_actors[0].show()
+        self.roadway_actors[1].show()
+        self.work_roadway.show()
 
     def seam_init(self):
         up_coal_wall = CoalWallActor(scene_initial_info.seam_filename[0], self)
@@ -209,11 +204,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBox)
             # 记录名称
             self.point_cloud_actors_filename.append(file_name)
-
-    def update_roadway(self, theta):
-        self.roadway_actors[0].update(theta)
-        self.roadway_actors[1].update(theta)
-        self.GetRenderWindow().Render()
 
     def update_seam(self):
         self.seam_actors[0].update()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_initial_window_new3.ui'
+## Form generated from reading UI file 'ui_initial_window.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.3
 ##
@@ -92,15 +92,15 @@ class Ui_MainWindow(object):
         self.page_2.setGeometry(QRect(0, 0, 171, 132))
         self.verticalLayout_17 = QVBoxLayout(self.page_2)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.pushButton_roadwayAndCoalmineSettings = QPushButton(self.page_2)
-        self.pushButton_roadwayAndCoalmineSettings.setObjectName(u"pushButton_roadwayAndCoalmineSettings")
+        self.pushButton_roadwaySettings = QPushButton(self.page_2)
+        self.pushButton_roadwaySettings.setObjectName(u"pushButton_roadwaySettings")
 
-        self.verticalLayout_17.addWidget(self.pushButton_roadwayAndCoalmineSettings)
+        self.verticalLayout_17.addWidget(self.pushButton_roadwaySettings)
 
-        self.pushButton_loadWorkRoadway = QPushButton(self.page_2)
-        self.pushButton_loadWorkRoadway.setObjectName(u"pushButton_loadWorkRoadway")
+        self.pushButton_seamSettings = QPushButton(self.page_2)
+        self.pushButton_seamSettings.setObjectName(u"pushButton_seamSettings")
 
-        self.verticalLayout_17.addWidget(self.pushButton_loadWorkRoadway)
+        self.verticalLayout_17.addWidget(self.pushButton_seamSettings)
 
         self.pushButton_coalCutter = QPushButton(self.page_2)
         self.pushButton_coalCutter.setObjectName(u"pushButton_coalCutter")
@@ -496,8 +496,8 @@ class Ui_MainWindow(object):
         self.action_4.setText(QCoreApplication.translate("MainWindow", u"\u89d2\u8272\u8bbe\u7f6e", None))
         self.about_us_action.setText(QCoreApplication.translate("MainWindow", u"\u5173\u4e8e", None))
         self.action_supportControler.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u63a7\u5236", None))
-        self.pushButton_roadwayAndCoalmineSettings.setText(QCoreApplication.translate("MainWindow", u"\u5df7\u9053\u7164\u5ca9\u5c42\u8bbe\u7f6e", None))
-        self.pushButton_loadWorkRoadway.setText(QCoreApplication.translate("MainWindow", u"\u5de5\u4f5c\u5df7\u9053\u52a0\u8f7d", None))
+        self.pushButton_roadwaySettings.setText(QCoreApplication.translate("MainWindow", u"\u5df7\u9053\u8bbe\u7f6e", None))
+        self.pushButton_seamSettings.setText(QCoreApplication.translate("MainWindow", u"\u7164\u5c42\u8bbe\u7f6e", None))
         self.pushButton_coalCutter.setText(QCoreApplication.translate("MainWindow", u"\u5272\u7164\u673a\u52a0\u8f7d", None))
         self.pushButton_supporterInit.setText(QCoreApplication.translate("MainWindow", u"\u652f\u6491\u67b6\u521d\u59cb\u5316", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("MainWindow", u"\u573a\u666f\u52a0\u8f7d", None))

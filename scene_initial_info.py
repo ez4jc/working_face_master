@@ -45,6 +45,7 @@ seam_filename = ['zhao_xi/tunnel/coal_wall/up_coal_wall.ply',
                  'zhao_xi/tunnel/coal_wall/down_coal_wall.ply']
 
 roadway_filename = ['zhao_xi/tunnel/tongfengxiang/tongfengxiang_vertices.vtk',
-                    'zhao_xi/tunnel/yunshuxiang/yunshuxiang_vertices.vtk']
+                    'zhao_xi/tunnel/yunshuxiang/yunshuxiang_vertices.vtk',
+                    'zhao_xi/tunnel/work_surface/work_surface_vertices.vtk']
 
 coal_cutter = ['zhao_xi/cmj/CoalCutter.ply']

@@ -20,8 +20,9 @@ from frame.frame_dialog import InformationDialog
 from ui.ui_initial_window import Ui_MainWindow
 from sub_win_support import SubWinSupport
 from roadway_win import RoadWayWin
+from seam_win import SeamWin
 from coalCutter_win import CoalCutterWin
-from loading_dialog import LoadingDialogWin
+from simulate_slice_win import SliceWin
 
 import common.project_memory as ProjectMemory
 
@@ -46,11 +47,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 巷道窗口实例
         self.roadway_win = RoadWayWin(self.vtkWidget)
 
+        # 煤层窗口实例
+        self.seam_win = SeamWin(self.vtkWidget)
+
         # 割煤机窗口实例
         self.coalCutter = CoalCutterWin(self.vtkWidget)
 
-        # 等待操作窗口实例
-        self.loading_dialog = LoadingDialogWin()
+        # 切割仿真窗口实例(还未使用)
+        self.slice_win = SliceWin(self.vtkWidget)
 
         # 摄像头模块实例
         self.videoWidget = CustomCameraLabel(self)
@@ -87,8 +91,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.radioButton_clear.clicked.connect(self.show_blank)
         # 控制面板的按钮
         # 加载场景选项卡
-        self.pushButton_roadwayAndCoalmineSettings.clicked.connect(self.roadway_win.show)
-        self.pushButton_loadWorkRoadway.clicked.connect(self.vtkWidget.load_work_roadway)
+        self.pushButton_roadwaySettings.clicked.connect(self.roadway_win.show)
+        self.pushButton_seamSettings.clicked.connect(self.seam_win.show)
         self.pushButton_coalCutter.clicked.connect(self.coalCutter.show)
         self.pushButton_supporterInit.clicked.connect(self.vtkWidget.support_init)
         ##############################

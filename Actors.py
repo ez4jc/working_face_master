@@ -173,6 +173,9 @@ class CoalCutterActor(vtk.vtkActor):
         self.interactor.show_actors([self], self.model_flag)
         self.model_flag = not self.model_flag
 
+    def move(self, dis):
+        zhao_xi.mine_device.Support.move_actor(self, dis, [0, 1, 0])
+
     def roll_yoz(self, theta):
         self.roll(theta, [1, 0, 0])
 
@@ -386,35 +389,51 @@ class CoalWallActor(vtk.vtkActor):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
 
 
+# 通风巷和运输巷
 class AlleyActor(vtk.vtkActor):
     def __init__(self, filename, interactor, theta):
         super().__init__()
         self.filename = filename
         self.interactor = interactor
+        self.property = self.interactor.base_property
+        # 设置Actor的颜色
+        self.property.SetColor(1.0, 0.0, 0.0)  # 巷道设置为红色，RGB值为(1.0, 0.0, 0.0)
         self.init(theta)
+        self.model_flag = False
+
+        self.theta = None
 
     def init(self, theta):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
-        self.SetProperty(self.interactor.base_property)
+        self.SetProperty(self.property)
         self.theta = theta
+
+    def show(self):
+        self.interactor.show_actors([self], self.model_flag)
 
     def update(self, theta):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
         self.theta = theta
-        print(self.theta)
 
 
+# 工作巷
 class WorkRoadway(vtk.vtkActor):
     def __init__(self, filename, interactor):
         super().__init__()
         self.filename = filename
         self.interactor = interactor
+        self.property = self.interactor.base_property
+        # 设置Actor的颜色
+        self.property.SetColor(1.0, 0.0, 0.0)  # 巷道设置为红色，RGB值为(1.0, 0.0, 0.0)
         self.init()
+        self.model_flag = False
 
     def init(self):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
-        self.SetProperty(self.interactor.base_property)
-        self.show()
+        self.SetProperty(self.property)
 
     def show(self):
-        self.interactor.show_actors([self], False)
+        self.interactor.show_actors([self], self.model_flag)
+
+    def update(self):
+        self.SetMapper(self.interactor.create_single_actor(self.filename))
