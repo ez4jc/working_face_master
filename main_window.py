@@ -22,7 +22,7 @@ from sub_win_support import SubWinSupport
 from roadway_win import RoadWayWin
 from seam_win import SeamWin
 from coalCutter_win import CoalCutterWin
-from simulate_slice_win import SliceWin
+# from simulate_slice_win import SliceWin
 
 import common.project_memory as ProjectMemory
 
@@ -54,7 +54,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.coalCutter = CoalCutterWin(self.vtkWidget)
 
         # 切割仿真窗口实例(还未使用)
-        self.slice_win = SliceWin(self.vtkWidget)
+        # self.slice_win = SliceWin(self.vtkWidget)
 
         # 摄像头模块实例
         self.videoWidget = CustomCameraLabel(self)

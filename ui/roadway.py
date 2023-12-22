@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'roadway.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.3
+## Created by: Qt User Interface Compiler version 6.6.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -505,6 +505,16 @@ class Ui_RoadwayWin(object):
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.verticalLayout_7 = QVBoxLayout(self.frame_7)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.pushButton_saveInfo = QPushButton(self.frame_7)
+        self.pushButton_saveInfo.setObjectName(u"pushButton_saveInfo")
+
+        self.verticalLayout_7.addWidget(self.pushButton_saveInfo)
+
+        self.pushButton_loadInfo = QPushButton(self.frame_7)
+        self.pushButton_loadInfo.setObjectName(u"pushButton_loadInfo")
+
+        self.verticalLayout_7.addWidget(self.pushButton_loadInfo)
+
         self.pushButton_generate_roadway = QPushButton(self.frame_7)
         self.pushButton_generate_roadway.setObjectName(u"pushButton_generate_roadway")
 
@@ -520,7 +530,7 @@ class Ui_RoadwayWin(object):
     # setupUi
 
     def retranslateUi(self, RoadwayWin):
-        RoadwayWin.setWindowTitle(QCoreApplication.translate("RoadwayWin", u"\u5df7\u9053\u63a7\u5236", None))
+        RoadwayWin.setWindowTitle(QCoreApplication.translate("RoadwayWin", u"\u5df7\u9053\u8bbe\u7f6e", None))
         self.label.setText(QCoreApplication.translate("RoadwayWin", u"\u901a\u98ce\u5df7", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("RoadwayWin", u"\u7ec8\u70b9\u5750\u6807\uff1a", None))
         self.label_7.setText(QCoreApplication.translate("RoadwayWin", u"X", None))
@@ -554,6 +564,8 @@ class Ui_RoadwayWin(object):
         self.label_25.setText(QCoreApplication.translate("RoadwayWin", u"Z", None))
         self.label_26.setText(QCoreApplication.translate("RoadwayWin", u"\u5bbd\uff1a", None))
         self.label_27.setText(QCoreApplication.translate("RoadwayWin", u"\u9ad8\uff1a", None))
+        self.pushButton_saveInfo.setText(QCoreApplication.translate("RoadwayWin", u"\u4fdd\u5b58\u53c2\u6570", None))
+        self.pushButton_loadInfo.setText(QCoreApplication.translate("RoadwayWin", u"\u52a0\u8f7d\u53c2\u6570", None))
         self.pushButton_generate_roadway.setText(QCoreApplication.translate("RoadwayWin", u"\u751f\u6210\u5df7\u9053\uff08\u9700\u6e05\u7a7a\u5f53\u524d\u751f\u6210\uff09", None))
     # retranslateUi
 
