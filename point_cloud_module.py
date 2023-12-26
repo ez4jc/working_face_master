@@ -188,13 +188,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
             # 添加点云对象的可选框
             self.window.add_check_box(file_name, actor, self.point_cloud_actors_checkBox)
 
-    def show_actor(self, actor):  # 目标方法：判断actor是否显示是遍历列表；如果设个标志位数组，性能可以优化。
-        if actor in self.renderer.GetActors():
-            self.renderer.RemoveActor(actor)
-        else:
-            self.renderer.AddActor(actor)
-        self.renderer.GetRenderWindow().Render()
-
     def add_actor_and_checkbox(self, files_name: typing.List, actors_list=None):
         for file_name in files_name:
             actor = self.add_actor(self.create_single_actor(file_name))

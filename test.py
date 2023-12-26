@@ -1,61 +1,25 @@
-from PySide6.QtWidgets import QApplication, QProgressDialog, QPushButton, QVBoxLayout, QWidget
-from PySide6.QtCore import Qt, QThread, Signal
+import numpy as np
 
+def generate_points_on_line(point1, point2, num_points):
+    # 将端点转换为NumPy数组
+    point1 = np.array(point1)
+    point2 = np.array(point2)
 
-class WorkerThread(QThread):
-    update_progress = Signal(int)
+    # 生成均匀分布的参数值（从0到1）
+    t_values = np.linspace(0, 1, num_points)
 
-    def run(self):
-        # Simulate a time-consuming task
-        for i in range(101):
-            self.update_progress.emit(i)
-            self.msleep(50)
+    # 根据参数值计算点的坐标
+    points = [point1 + t * (point2 - point1) for t in t_values]
 
+    return points
 
-class MainWindow(QWidget):
-    def __init__(self):
-        super().__init__()
+# 示例：定义两个端点
+endpoint1 = [0.0, 0.0, 0.0]
+endpoint2 = [1.0, 1.0, 1.0]
 
-        layout = QVBoxLayout()
+# 生成均匀分布的100个点
+line_points = generate_points_on_line(endpoint1, endpoint2, num_points=10)
 
-        # Create a button to start the process
-        start_button = QPushButton("Start Process")
-        start_button.clicked.connect(self.start_process)
-        layout.addWidget(start_button)
-
-        self.setLayout(layout)
-
-    def start_process(self):
-        # Create a progress dialog
-        progress_dialog = QProgressDialog(self)
-        progress_dialog.setWindowModality(Qt.WindowModal)
-        progress_dialog.setWindowTitle('Loading...')
-        progress_dialog.setLabelText('Please wait...')
-        progress_dialog.setCancelButton(None)  # Disable the cancel button
-        progress_dialog.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
-
-        # Connect the canceled signal to the terminate method of the worker thread
-        progress_dialog.canceled.connect(worker_thread.terminate)
-
-        # Connect the finished signal of the progress dialog to a custom slot
-        progress_dialog.finished.connect(self.on_progress_dialog_finished)
-
-        # Connect the custom update_progress signal of the worker thread to set the progress value
-        worker_thread.update_progress.connect(progress_dialog.setValue)
-
-        # Start the worker thread and show the progress dialog
-        worker_thread.start()
-        progress_dialog.exec()
-
-    def on_progress_dialog_finished(self):
-        print("Process completed!")
-        # Your code to execute after the process completes
-
-
-if __name__ == "__main__":
-    app = QApplication([])
-    main_window = MainWindow()
-    main_window.show()
-
-    worker_thread = WorkerThread()
-    app.exec_()
+# 打印生成的点坐标
+for i, point in enumerate(line_points):
+    print(f"Point {i+1}: {point}")

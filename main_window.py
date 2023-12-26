@@ -146,7 +146,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         point_actor_check_box = QCheckBox(self)
         point_actor_check_box.setText(file_name.split('/')[-1])
         point_actor_check_box.setChecked(True)
-        point_actor_check_box.clicked.connect(lambda: self.vtkWidget.show_actor(actor))
+        point_actor_check_box.clicked.connect(lambda: self.vtkWidget.show_actors([actor], False))
         checkBoxs.append(point_actor_check_box)  # 更新CustomQVTKRenderWindowInteractor的数据结构
         self.verticalLayout_widget_pointCloudCheckBox.addWidget(point_actor_check_box)
 
