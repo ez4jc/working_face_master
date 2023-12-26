@@ -52,18 +52,19 @@ class SeamWin(QtWidgets.QWidget, Ui_Seam):
         # self.pushButton_generate_coalmine.setEnabled(True)
         # v2.0
         seam_actor = gen_seam([float(self.interactor.window.roadway_win.spinBox_sx1.value()),
-                                             float(self.interactor.window.roadway_win.spinBox_sy1.value()),
-                                             float(self.interactor.window.roadway_win.spinBox_sz1.value())],
-                                            [float(self.interactor.window.roadway_win.spinBox_ex1.value()),
-                                             float(self.interactor.window.roadway_win.spinBox_ey1.value()),
-                                             float(self.interactor.window.roadway_win.spinBox_ez1.value())],
-                                            [float(self.interactor.window.roadway_win.spinBox_sx2.value()),
-                                             float(self.interactor.window.roadway_win.spinBox_sy2.value()),
-                                             float(self.interactor.window.roadway_win.spinBox_sz2.value())],
-                                            [float(self.interactor.window.roadway_win.spinBox_ex2.value()),
-                                             float(self.interactor.window.roadway_win.spinBox_ey2.value()),
-                                             float(self.interactor.window.roadway_win.spinBox_ez2.value())]
-                                            )
+                               float(self.interactor.window.roadway_win.spinBox_sy1.value()),
+                               float(self.interactor.window.roadway_win.spinBox_sz1.value())],
+                              [float(self.interactor.window.roadway_win.spinBox_ex1.value()),
+                               float(self.interactor.window.roadway_win.spinBox_ey1.value()),
+                               float(self.interactor.window.roadway_win.spinBox_ez1.value())],
+                              [float(self.interactor.window.roadway_win.spinBox_sx2.value()),
+                               float(self.interactor.window.roadway_win.spinBox_sy2.value()),
+                               float(self.interactor.window.roadway_win.spinBox_sz2.value())],
+                              [float(self.interactor.window.roadway_win.spinBox_ex2.value()),
+                               float(self.interactor.window.roadway_win.spinBox_ey2.value()),
+                               float(self.interactor.window.roadway_win.spinBox_ez2.value())],
+                              float(self.spinBox_seamThickness.value())
+                              )
         self.interactor.show_actors([seam_actor], False)
         ##############################################
 

@@ -77,9 +77,9 @@ def generate_points_on_line(point1: list, point2: list, num_points: int) -> list
     return points
 
 
-def gen_seam(sp1: list, ep1: list, sp2: list, ep2: list) -> vtk.vtkActor:
+def gen_surface(sp1: list, ep1: list, sp2: list, ep2: list) -> vtk.vtkActor:
     """
-    根据三维空间的任意两条线段生成一个有限大小的平面。
+    根据三维空间的任意两条线段生成一个有限大小的曲面。
     :param sp1: 线段一的起点
     :param ep1: 线段一的终点
     :param sp2: 线段二的起点
@@ -95,6 +95,37 @@ def gen_seam(sp1: list, ep1: list, sp2: list, ep2: list) -> vtk.vtkActor:
         polydata_list.append(create_triangle_polydata(points_2[i + 1], points_1[i], points_1[i + 1]))
 
     # 创建包含多个三角形的vtkActor
-    combined_actor = create_combined_actor(polydata_list)
+    surface_actor = create_combined_actor(polydata_list)
 
-    return combined_actor
+    return surface_actor
+
+
+def move_surface(polydata, vector: list):
+    # 创建一个变换矩阵来进行平移
+    transform = vtk.vtkTransform()
+    transform.Translate(*vector)  # 设置平移向量
+
+    # 应用变换到 PolyData
+    transform_filter = vtk.vtkTransformPolyDataFilter()
+    transform_filter.SetInputData(polydata)
+    transform_filter.SetTransform(transform)
+    transform_filter.Update()
+
+    return transform_filter.GetOutput()
+
+
+def gen_seam(sp1: list, ep1: list, sp2: list, ep2: list, thickness: float):
+    polydata = gen_surface(sp1, ep1, sp2, ep2).GetMapper().GetInput()  # 先生成煤层的上下表面的模板（未经过平移的）
+    # 创建一个变换矩阵来进行平移
+    transform = vtk.vtkTransform()
+    transform_filter = vtk.vtkTransformPolyDataFilter()
+    transform_filter.SetInputData(polydata)
+    transform_filter.SetTransform(transform)
+
+    # 获取上表面的 PolyData
+    up_polydata = move_surface(polydata, [0, 0, thickness / 2.0])
+
+    # 获取下表面的 PolyData
+    down_polydata = move_surface(polydata, [0, 0, -thickness / 2.0])
+
+    return create_combined_actor([up_polydata, down_polydata])
