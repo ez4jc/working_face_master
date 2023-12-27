@@ -510,7 +510,7 @@
       <item>
        <widget class="QLabel" name="label_19">
         <property name="text">
-         <string>运输巷</string>
+         <string>工作巷</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -702,7 +702,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinBox_transportAlley_width_2">
+          <widget class="QSpinBox" name="spinBox_workspace_width">
            <property name="value">
             <number>3</number>
            </property>
@@ -731,7 +731,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinBox_transportAlley_height_2">
+          <widget class="QSpinBox" name="spinBox_workspace_height">
            <property name="enabled">
             <bool>true</bool>
            </property>

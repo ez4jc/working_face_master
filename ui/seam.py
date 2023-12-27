@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'seam.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.3
+## Created by: Qt User Interface Compiler version 6.6.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -38,8 +38,9 @@ class Ui_Seam(object):
 
         self.spinBox_seamThickness = QSpinBox(self.frame_9)
         self.spinBox_seamThickness.setObjectName(u"spinBox_seamThickness")
-        self.spinBox_seamThickness.setMinimum(2)
-        self.spinBox_seamThickness.setMaximum(4)
+        self.spinBox_seamThickness.setMinimum(0)
+        self.spinBox_seamThickness.setMaximum(11895959)
+        self.spinBox_seamThickness.setValue(2)
 
         self.horizontalLayout_2.addWidget(self.spinBox_seamThickness)
 

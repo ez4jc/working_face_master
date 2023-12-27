@@ -135,6 +135,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         progress_dialog.exec()
 
     def roadway_init(self, theta):
+        print(self.base_property.GetColor())
         ventilation_alley = AlleyActor(scene_initial_info.roadway_filename[0], self, theta)
         transport_alley = AlleyActor(scene_initial_info.roadway_filename[1], self, theta)
         self.work_roadway = WorkRoadway(scene_initial_info.roadway_filename[2], self)
@@ -143,19 +144,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.roadway_actors[0].show()
         self.roadway_actors[1].show()
         self.work_roadway.show()
-
-    def seam_init(self):
-        up_coal_wall = CoalWallActor(scene_initial_info.seam_filename[0], self)
-        coal_wall = CoalWallActor(scene_initial_info.seam_filename[1], self)
-        down_coal_wall = CoalWallActor(scene_initial_info.seam_filename[2], self)
-        self.seam_actors.append(up_coal_wall)
-        self.seam_actors.append(coal_wall)
-        self.seam_actors.append(down_coal_wall)
-        self.renderer.AddActor(up_coal_wall)
-        self.renderer.AddActor(coal_wall)
-        self.renderer.AddActor(down_coal_wall)
-        self.load_seam_back()
-        self.GetRenderWindow().Render()
 
     def load_seam_back(self):
         self.add_actor_and_checkbox(['zhao_xi/tunnel/coal_wall/up_coal_wall_back.ply',

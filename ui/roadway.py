@@ -465,11 +465,11 @@ class Ui_RoadwayWin(object):
 
         self.horizontalLayout_6.addWidget(self.label_26)
 
-        self.spinBox_transportAlley_width_2 = QSpinBox(self.frame_9)
-        self.spinBox_transportAlley_width_2.setObjectName(u"spinBox_transportAlley_width_2")
-        self.spinBox_transportAlley_width_2.setValue(3)
+        self.spinBox_workspace_width = QSpinBox(self.frame_9)
+        self.spinBox_workspace_width.setObjectName(u"spinBox_workspace_width")
+        self.spinBox_workspace_width.setValue(3)
 
-        self.horizontalLayout_6.addWidget(self.spinBox_transportAlley_width_2)
+        self.horizontalLayout_6.addWidget(self.spinBox_workspace_width)
 
 
         self.verticalLayout.addWidget(self.frame_9)
@@ -486,12 +486,12 @@ class Ui_RoadwayWin(object):
 
         self.horizontalLayout_7.addWidget(self.label_27)
 
-        self.spinBox_transportAlley_height_2 = QSpinBox(self.frame_10)
-        self.spinBox_transportAlley_height_2.setObjectName(u"spinBox_transportAlley_height_2")
-        self.spinBox_transportAlley_height_2.setEnabled(True)
-        self.spinBox_transportAlley_height_2.setValue(3)
+        self.spinBox_workspace_height = QSpinBox(self.frame_10)
+        self.spinBox_workspace_height.setObjectName(u"spinBox_workspace_height")
+        self.spinBox_workspace_height.setEnabled(True)
+        self.spinBox_workspace_height.setValue(3)
 
-        self.horizontalLayout_7.addWidget(self.spinBox_transportAlley_height_2)
+        self.horizontalLayout_7.addWidget(self.spinBox_workspace_height)
 
 
         self.verticalLayout.addWidget(self.frame_10)
@@ -553,7 +553,7 @@ class Ui_RoadwayWin(object):
         self.label_18.setText(QCoreApplication.translate("RoadwayWin", u"Z", None))
         self.label_6.setText(QCoreApplication.translate("RoadwayWin", u"\u5bbd\uff1a", None))
         self.label_4.setText(QCoreApplication.translate("RoadwayWin", u"\u9ad8\uff1a", None))
-        self.label_19.setText(QCoreApplication.translate("RoadwayWin", u"\u8fd0\u8f93\u5df7", None))
+        self.label_19.setText(QCoreApplication.translate("RoadwayWin", u"\u5de5\u4f5c\u5df7", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("RoadwayWin", u"\u7ec8\u70b9\u5750\u6807\uff1a", None))
         self.label_20.setText(QCoreApplication.translate("RoadwayWin", u"X", None))
         self.label_21.setText(QCoreApplication.translate("RoadwayWin", u"Y", None))

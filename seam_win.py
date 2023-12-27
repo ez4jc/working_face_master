@@ -6,6 +6,7 @@ from PySide6.QtWidgets import QProgressDialog
 
 from ui.seam import Ui_Seam
 from seam_algorithm import gen_seam
+from Actors import SeamActor
 
 
 class WorkerThread(QThread):
@@ -31,6 +32,7 @@ class SeamWin(QtWidgets.QWidget, Ui_Seam):
 
         # 标志位
         self.seam_loaded = False
+        self.seam_actor = SeamActor(self.interactor)
 
     def bind(self):
         self.pushButton_generate_coalmine.clicked.connect(self.generate_coalmine)
@@ -51,21 +53,25 @@ class SeamWin(QtWidgets.QWidget, Ui_Seam):
         # self.interactor.GetRenderWindow().Render()
         # self.pushButton_generate_coalmine.setEnabled(True)
         # v2.0
-        seam_actor = gen_seam([float(self.interactor.window.roadway_win.spinBox_sx1.value()),
-                               float(self.interactor.window.roadway_win.spinBox_sy1.value()),
-                               float(self.interactor.window.roadway_win.spinBox_sz1.value())],
-                              [float(self.interactor.window.roadway_win.spinBox_ex1.value()),
-                               float(self.interactor.window.roadway_win.spinBox_ey1.value()),
-                               float(self.interactor.window.roadway_win.spinBox_ez1.value())],
-                              [float(self.interactor.window.roadway_win.spinBox_sx2.value()),
-                               float(self.interactor.window.roadway_win.spinBox_sy2.value()),
-                               float(self.interactor.window.roadway_win.spinBox_sz2.value())],
-                              [float(self.interactor.window.roadway_win.spinBox_ex2.value()),
-                               float(self.interactor.window.roadway_win.spinBox_ey2.value()),
-                               float(self.interactor.window.roadway_win.spinBox_ez2.value())],
-                              float(self.spinBox_seamThickness.value())
-                              )
-        self.interactor.show_actors([seam_actor], False)
+        if self.seam_loaded:
+            self.interactor.show_actors([self.seam_actor], True)
+        else:
+            self.seam_loaded = True
+        self.seam_actor = gen_seam([float(self.interactor.window.roadway_win.spinBox_sx1.value()),
+                                    float(self.interactor.window.roadway_win.spinBox_sy1.value()),
+                                    float(self.interactor.window.roadway_win.spinBox_sz1.value())],
+                                   [float(self.interactor.window.roadway_win.spinBox_ex1.value()),
+                                    float(self.interactor.window.roadway_win.spinBox_ey1.value()),
+                                    float(self.interactor.window.roadway_win.spinBox_ez1.value())],
+                                   [float(self.interactor.window.roadway_win.spinBox_sx2.value()),
+                                    float(self.interactor.window.roadway_win.spinBox_sy2.value()),
+                                    float(self.interactor.window.roadway_win.spinBox_sz2.value())],
+                                   [float(self.interactor.window.roadway_win.spinBox_ex2.value()),
+                                    float(self.interactor.window.roadway_win.spinBox_ey2.value()),
+                                    float(self.interactor.window.roadway_win.spinBox_ez2.value())],
+                                   float(self.spinBox_seamThickness.value())
+                                   )
+        self.interactor.show_actors([self.seam_actor], False)
         ##############################################
 
     def show_process(self):

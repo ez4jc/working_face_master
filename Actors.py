@@ -221,7 +221,7 @@ class SupporterActor(vtk.vtkActor):
         poly_mapper = vtk.vtkPolyDataMapper()
         poly_mapper.SetInputData(polydata)
         wraparound_frame_property = vtk.vtkProperty()
-        wraparound_frame_property.SetColor(1, 0, 0)
+        wraparound_frame_property.SetColor(0, 1, 0)
         # 包围框演员
         actor = vtk.vtkActor()
         actor.SetMapper(poly_mapper)
@@ -236,7 +236,7 @@ class SupporterActor(vtk.vtkActor):
         poly_mapper = vtk.vtkPolyDataMapper()
         poly_mapper.SetInputData(polydata)
         wraparound_frame_property = vtk.vtkProperty()
-        wraparound_frame_property.SetColor(0, 1, 0)
+        wraparound_frame_property.SetColor(0, 0, 1)
         # 包围框演员
         actor = vtk.vtkActor()
         actor.SetMapper(poly_mapper)
@@ -369,24 +369,18 @@ class ScraperActor(vtk.vtkActor):
         pass
 
 
-class CoalWallActor(vtk.vtkActor):
-    def __init__(self, filename, interactor):
+class SeamActor(vtk.vtkActor):
+    def __init__(self, interactor):
         super().__init__()
-        self.filename = filename
         self.interactor = interactor
-        self.init()
-        self.theta = 0  # 煤层与XOY平面的夹角
 
-    def init(self):
-        self.SetMapper(self.interactor.create_single_actor(self.filename))
-        self.SetProperty(self.interactor.base_property)
+        self.model_flag = False
+
+    def show_model(self):
+        self.interactor.show_actors([self], self.model_flag)
 
     def update(self):
-        # 读入文件前清空之前的变换
-        identity_transform = vtk.vtkTransform()
-        identity_transform.Identity()
-        self.SetUserTransform(identity_transform)
-        self.SetMapper(self.interactor.create_single_actor(self.filename))
+        pass
 
 
 # 通风巷和运输巷
@@ -395,13 +389,17 @@ class AlleyActor(vtk.vtkActor):
         super().__init__()
         self.filename = filename
         self.interactor = interactor
-        self.property = self.interactor.base_property
         # 设置Actor的颜色
-        self.property.SetColor(1.0, 0.0, 0.0)  # 巷道设置为红色，RGB值为(1.0, 0.0, 0.0)
+        self.init_property()
         self.init(theta)
         self.model_flag = False
 
         self.theta = None
+
+    def init_property(self):
+        self.property = vtk.vtkProperty()
+        self.property.DeepCopy(self.interactor.base_property)
+        self.property.SetColor(1.0, 0.0, 0.0)  # 巷道设置为红色，RGB值为(1.0, 0.0, 0.0)
 
     def init(self, theta):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
@@ -422,11 +420,15 @@ class WorkRoadway(vtk.vtkActor):
         super().__init__()
         self.filename = filename
         self.interactor = interactor
-        self.property = self.interactor.base_property
         # 设置Actor的颜色
-        self.property.SetColor(1.0, 0.0, 0.0)  # 巷道设置为红色，RGB值为(1.0, 0.0, 0.0)
+        self.init_property()
         self.init()
         self.model_flag = False
+
+    def init_property(self):
+        self.property = vtk.vtkProperty()
+        self.property.DeepCopy(self.interactor.base_property)
+        self.property.SetColor(1.0, 0.0, 0.0)  # 巷道设置为红色，RGB值为(1.0, 0.0, 0.0)
 
     def init(self):
         self.SetMapper(self.interactor.create_single_actor(self.filename))

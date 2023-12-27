@@ -56,8 +56,8 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
                                        [float(self.spinBox_ex3.value()),
                                         float(self.spinBox_ey3.value()),
                                         float(self.spinBox_ez3.value())],
-                                       float(self.spinBox_transportAlley_width.value()),
-                                       float(self.spinBox_transportAlley_height.value()),
+                                       float(self.spinBox_workspace_width.value()),
+                                       float(self.spinBox_workspace_height.value()),
                                        "zhao_xi/tunnel/work_surface/work_surface_center_line.pcd",
                                        "zhao_xi/tunnel/work_surface/work_surface_vertices")
         if not self.roadway_loaded:
