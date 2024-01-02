@@ -77,16 +77,16 @@ def generate_points_on_line(point1: list, point2: list, num_points: int) -> list
     return points
 
 
-def gen_surface(sp1: list, ep1: list, sp2: list, ep2: list) -> vtk.vtkActor:
+def gen_surface(sp1: list, ep1: list, sp2: list, ep2: list, resolution=100) -> vtk.vtkActor:
     """
     根据三维空间的任意两条线段生成一个有限大小的曲面。
+    :param resolution:
     :param sp1: 线段一的起点
     :param ep1: 线段一的终点
     :param sp2: 线段二的起点
     :param ep2: 线段二的终点
     :return:
     """
-    resolution = 100
     points_1 = generate_points_on_line(sp1, ep1, resolution)
     points_2 = generate_points_on_line(sp2, ep2, resolution)
     polydata_list = []
@@ -128,4 +128,16 @@ def gen_seam(sp1: list, ep1: list, sp2: list, ep2: list, thickness: float):
     # 获取下表面的 PolyData
     down_polydata = move_surface(polydata, [0, 0, -thickness / 2.0])
 
-    return create_combined_actor([up_polydata, down_polydata])
+    return create_combined_actor([up_polydata, down_polydata,
+                                  gen_side_surface(sp1, ep1, thickness),
+                                  gen_side_surface(sp2, ep2, thickness),
+                                  gen_side_surface(sp1, sp2, thickness),
+                                  gen_side_surface(ep1, ep2, thickness)])
+
+
+def gen_side_surface(sp1, ep1, thickness):
+    sp1_up = [sp1[0], sp1[1], sp1[2] + thickness / 2.0]
+    sp1_down = [sp1[0], sp1[1], sp1[2] - thickness / 2.0]
+    ep1_up = [ep1[0], ep1[1], ep1[2] + thickness / 2.0]
+    ep1_down = [ep1[0], ep1[1], ep1[2] - thickness / 2.0]
+    return gen_surface(sp1_up, sp1_down, ep1_up, ep1_down, 2).GetMapper().GetInput()
