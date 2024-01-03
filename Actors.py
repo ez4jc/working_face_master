@@ -210,6 +210,9 @@ class SupporterActor(vtk.vtkActor):
         self.label_flag = False
         self.gyro_flag = False
 
+    def __str__(self):
+        return self.filename
+
     def init(self):
         self.SetMapper(self.interactor.create_single_actor(self.filename))
         self.SetProperty(self.interactor.base_property)

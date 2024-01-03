@@ -70,7 +70,6 @@ class RoadWayWin(QtWidgets.QWidget, Ui_RoadwayWin):
             self.interactor.roadway_actors[1].update(theta)
             self.interactor.work_roadway.update()
             self.interactor.GetRenderWindow().Render()
-        # self.save_roadway_info()
 
     def save_info(self):
         roadway_info = {

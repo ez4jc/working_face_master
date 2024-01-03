@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QCheckBox, 
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 import open3d as o3d
 import numpy as np
-from PySide6.QtCore import Qt, QTimer, Signal, QThread
+from PySide6.QtCore import Qt, QTimer, Signal, QThread, QCoreApplication
 import math
 
 import Actors
@@ -16,7 +16,6 @@ from readers import *
 import scene_initial_info
 
 # 项目模块
-from zhao_xi.mine_device import Support
 from zhao_xi.tools import *
 
 
@@ -92,6 +91,7 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.point_cloud_actors_filename = []
         # 存储当前加载的支撑架演员
         self.supporter_actors = []
+        self.supporter_init_flag = False
         self.scraper_actors = []
         # 存储上[0]中[1]下[2]煤层
         self.seam_actors = []
@@ -104,7 +104,6 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
         self.show_planeXZ = False
         self.show_axes = False
         self.highlight_point = False  # 是否突出点
-        self.supporter_init_flag = False
 
         # 默认实例化的角色
         self.supporter_num = 20
@@ -152,11 +151,21 @@ class CustomQVTKRenderWindowInteractor(QVTKRenderWindowInteractor):
     def support_init(self):
         if not self.supporter_init_flag:
             self.show_progress_dialog()  # 这里面包含了加载
+            self.supporter_init_flag = True
             self.scraper_init()  # 溜子初始化
             self.window.simulate_win_init()  # 这个函数仅是在实例子窗口
-            self.supporter_init_flag = True
         else:
-            return
+            self.window.pushButton_supporterInit.setEnabled(False)
+            QCoreApplication.processEvents()
+            self.supporters_clear()
+            update_supporter()  # zhao_xi,func
+            self.show_progress_dialog()  # 这里面包含了加载
+            self.window.pushButton_supporterInit.setEnabled(True)
+        self.GetRenderWindow().Render()
+
+    def supporters_clear(self):
+        self.show_actors(self.supporter_actors, True)
+        self.supporter_actors = []
 
     def set_camera_position(self, position):
         self.camera_controller.set_camera_position(position)
