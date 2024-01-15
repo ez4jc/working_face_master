@@ -2,7 +2,6 @@ import vtkmodules.all as vtk
 import math
 import json
 
-
 class CameraController:
     def __init__(self, camera):
         self.camera = camera
