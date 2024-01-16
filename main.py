@@ -15,6 +15,7 @@ from loguru import logger
 # 设置界面风格
 from qt_material import apply_stylesheet
 
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
