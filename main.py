@@ -18,7 +18,6 @@ from qt_material import apply_stylesheet
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-
 # 程序开始
 def main():
     app = QApplication(sys.argv)
